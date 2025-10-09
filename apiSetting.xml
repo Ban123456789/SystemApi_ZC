@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RESULT>
+  <CONNECTION name="開發機" database="Develop">Server=LAPTOP-6FQGDJ1Q\SQLEXPRESS;Database=base;Trusted_Connection=True;</CONNECTION>
+  <FILEPATH>D:\attatchment</FILEPATH>
+  <FILEURL>http://127.0.0.1:5000\</FILEURL>
+  <APPWakeUpURL Interval="15">http://127.0.0.1:5000/api/InitializationAPP/APPWakeUp</APPWakeUpURL>
+</RESULT>

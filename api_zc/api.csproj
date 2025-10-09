@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>SystemApi</AssemblyName>
+    <RootNamespace>SystemApi</RootNamespace>
+    <!-- 抑制 .NET 6.0 EOL 警告 (项目需求使用 .NET 6.0) -->
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+  </PropertyGroup>
+
+	<!--
+	    1.	<DebugSymbols>：
+            •	確保生成 PDB 檔案，這是顯示行號的必要條件。
+        2.	<DebugType>：
+            •	設為 full，以包含完整的調試資訊。
+        3.	<Optimize>：
+            •	禁用程式碼優化，避免行號丟失。
+        4.	條件式設定：
+            •	為 Debug 和 Release 模式分別設置，確保在任何模式下都能顯示詳細的例外資訊。
+    -->
+	<!-- Debug 模式 -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<!-- Release 模式 -->
+	<!--
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+	-->
+	<!--
+		•	<DebugType>pdbonly：僅生成必要的 PDB 檔案，保留基本的例外資訊（例如行號），但不包含完整的調試資訊。
+		•	<Optimize>true：啟用程式碼優化以提升執行效能。
+	-->
+	<!-- Release 模式2 -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<!-- 用於產出 XML 註解文件 -->
+	<PropertyGroup>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Dapper.SqlBuilder" Version="2.1.66" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="NPOI" Version="2.7.2" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.120" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,73 @@
+2025-10-09 21:52:03.762 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-09 21:52:04.241 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-09 21:52:04.246 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-09 21:52:04.253 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 21:52:04.257 +08:00 [INF] Hosting environment: Development
+2025-10-09 21:52:04.260 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-09 21:52:05.395 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-09 21:52:06.306 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 930.4521ms
+2025-10-09 21:52:06.607 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-09 21:52:06.814 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 207.7647ms
+2025-10-09 21:54:28.489 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-09 21:54:28.917 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-09 21:54:28.922 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-09 21:54:28.930 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 21:54:28.933 +08:00 [INF] Hosting environment: Development
+2025-10-09 21:54:28.935 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-09 21:54:29.753 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-09 21:54:30.139 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 387.0791ms
+2025-10-09 21:54:30.452 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-09 21:54:30.635 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 183.3004ms
+2025-10-09 21:54:39.798 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-09 21:54:39.886 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-09 21:54:39.914 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-09 21:54:39.928 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-09 21:55:16.404 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 36466.964ms.
+2025-10-09 21:55:16.418 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-09 21:55:16.456 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 36534.3445ms
+2025-10-09 21:55:16.462 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-09 21:55:16.469 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 36670.6844ms
+2025-10-09 22:28:47.767 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-09 22:28:47.919 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-09 22:28:47.920 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-09 22:28:47.924 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 22:28:47.925 +08:00 [INF] Hosting environment: Development
+2025-10-09 22:28:47.926 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-09 22:28:48.352 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-09 22:28:48.639 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 291.0396ms
+2025-10-09 22:28:48.933 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-09 22:28:49.054 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 121.1625ms
+2025-10-09 22:28:53.670 +08:00 [INF] Application is shutting down...
+2025-10-09 23:19:54.203 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-09 23:19:54.404 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-09 23:19:54.407 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-09 23:19:54.411 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 23:19:54.413 +08:00 [INF] Hosting environment: Development
+2025-10-09 23:19:54.415 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-09 23:19:54.829 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-09 23:19:55.125 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 301.5884ms
+2025-10-09 23:19:55.446 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-09 23:19:55.571 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 124.1757ms
+2025-10-09 23:20:10.209 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-09 23:20:10.275 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-09 23:20:10.288 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-09 23:20:10.304 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-09 23:20:14.196 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3883.9289ms.
+2025-10-09 23:20:14.207 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-09 23:20:14.231 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 3934.7183ms
+2025-10-09 23:20:14.235 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-09 23:20:14.243 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 4034.1401ms
+2025-10-09 23:36:52.444 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-09 23:36:52.547 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-09 23:36:52.548 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-09 23:36:52.571 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 23:36:52.572 +08:00 [INF] Hosting environment: Development
+2025-10-09 23:36:52.572 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-09 23:36:53.029 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-09 23:36:53.337 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 309.8158ms
+2025-10-09 23:36:53.367 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - -
+2025-10-09 23:36:53.374 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - - - 200 12311 application/javascript;+charset=utf-8 7.2871ms
+2025-10-09 23:36:53.392 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_vs/browserLink - -
+2025-10-09 23:36:53.437 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 45.1371ms
+2025-10-09 23:36:53.636 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-09 23:36:53.730 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 93.5724ms

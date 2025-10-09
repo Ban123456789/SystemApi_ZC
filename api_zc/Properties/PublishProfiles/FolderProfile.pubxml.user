@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\bin\Release\net6.0\</_PublishTargetUrl>
+    <History>True|2025-10-09T15:47:54.5705820Z;True|2025-10-09T23:40:49.0008666+08:00;True|2025-10-09T23:40:23.7019232+08:00;True|2025-10-09T23:39:44.6502884+08:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

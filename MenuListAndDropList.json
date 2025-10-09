@@ -1,0 +1,2809 @@
+[
+   {
+      "name": "AttachmentType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檔案類型",
+         "en": "File Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "圖片類型",
+               "en": "Image Type"
+            },
+            "value": "image",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "PDF 類型",
+               "en": "PDF Type"
+            },
+            "value": "pdf",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "其它類型",
+               "en": "Other Type"
+            },
+            "value": "other",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "CompanyType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "公司類型",
+         "en": "Company Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "客戶",
+               "en": "Customer"
+            },
+            "value": "customer",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "供應商",
+               "en": "Supplier"
+            },
+            "value": "supplier",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "廠商",
+               "en": "Manufacturer"
+            },
+            "value": "manufacturer",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "公司內部",
+               "en": "Owner"
+            },
+            "value": "owner",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "DESourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "設備效率",
+         "en": "Daily Efficiency"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "機器",
+               "en": "Machine"
+            },
+            "value": "machine",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "線程",
+               "en": "Thread"
+            },
+            "value": "thread",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "DroplistType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "下拉選單值類型",
+         "en": "Droplist"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "系統",
+               "en": "System"
+            },
+            "value": "system",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "一般",
+               "en": "Normal"
+            },
+            "value": "normal",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "ExcelHistoryExeResult",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "Excel 歷史紀錄執行結果",
+         "en": "Excel History"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "成功",
+               "en": "Success"
+            },
+            "value": "success",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "失敗",
+               "en": "Fail"
+            },
+            "value": "fail",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "ExceptiondaysWorkType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "例外日類型",
+         "en": "Exceptiondays Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "休息",
+               "en": "Vacation"
+            },
+            "value": "vacation",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "工作",
+               "en": "Work"
+            },
+            "value": "work",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "ExceptiondaysSourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "例外日來源類型",
+         "en": "Exceptiondays Source Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "系統",
+               "en": "System"
+            },
+            "value": "calendar",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "工作站",
+               "en": "Workstation"
+            },
+            "value": "workstation_calendar",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "製令",
+               "en": "Menufacturing"
+            },
+            "value": "mo_calendar",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "InspectionStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檢驗狀態",
+         "en": "Inspection Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "待檢驗",
+               "en": "Pending"
+            },
+            "value": "pending",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "檢驗中",
+               "en": "Active"
+            },
+            "value": "active",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "待審核",
+               "en": "Verify Pending"
+            },
+            "value": "verifyPending",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "檢驗完成",
+               "en": "Finish"
+            },
+            "value": "finish",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "InspectionResult",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檢驗結果",
+         "en": "Inspection Result"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "合格",
+               "en": "Qualified"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "退貨",
+               "en": "2"
+            },
+            "value": "2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "特採",
+               "en": "3"
+            },
+            "value": "3",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "InspectionhistoryAction",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檢驗歷史紀錄動作",
+         "en": "Inspection History Action"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "任務建立",
+               "en": "Task Create"
+            },
+            "value": "taskCreate",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "派工",
+               "en": "Dispatch Workers"
+            },
+            "value": "dispatchWorkers",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "檢驗完成",
+               "en": "Inspection Completed"
+            },
+            "value": "inspectionCompleted",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "審核通過",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "退回重檢",
+               "en": "ReInspection"
+            },
+            "value": "reInspection",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MachineJobType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "機器作業類型",
+         "en": "Machine Job Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "正常線別",
+               "en": "Normal Thread"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬線別",
+               "en": "Virtual Thread"
+            },
+            "value": "2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "正常機器",
+               "en": "Normal Machine"
+            },
+            "value": "3",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬機器",
+               "en": "Virtal Machine"
+            },
+            "value": "4",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MachineWorkstationType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "機器工作站類型",
+         "en": "Machine Workstation Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "正常線別",
+               "en": "Normal Thread"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬線別",
+               "en": "Virtual Thread"
+            },
+            "value": "2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "正常機器",
+               "en": "Normal Machine"
+            },
+            "value": "3",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬機器",
+               "en": "Virtal Machine"
+            },
+            "value": "4",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MachineStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "機器狀態",
+         "en": "Machine Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "草稿",
+               "en": "Draft"
+            },
+            "value": "draft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "核准",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "報廢",
+               "en": "Scrapped"
+            },
+            "value": "scrapped",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "維修",
+               "en": "Repair"
+            },
+            "value": "repair",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MeasurementtoolsStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "量測工具狀態",
+         "en": "Measurement Tools Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "有效",
+               "en": "Efficient"
+            },
+            "value": "efficient",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "失效",
+               "en": "Invalid"
+            },
+            "value": "invalid",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "校驗",
+               "en": "Check"
+            },
+            "value": "check",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MenulistType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "下拉選單類型",
+         "en": "Menulist Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "系統",
+               "en": "System"
+            },
+            "value": "system",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "一般",
+               "en": "Normal"
+            },
+            "value": "normal",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MoType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令類型",
+         "en": "Menufacturing Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "摘要",
+               "en": "Summary"
+            },
+            "value": "summary",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "活動",
+               "en": "Activity"
+            },
+            "value": "activity",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Unit",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "單位",
+         "en": "Unit"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "1",
+               "en": "1"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "CTN",
+               "en": "CTN"
+            },
+            "value": "CTN",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "KG",
+               "en": "KG"
+            },
+            "value": "KG",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "M",
+               "en": "M"
+            },
+            "value": "M",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "M2",
+               "en": "M2"
+            },
+            "value": "M2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "PCS",
+               "en": "PCS"
+            },
+            "value": "PCS",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "SET",
+               "en": "SET"
+            },
+            "value": "SET",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "小時",
+               "en": "hour"
+            },
+            "value": "小時",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "包",
+               "en": "package"
+            },
+            "value": "包",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "本",
+               "en": ""
+            },
+            "value": "本",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "式",
+               "en": ""
+            },
+            "value": "式",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "張",
+               "en": ""
+            },
+            "value": "張",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "捲",
+               "en": ""
+            },
+            "value": "捲",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "桶",
+               "en": ""
+            },
+            "value": "桶",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "條",
+               "en": ""
+            },
+            "value": "條",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "組",
+               "en": ""
+            },
+            "value": "組",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "磅",
+               "en": ""
+            },
+            "value": "磅",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "箱",
+               "en": ""
+            },
+            "value": "箱",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "罐",
+               "en": ""
+            },
+            "value": "罐",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MoStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令狀態",
+         "en": "Menufacturing Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "草稿",
+               "en": "Draft"
+            },
+            "value": "draft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "核准",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "暫停",
+               "en": "Stop"
+            },
+            "value": "stop",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "取消",
+               "en": "Cancel"
+            },
+            "value": "cancel",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "執行中",
+               "en": "Executing"
+            },
+            "value": "executing",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "完成",
+               "en": "Finish"
+            },
+            "value": "finish",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "InspectionType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檢驗方法",
+         "en": "Inspection Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "完成後檢驗",
+               "en": "After Finish"
+            },
+            "value": "afterFinish",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "巡檢",
+               "en": "Regular"
+            },
+            "value": "regular",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Mo_Pro_SourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令線程機器來源類型",
+         "en": "Menufacturing Productionunit SourceType"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "線程",
+               "en": "Thread"
+            },
+            "value": "thread",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "機器",
+               "en": "Machine"
+            },
+            "value": "machine",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Mo_Source_SourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令資源來源類型",
+         "en": "Menufacturing Source SourceType"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "量具",
+               "en": "Measurement Tools"
+            },
+            "value": "measurementtools",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "模具",
+               "en": "Mould"
+            },
+            "value": "mould",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "其它工具",
+               "en": "Other Tools"
+            },
+            "value": "sources",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "AmountUnit",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "金額單位",
+         "en": "Amount Unit"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "台幣",
+               "en": "NT"
+            },
+            "value": "NT",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MouldStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "模具狀態",
+         "en": "Mould Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "生效",
+               "en": "Take effect"
+            },
+            "value": "takeEffect",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "失效",
+               "en": "Invalid"
+            },
+            "value": "invalid",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "維護",
+               "en": "Maintain"
+            },
+            "value": "maintain",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "PartType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "料件類型",
+         "en": "Part Type"
+      },
+      "dropList": []
+   },
+   {
+      "name": "PoStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "訂單狀態",
+         "en": "Production Order Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "草稿",
+               "en": "Draft"
+            },
+            "value": "draft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "核准",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "取消",
+               "en": "Cancel"
+            },
+            "value": "cancel",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "暫停",
+               "en": "Stop"
+            },
+            "value": "stop",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "執行中",
+               "en": "Executing"
+            },
+            "value": "executing",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "完成",
+               "en": "Finish"
+            },
+            "value": "finish",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "PropertyPropertyType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "屬性的屬性類型",
+         "en": "Property Type Of Property"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "ID",
+               "en": "ID"
+            },
+            "value": "id",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "字串",
+               "en": "String"
+            },
+            "value": "string",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "文字",
+               "en": "Text"
+            },
+            "value": "text",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "整數",
+               "en": "Integer"
+            },
+            "value": "int",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "小數",
+               "en": "Decimal"
+            },
+            "value": "decimal",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "布林",
+               "en": "Boolean"
+            },
+            "value": "boolean",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "長時間",
+               "en": "Date"
+            },
+            "value": "date",
+            "description": "年/月/日 時:分:秒 格式",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "短時間",
+               "en": "ShortDate"
+            },
+            "value": "shortDate",
+            "description": "年/月/日 格式",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "物件",
+               "en": "Item"
+            },
+            "value": "item",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "下拉選單",
+               "en": "List"
+            },
+            "value": "list",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "系統下拉選單",
+               "en": "System List"
+            },
+            "value": "itemList",
+            "description": "用於系統資料表有 SourceType 跟 SourceId 的組合",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "分類",
+               "en": "Classification"
+            },
+            "value": "classification",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "圖片",
+               "en": "Image"
+            },
+            "value": "image",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "時間",
+               "en": "Time"
+            },
+            "value": "time",
+            "description": "時:分:秒 格式",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "SourcesStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "一般資源狀態",
+         "en": "Sources Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "草稿",
+               "en": "Draft"
+            },
+            "value": "draft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "核准",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "取消",
+               "en": "Cancel"
+            },
+            "value": "cancel",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "ThreadJobType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "線程作業型態",
+         "en": "Thread Job Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "正常線別",
+               "en": "Normal Thread"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬線別",
+               "en": "Virtual Thread"
+            },
+            "value": "2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "正常機器",
+               "en": "Normal Machine"
+            },
+            "value": "3",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬機器",
+               "en": "Virtal Machine"
+            },
+            "value": "4",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "ThreadWorkstationType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "線程工作站類型",
+         "en": "Thread Workstation Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "正常線別",
+               "en": "Normal Thread"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬線別",
+               "en": "Virtual Thread"
+            },
+            "value": "2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "正常機器",
+               "en": "Normal Machine"
+            },
+            "value": "3",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬機器",
+               "en": "Virtal Machine"
+            },
+            "value": "4",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "ThreadStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "線程狀態",
+         "en": "Thread Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "草稿",
+               "en": "Draft"
+            },
+            "value": "draft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "核准",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "報廢",
+               "en": "Scrapped"
+            },
+            "value": "scrapped",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "UserFirstPage",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "電腦版(首頁)",
+         "en": "Computer First Page"
+      },
+      "dropList": []
+   },
+   {
+      "name": "UserFirstPageForPhone",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "行動裝置版(首頁)",
+         "en": "Mobile First Page"
+      },
+      "dropList": []
+   },
+   {
+      "name": "WorkstationJobType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "工作站作業類型",
+         "en": "Workstation Job Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "正常",
+               "en": "Normal"
+            },
+            "value": "0",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "廠外加工",
+               "en": "1"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "場內加工",
+               "en": "2"
+            },
+            "value": "2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "WorkstationWorkstationType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "工作站的工作站類型",
+         "en": "Workstation Type Of Workstation"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "機器產能",
+               "en": "Machine"
+            },
+            "value": "1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "人工產能",
+               "en": "Labor"
+            },
+            "value": "2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Workstation_Pro_SourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "工作站線程機器來源類型",
+         "en": "Workstation Productionunit Source Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "線程",
+               "en": "Thread"
+            },
+            "value": "thread",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "機器",
+               "en": "Machine"
+            },
+            "value": "machine",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Workstation_Source_SourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "工作站資源來源類型",
+         "en": "Workstation Source Source Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "量具",
+               "en": "Measurement Tools"
+            },
+            "value": "measurementtools",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "模具",
+               "en": "Mould"
+            },
+            "value": "mould",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "其它工具",
+               "en": "Other Tools"
+            },
+            "value": "sources",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Craft_Status",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "工藝範本狀態",
+         "en": "Craft Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "草稿",
+               "en": "Draft"
+            },
+            "value": "draft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "核准",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "取消",
+               "en": "Cancel"
+            },
+            "value": "cancel",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Process_Template_Status",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "工序範本狀態",
+         "en": "Process Template Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "草稿",
+               "en": "Draft"
+            },
+            "value": "draft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "核准",
+               "en": "Approve"
+            },
+            "value": "approve",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "取消",
+               "en": "Cancel"
+            },
+            "value": "cancel",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Sync_History_Type",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "同步紀錄類型",
+         "en": "Sync History Type"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "ERP 到 MES",
+               "en": "ERP to MES"
+            },
+            "value": "ERP_to_MES",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "MES 到 ERP",
+               "en": "MES to ERP"
+            },
+            "value": "MES_to_ERP",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Sync_History_Action",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "同步紀錄動作",
+         "en": "Sync History Action"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "同步系統日曆",
+               "en": "Sync System Calendar"
+            },
+            "value": "syncCalendar",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步工作站",
+               "en": "Sync Workstation"
+            },
+            "value": "syncWorkstation",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步線程",
+               "en": "Sync Thread"
+            },
+            "value": "syncThread",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步機器",
+               "en": "Sync Machine"
+            },
+            "value": "syncMachine",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步料件",
+               "en": "Sync Part"
+            },
+            "value": "syncPart",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步工序範本",
+               "en": "Sync Process Template"
+            },
+            "value": "syncProcessTemplate",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步工藝範本",
+               "en": "Sync Craft"
+            },
+            "value": "syncCraft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步生產工單",
+               "en": "Sync Production Order"
+            },
+            "value": "syncPo",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "同步業務訂單",
+               "en": "Sync Business Order"
+            },
+            "value": "syncSo",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "拋轉檢驗回報",
+               "en": "Toss Inspection"
+            },
+            "value": "tossIns",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "拋轉製令進度",
+               "en": "Toss Schedule"
+            },
+            "value": "tossSchedule",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "拋轉製令報工",
+               "en": "Toss Menufacturing Resport"
+            },
+            "value": "tossMoReport",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Sync_History_Status",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "同步紀錄狀態",
+         "en": "Sync History Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "執行中",
+               "en": "Execution"
+            },
+            "value": "executing",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "失敗",
+               "en": "Fail"
+            },
+            "value": "fail",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "成功",
+               "en": "Success"
+            },
+            "value": "success",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "部份成功",
+               "en": "Partial Success"
+            },
+            "value": "partialSuccess",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Craft_Mo_Productionunit_SourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "工藝範本線程機器來源類型",
+         "en": "Craft Productionunit SourceType"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "線程",
+               "en": "Thread"
+            },
+            "value": "thread",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "機器",
+               "en": "Machine"
+            },
+            "value": "machine",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Craft_Mo_Source_sourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令資源來源類型",
+         "en": "Craft Source SourceType"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "量具",
+               "en": "Measurement Tools"
+            },
+            "value": "measurementtools",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "模具",
+               "en": "Mould"
+            },
+            "value": "mould",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "其它工具",
+               "en": "Other Tools"
+            },
+            "value": "sources",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Po_BuildSource",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "生產訂單建立來源",
+         "en": "Order Create From"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "ERP",
+               "en": "ERP"
+            },
+            "value": "erp",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "自建",
+               "en": "Created By Myself"
+            },
+            "value": "owner",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "系統依照輸入料件自動展",
+               "en": "Created From Input"
+            },
+            "value": "input",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Mo_BuildSource",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令建立來源",
+         "en": "Menufacturing Create From"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "ERP",
+               "en": "ERP"
+            },
+            "value": "erp",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "自建",
+               "en": "Created By Myself"
+            },
+            "value": "owner",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "系統依照預設工藝建立",
+               "en": "Created From Craft"
+            },
+            "value": "craft",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Inspection_SourceType",
+      "type": "system",
+      "isItemList": true,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檢驗來源類型",
+         "en": "Inspection SourceType"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "工單",
+               "en": "Order"
+            },
+            "value": "po",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "製令",
+               "en": "Menufacturing"
+            },
+            "value": "mo",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Part_Source_Code",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "料件來源碼",
+         "en": "Part Source Code"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "採購料件",
+               "en": "P"
+            },
+            "value": "P",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "自製料件",
+               "en": "M"
+            },
+            "value": "M",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "虛擬料件",
+               "en": "Virtual Part"
+            },
+            "value": "X",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "雜項料件",
+               "en": "Other Part"
+            },
+            "value": "Z",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "廠外加工料件",
+               "en": "S"
+            },
+            "value": "S",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Part_Group_Code",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "料件分群碼",
+         "en": "Part Group Code"
+      },
+      "dropList": []
+   },
+   {
+      "name": "Inspection_RejectReason",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檢驗不合格原因",
+         "en": "Inspection Reject Reason"
+      },
+      "dropList": []
+   },
+   {
+      "name": "InspectionFrequencyUnit",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "檢驗頻率單位",
+         "en": "Inspection Inspection FrequencyUnit"
+      },
+      "dropList": []
+   },
+   {
+      "name": "Machine_Classification",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "機器分類",
+         "en": "Machine Classification"
+      },
+      "dropList": []
+   },
+   {
+      "name": "MoModifyrecord_ModifyItem",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令修改紀錄修改項目",
+         "en": "Menufacturing Modify Record ModifyItem"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "回報資訊",
+               "en": "Report Info"
+            },
+            "value": "reportInfo",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "屬性",
+               "en": "Property"
+            },
+            "value": "property",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "線程機器",
+               "en": "Production Unit"
+            },
+            "value": "threadMachine",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MoReporthistory_FaultyReason",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令回報紀錄不良原因",
+         "en": "Memufacturing Report History Faulty Reason"
+      },
+      "dropList": []
+   },
+   {
+      "name": "MoReporthistory_StopReason",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令回報紀錄停機原因",
+         "en": "Memufacturing Report History Stop Reason"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "報工",
+               "en": "報工"
+            },
+            "value": "SYSTEM-1-0-1",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "人員休息",
+               "en": "人員休息"
+            },
+            "value": "SYSTEM-1-0-2",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "換班",
+               "en": "換班"
+            },
+            "value": "SYSTEM-1-1-3",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "插單",
+               "en": "插單"
+            },
+            "value": "SYSTEM-1-1-4",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "PoModifyrecord_ModifyItem",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "訂單修改紀錄修改項目",
+         "en": "Production Order Modify Record ModifyItem"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "屬性",
+               "en": "Property"
+            },
+            "value": "property",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MoInput_SiteStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令輸入料件現場狀態",
+         "en": "Menufaturaing Input Part Site Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "未到線",
+               "en": "Not Yet"
+            },
+            "value": "notYet",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "已到線",
+               "en": "Yet"
+            },
+            "value": "yet",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "MoReportHistory_ReportStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "製令回報歷史紀錄回報狀態",
+         "en": "Menufaturaing Report History Report Status"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "啟動",
+               "en": "Start"
+            },
+            "value": "start",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "暫停",
+               "en": "Stop"
+            },
+            "value": "stop",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "報修",
+               "en": "Repair"
+            },
+            "value": "repair",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "檢驗",
+               "en": "Inspection"
+            },
+            "value": "inspection",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "完工",
+               "en": "Finish"
+            },
+            "value": "finish",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "Part_ProcessType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "加工特性",
+         "en": "Part ProcessType"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "未淋膜",
+               "en": ""
+            },
+            "value": "0.未淋膜",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "單P",
+               "en": ""
+            },
+            "value": "1.單P",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "雙P亮印",
+               "en": ""
+            },
+            "value": "2.雙P亮印",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "雙P霧印",
+               "en": ""
+            },
+            "value": "3.雙P霧印",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "So_Office",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "營業所",
+         "en": "Office"
+      },
+      "dropList": []
+   },
+   {
+      "name": "Material",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "材質",
+         "en": "Material"
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "未淋膜",
+               "en": ""
+            },
+            "value": "0",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "LDPE",
+               "en": "LDPE"
+            },
+            "value": "A",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "PLA",
+               "en": "PLA"
+            },
+            "value": "B",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "PP",
+               "en": "PP"
+            },
+            "value": "C",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "PBS",
+               "en": "PBS"
+            },
+            "value": "D",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "FSC+LDPE",
+               "en": "FSC+LDPE"
+            },
+            "value": "E",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "FSC+PLA",
+               "en": "FSC+PLA"
+            },
+            "value": "F",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "FSC+PP",
+               "en": "FSC+PP"
+            },
+            "value": "G",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "FSC+PBS",
+               "en": "FSC+PBS"
+            },
+            "value": "H",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "PC",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "加工特性",
+         "en": ""
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "未淋膜",
+               "en": ""
+            },
+            "value": "0.未淋膜",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "單P",
+               "en": ""
+            },
+            "value": "1.單P",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "雙P亮印",
+               "en": ""
+            },
+            "value": "2.雙P亮印",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "雙P霧印",
+               "en": ""
+            },
+            "value": "3.雙P霧印",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "FARH_Type",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "退料與投料紀錄類型",
+         "en": ""
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "退料",
+               "en": ""
+            },
+            "value": "return",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "投料",
+               "en": ""
+            },
+            "value": "feeding",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "FARH_Reason",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "退料與投料紀錄原因",
+         "en": ""
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "餘版退料",
+               "en": ""
+            },
+            "value": "remaining",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   }
+]

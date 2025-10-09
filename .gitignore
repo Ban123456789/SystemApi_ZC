@@ -1,0 +1,22 @@
+﻿Accura_MES/bin
+Accura_MES/obj
+.vs
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+install_manifest.txt
+Accura_MES/Properties/PublishProfiles
+Accura_MES/Accura_MES.csproj.user
+Accura_MES/Logs
+Accura_MESTests
+Accura_MESTests1
+
+
+# 忽略編譯生成文件
+bin/
+obj/
+
+Accura_MES.Tests/obj
+*.bak
+Accura_MES/App_Data/Docs/Accura_MES.xml

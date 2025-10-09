@@ -1,0 +1,258 @@
+2025-10-08 21:08:05.245 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-08 21:08:06.900 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-08 21:08:06.920 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-08 21:08:06.943 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-08 21:08:06.994 +08:00 [INF] Hosting environment: Development
+2025-10-08 21:08:07.033 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-08 21:08:09.017 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-08 21:08:10.642 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 1701.8249ms
+2025-10-08 21:08:11.557 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-08 21:08:12.479 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 922.3934ms
+2025-10-08 21:08:28.314 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:08:28.439 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:08:28.500 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:08:28.629 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:08:28.667 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 21.5452ms.
+2025-10-08 21:08:28.687 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:08:28.728 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 215.2618ms
+2025-10-08 21:08:28.733 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:08:28.738 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 400 - application/json;+charset=utf-8 424.1322ms
+2025-10-08 21:09:16.043 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:09:16.051 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:09:16.085 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:09:16.092 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:09:16.102 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 4.8228ms.
+2025-10-08 21:09:16.108 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:09:16.113 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 23.2048ms
+2025-10-08 21:09:16.120 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:09:16.124 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 80.8294ms
+2025-10-08 21:10:06.803 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:10:06.811 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:10:06.819 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:10:06.829 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:10:06.835 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.2136ms.
+2025-10-08 21:10:06.845 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:10:06.852 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 23.5469ms
+2025-10-08 21:10:06.863 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:10:06.868 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 65.6198ms
+2025-10-08 21:10:11.022 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:10:11.027 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:10:11.033 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:10:11.039 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:10:11.046 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.5494ms.
+2025-10-08 21:10:11.053 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:10:11.057 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 17.5576ms
+2025-10-08 21:10:11.065 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:10:11.070 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 48.0538ms
+2025-10-08 21:10:28.977 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-08 21:10:29.229 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-08 21:10:29.232 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-08 21:10:29.238 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-08 21:10:29.241 +08:00 [INF] Hosting environment: Development
+2025-10-08 21:10:29.244 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-08 21:10:29.791 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-08 21:10:30.257 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 470.3168ms
+2025-10-08 21:10:30.599 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-08 21:10:30.761 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 161.1901ms
+2025-10-08 21:10:38.375 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:10:38.512 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:10:38.565 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:10:38.672 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:10:38.704 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 17.8242ms.
+2025-10-08 21:10:38.727 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:10:38.767 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 189.8119ms
+2025-10-08 21:10:38.774 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:10:38.778 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 403.4909ms
+2025-10-08 21:10:56.508 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:10:56.516 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:10:56.521 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:10:56.531 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:11:06.336 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 9797.9299ms.
+2025-10-08 21:11:06.343 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:11:06.348 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 9819.2454ms
+2025-10-08 21:11:06.353 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:11:06.358 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 9849.7722ms
+2025-10-08 21:12:00.269 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-08 21:12:00.511 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-08 21:12:00.514 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-08 21:12:00.521 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-08 21:12:00.525 +08:00 [INF] Hosting environment: Development
+2025-10-08 21:12:00.527 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-08 21:12:00.957 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-08 21:12:01.310 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 356.6113ms
+2025-10-08 21:12:01.655 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-08 21:12:01.834 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 178.2895ms
+2025-10-08 21:12:08.286 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:12:08.376 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:12:08.399 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:12:08.464 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:12:14.028 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 5552.4164ms.
+2025-10-08 21:12:14.041 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:12:14.064 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 5657.3173ms
+2025-10-08 21:12:14.069 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:12:14.073 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 5786.5620ms
+2025-10-08 21:12:46.851 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:12:46.857 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:12:46.866 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:12:46.880 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:13:15.250 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 28360.5829ms.
+2025-10-08 21:13:15.260 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:13:15.263 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 28383.5973ms
+2025-10-08 21:13:15.268 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:13:15.270 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 28419.1819ms
+2025-10-08 21:13:21.319 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:13:21.323 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:13:21.326 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:13:21.329 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:13:24.805 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3472.9344ms.
+2025-10-08 21:13:24.808 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:13:24.812 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 3482.9712ms
+2025-10-08 21:13:24.814 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:13:24.818 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 404 - application/json;+charset=utf-8 3498.1314ms
+2025-10-08 21:13:32.689 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:13:32.693 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:13:32.697 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:13:32.703 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:14:00.024 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-08 21:14:00.259 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-08 21:14:00.261 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-08 21:14:00.265 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-08 21:14:00.268 +08:00 [INF] Hosting environment: Development
+2025-10-08 21:14:00.270 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-08 21:14:00.611 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-08 21:14:01.123 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 516.4431ms
+2025-10-08 21:14:01.459 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-08 21:14:01.636 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 176.8532ms
+2025-10-08 21:14:06.920 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:14:07.014 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:14:07.040 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:14:07.103 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:15:33.761 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-08 21:15:34.039 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-08 21:15:34.043 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-08 21:15:34.047 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-08 21:15:34.051 +08:00 [INF] Hosting environment: Development
+2025-10-08 21:15:34.054 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-08 21:15:34.654 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-08 21:15:35.137 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 488.3412ms
+2025-10-08 21:15:35.536 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-08 21:15:35.723 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 187.6669ms
+2025-10-08 21:15:40.454 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:15:40.567 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:15:40.606 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:15:40.715 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:15:54.627 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 13895.3397ms.
+2025-10-08 21:15:54.653 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:15:54.709 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 14092.9016ms
+2025-10-08 21:15:54.718 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:15:54.725 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 500 - application/json;+charset=utf-8 14270.2964ms
+2025-10-08 21:22:04.825 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:22:04.846 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:22:04.861 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:22:04.875 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:22:39.247 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 34360.3289ms.
+2025-10-08 21:22:39.265 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:22:39.280 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 34409.1119ms
+2025-10-08 21:22:39.292 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:22:39.306 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 500 - application/json;+charset=utf-8 34481.4295ms
+2025-10-08 21:23:44.993 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-08 21:23:45.713 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-08 21:23:45.718 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-08 21:23:45.726 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-08 21:23:45.732 +08:00 [INF] Hosting environment: Development
+2025-10-08 21:23:45.735 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-08 21:23:45.930 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-08 21:23:46.540 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 614.9141ms
+2025-10-08 21:23:47.283 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-08 21:23:47.745 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 462.5883ms
+2025-10-08 21:23:57.641 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:23:57.805 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:23:57.841 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:23:57.919 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:24:09.899 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 11965.2061ms.
+2025-10-08 21:24:09.910 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:24:09.934 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 12079.3721ms
+2025-10-08 21:24:09.938 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:24:09.944 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 500 - application/json;+charset=utf-8 12304.0399ms
+2025-10-08 21:24:41.955 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-08 21:24:42.282 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-08 21:24:42.293 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-08 21:24:42.299 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-08 21:24:42.310 +08:00 [INF] Hosting environment: Development
+2025-10-08 21:24:42.315 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-08 21:24:43.184 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-08 21:24:43.852 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 678.3941ms
+2025-10-08 21:24:44.231 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-08 21:24:45.060 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 828.7316ms
+2025-10-08 21:24:51.974 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-08 21:24:52.096 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:24:52.123 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-08 21:24:52.248 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-08 21:25:21.777 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 29501.6455ms.
+2025-10-08 21:25:21.791 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:25:21.816 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 29683.2986ms
+2025-10-08 21:25:21.822 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-08 21:25:21.827 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 500 - application/json;+charset=utf-8 29852.6174ms
+2025-10-08 21:33:04.197 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-08 21:33:04.208 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:33:04.232 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-08 21:33:04.248 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-08 21:33:04.382 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 127.1653ms.
+2025-10-08 21:33:04.397 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:33:04.410 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 167.767ms
+2025-10-08 21:33:04.418 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:33:04.430 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 232.9457ms
+2025-10-08 21:33:28.941 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-08 21:33:28.954 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:33:28.963 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-08 21:33:28.975 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-08 21:33:29.088 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 106.5604ms.
+2025-10-08 21:33:29.102 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:33:29.116 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 141.8296ms
+2025-10-08 21:33:29.124 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:33:29.135 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 194.2305ms
+2025-10-08 21:33:55.178 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-08 21:33:55.189 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:33:55.195 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-08 21:33:55.203 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-08 21:34:01.870 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 6656.8198ms.
+2025-10-08 21:34:01.875 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:34:01.881 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 6677.8174ms
+2025-10-08 21:34:01.885 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:34:01.892 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 6713.8742ms
+2025-10-08 21:35:08.149 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-08 21:35:08.157 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:35:08.163 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-08 21:35:08.177 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-08 21:35:08.345 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 161.4212ms.
+2025-10-08 21:35:08.359 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:35:08.370 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 193.248ms
+2025-10-08 21:35:08.380 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:35:08.391 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 241.6362ms
+2025-10-08 21:35:10.323 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-08 21:35:10.328 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:35:10.338 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-08 21:35:10.345 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-08 21:35:10.547 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 191.4408ms.
+2025-10-08 21:35:10.568 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:35:10.581 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 235.9906ms
+2025-10-08 21:35:10.595 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:35:10.610 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 286.6155ms
+2025-10-08 21:36:55.487 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-08 21:36:55.494 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:36:55.500 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-08 21:36:55.511 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-08 21:37:09.119 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 13603.9683ms.
+2025-10-08 21:37:09.131 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:37:09.141 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 13630.9566ms
+2025-10-08 21:37:09.155 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:37:09.168 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 13680.5447ms
+2025-10-08 21:37:53.060 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-08 21:37:53.076 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:37:53.101 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-08 21:37:53.127 +08:00 [INF] Executing action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) - Validation state: "Valid"
+2025-10-08 21:39:58.392 +08:00 [INF] Executed action method Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 125234.7369ms.
+2025-10-08 21:39:58.398 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-08 21:39:58.410 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 125286.2045ms
+2025-10-08 21:39:58.417 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-08 21:39:58.428 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 125368.1050ms

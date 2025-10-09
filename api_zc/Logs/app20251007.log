@@ -1,0 +1,35 @@
+2025-10-07 21:08:54.998 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-07 21:08:55.080 +08:00 [INF] Creating key {50cceea7-40ed-4dba-88a1-6a9f96848968} with creation date 2025-10-07 13:08:55Z, activation date 2025-10-07 13:08:55Z, and expiration date 2026-01-05 13:08:55Z.
+2025-10-07 21:08:55.141 +08:00 [INF] Writing data to file 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys\key-50cceea7-40ed-4dba-88a1-6a9f96848968.xml'.
+2025-10-07 21:08:55.880 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-07 21:08:55.887 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-07 21:08:55.897 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-07 21:08:55.905 +08:00 [INF] Hosting environment: Development
+2025-10-07 21:08:55.914 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-07 21:08:56.803 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger - -
+2025-10-07 21:08:57.100 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger - - - 301 0 - 298.9579ms
+2025-10-07 21:08:57.110 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-07 21:08:57.298 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 187.8044ms
+2025-10-07 21:08:57.358 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/swagger-ui-standalone-preset.js - -
+2025-10-07 21:08:57.358 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/swagger-ui.css - -
+2025-10-07 21:08:57.358 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/swagger-ui-bundle.js - -
+2025-10-07 21:08:57.478 +08:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-10-07 21:08:57.478 +08:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-10-07 21:08:57.505 +08:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-10-07 21:08:57.506 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/swagger-ui.css - - - 200 144929 text/css 147.4744ms
+2025-10-07 21:08:57.506 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/swagger-ui-standalone-preset.js - - - 200 312163 application/javascript 147.6553ms
+2025-10-07 21:08:57.514 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/swagger-ui-bundle.js - - - 200 1061536 application/javascript 155.8407ms
+2025-10-07 21:08:57.796 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-07 21:08:57.817 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/favicon-32x32.png - -
+2025-10-07 21:08:57.827 +08:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-10-07 21:08:57.839 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/favicon-32x32.png - - - 200 628 image/png 23.0073ms
+2025-10-07 21:08:58.068 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 272.2458ms
+2025-10-07 21:17:25.247 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52
+2025-10-07 21:17:25.337 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-07 21:17:25.364 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-07 21:17:25.429 +08:00 [INF] Executing action method Accura_MES.Controllers.UserController.Login (SystemApi) - Validation state: "Valid"
+2025-10-07 21:17:25.457 +08:00 [INF] Executed action method Accura_MES.Controllers.UserController.Login (SystemApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 18.8419ms.
+2025-10-07 21:17:25.466 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-07 21:17:25.489 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 116.0453ms
+2025-10-07 21:17:25.494 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-07 21:17:25.496 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/User/Login application/json 52 - 400 - application/json;+charset=utf-8 249.9279ms
