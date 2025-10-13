@@ -1,0 +1,1294 @@
+2025-10-10 00:00:17.626 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-10 00:00:17.878 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-10 00:00:17.880 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-10 00:00:17.912 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-10 00:00:17.913 +08:00 [INF] Hosting environment: Development
+2025-10-10 00:00:17.916 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-10 00:00:18.450 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-10 00:00:18.842 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 395.0756ms
+2025-10-10 00:00:18.861 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - -
+2025-10-10 00:00:18.868 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - - - 200 12311 application/javascript;+charset=utf-8 6.8695ms
+2025-10-10 00:00:18.881 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_vs/browserLink - -
+2025-10-10 00:00:18.928 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 46.8555ms
+2025-10-10 00:00:19.099 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-10 00:00:19.212 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 113.5742ms
+2025-10-10 00:00:23.354 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-10 00:00:23.416 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:00:23.429 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 00:00:24.280 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:00:24.295 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 858.255ms
+2025-10-10 00:00:24.301 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:00:24.305 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 951.6026ms
+2025-10-10 00:34:12.245 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-10 00:34:12.408 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-10 00:34:12.409 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-10 00:34:12.428 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-10 00:34:12.430 +08:00 [INF] Hosting environment: Development
+2025-10-10 00:34:12.430 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-10 00:34:33.949 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-10 00:34:34.064 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:34:34.086 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 00:34:35.026 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:34:35.040 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 946.7574ms
+2025-10-10 00:34:35.045 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:34:35.052 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 1104.9687ms
+2025-10-10 00:35:19.371 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:35:19.379 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:35:19.381 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - - - 204 - - 10.3091ms
+2025-10-10 00:35:19.388 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:35:19.397 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:35:19.400 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:35:19.402 +08:00 [INF] Route matched with {action = "Get", controller = "DbSelecter"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Accura_MES.Controllers.DbSelecter (SystemApi).
+2025-10-10 00:35:19.404 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:35:19.410 +08:00 [INF] Executed action Accura_MES.Controllers.DbSelecter.Get (SystemApi) in 6.2713ms
+2025-10-10 00:35:19.412 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:35:19.413 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/api/DbSelecter - - - 200 - application/json;+charset=utf-8 25.1319ms
+2025-10-10 00:35:26.394 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 00:35:26.395 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:35:26.396 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 2.1189ms
+2025-10-10 00:35:26.399 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 00:35:26.402 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:35:26.407 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:35:26.423 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:35:26.467 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:35:26.469 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 44.0909ms
+2025-10-10 00:35:26.471 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:35:26.472 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 72.8314ms
+2025-10-10 00:41:10.055 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 00:41:10.057 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:10.060 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 4.8403ms
+2025-10-10 00:41:10.066 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 00:41:10.067 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:10.069 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:41:10.070 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:41:10.211 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:10.214 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 142.0302ms
+2025-10-10 00:41:10.216 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:41:10.218 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 200 - application/json;+charset=utf-8 152.5295ms
+2025-10-10 00:41:10.236 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 00:41:10.237 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:10.239 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 3.0551ms
+2025-10-10 00:41:10.244 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 00:41:10.247 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:10.248 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:41:10.250 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:41:10.343 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:10.346 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 93.9088ms
+2025-10-10 00:41:10.349 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:41:10.350 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 106.1119ms
+2025-10-10 00:41:10.375 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 00:41:10.376 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:10.378 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.6081ms
+2025-10-10 00:41:10.387 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 00:41:10.392 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:10.393 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:41:10.399 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 00:41:10.461 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:10.463 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 61.5358ms
+2025-10-10 00:41:10.464 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:41:10.466 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 404 - application/json;+charset=utf-8 79.2836ms
+2025-10-10 00:41:19.203 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:41:19.207 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:19.209 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - - - 204 - - 5.4050ms
+2025-10-10 00:41:19.214 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:41:19.217 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:19.219 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:41:19.220 +08:00 [INF] Route matched with {action = "Get", controller = "DbSelecter"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Accura_MES.Controllers.DbSelecter (SystemApi).
+2025-10-10 00:41:19.224 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:19.226 +08:00 [INF] Executed action Accura_MES.Controllers.DbSelecter.Get (SystemApi) in 3.0453ms
+2025-10-10 00:41:19.227 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:41:19.229 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/api/DbSelecter - - - 200 - application/json;+charset=utf-8 14.7080ms
+2025-10-10 00:41:23.571 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 00:41:23.574 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:23.575 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 4.4594ms
+2025-10-10 00:41:23.578 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 00:41:23.582 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:23.587 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:41:23.592 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:41:23.599 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:23.600 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 5.9768ms
+2025-10-10 00:41:23.605 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:41:23.608 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 29.9686ms
+2025-10-10 00:41:30.613 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 00:41:30.617 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:30.621 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 7.9689ms
+2025-10-10 00:41:30.625 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 00:41:30.626 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:30.627 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:41:30.628 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:41:30.635 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:30.639 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 8.0536ms
+2025-10-10 00:41:30.642 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:41:30.644 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 200 - application/json;+charset=utf-8 18.9901ms
+2025-10-10 00:41:30.660 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 00:41:30.662 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:30.664 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 4.0174ms
+2025-10-10 00:41:30.669 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 00:41:30.671 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:30.672 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:41:30.674 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:41:30.679 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:30.681 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 4.9961ms
+2025-10-10 00:41:30.684 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:41:30.695 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 25.0281ms
+2025-10-10 00:41:30.718 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 00:41:30.719 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:30.721 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.1299ms
+2025-10-10 00:41:30.733 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 00:41:30.737 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:41:30.739 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:41:30.740 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 00:41:30.749 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:41:30.751 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 8.7396ms
+2025-10-10 00:41:30.753 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:41:30.755 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 404 - application/json;+charset=utf-8 21.5781ms
+2025-10-10 00:42:00.827 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 00:42:00.827 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:00.829 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 2.5638ms
+2025-10-10 00:42:00.833 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 00:42:00.834 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:00.835 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:42:00.836 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:42:00.844 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:00.846 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 7.6803ms
+2025-10-10 00:42:00.847 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:42:00.849 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 200 - application/json;+charset=utf-8 15.6398ms
+2025-10-10 00:42:00.864 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 00:42:00.866 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:00.868 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 3.6823ms
+2025-10-10 00:42:00.871 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 00:42:00.872 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:00.873 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:42:00.875 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:42:00.886 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:00.889 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 12.6562ms
+2025-10-10 00:42:00.890 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:42:00.892 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 20.7161ms
+2025-10-10 00:42:00.912 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 00:42:00.913 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:00.914 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.6069ms
+2025-10-10 00:42:00.919 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 00:42:00.920 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:00.922 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:42:00.923 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 00:42:00.934 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:00.938 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 13.7281ms
+2025-10-10 00:42:00.939 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:42:00.941 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 404 - application/json;+charset=utf-8 22.6300ms
+2025-10-10 00:42:25.523 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:42:25.524 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:25.524 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - - - 204 - - 1.2543ms
+2025-10-10 00:42:25.527 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:42:25.529 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:25.530 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:42:25.530 +08:00 [INF] Route matched with {action = "Get", controller = "DbSelecter"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Accura_MES.Controllers.DbSelecter (SystemApi).
+2025-10-10 00:42:25.533 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:25.537 +08:00 [INF] Executed action Accura_MES.Controllers.DbSelecter.Get (SystemApi) in 4.4964ms
+2025-10-10 00:42:25.538 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:42:25.539 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/api/DbSelecter - - - 200 - application/json;+charset=utf-8 12.0572ms
+2025-10-10 00:42:27.485 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:42:27.487 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:27.488 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - - - 204 - - 3.4434ms
+2025-10-10 00:42:27.493 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/api/DbSelecter - -
+2025-10-10 00:42:27.495 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:27.496 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:42:27.498 +08:00 [INF] Route matched with {action = "Get", controller = "DbSelecter"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Accura_MES.Controllers.DbSelecter (SystemApi).
+2025-10-10 00:42:27.501 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:27.504 +08:00 [INF] Executed action Accura_MES.Controllers.DbSelecter.Get (SystemApi) in 4.6412ms
+2025-10-10 00:42:27.506 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 00:42:27.507 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/api/DbSelecter - - - 200 - application/json;+charset=utf-8 14.6204ms
+2025-10-10 00:42:33.705 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 00:42:33.705 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:33.706 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 1.4634ms
+2025-10-10 00:42:33.710 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 00:42:33.711 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:33.712 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:42:33.713 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:42:33.724 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:33.728 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 12.3842ms
+2025-10-10 00:42:33.730 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 00:42:33.731 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 200 - application/json;+charset=utf-8 21.5982ms
+2025-10-10 00:42:33.743 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 00:42:33.744 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:33.745 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 1.9029ms
+2025-10-10 00:42:33.749 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 00:42:33.752 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:33.753 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:42:33.754 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 00:42:33.760 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:33.764 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 8.0416ms
+2025-10-10 00:42:33.766 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 00:42:33.769 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 18.8868ms
+2025-10-10 00:42:33.783 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 00:42:33.784 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:33.785 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.3567ms
+2025-10-10 00:42:33.790 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 00:42:33.792 +08:00 [INF] CORS policy execution successful.
+2025-10-10 00:42:33.794 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:42:33.795 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 00:42:33.807 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:42:33.809 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 13.0857ms
+2025-10-10 00:42:33.812 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 00:42:33.814 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 404 - application/json;+charset=utf-8 23.7269ms
+2025-10-10 00:43:04.516 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-10 00:43:04.519 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:43:04.520 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 00:43:04.918 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:43:04.921 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 398.8016ms
+2025-10-10 00:43:04.923 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:43:04.925 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 400 - application/json;+charset=utf-8 408.3073ms
+2025-10-10 00:43:28.039 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-10 00:43:28.313 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-10 00:43:28.319 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-10 00:43:28.358 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-10 00:43:28.363 +08:00 [INF] Hosting environment: Development
+2025-10-10 00:43:28.366 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-10 00:43:28.798 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-10 00:43:29.129 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 337.3363ms
+2025-10-10 00:43:29.165 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - -
+2025-10-10 00:43:29.165 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_vs/browserLink - -
+2025-10-10 00:43:29.175 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - - - 200 12311 application/javascript;+charset=utf-8 10.0047ms
+2025-10-10 00:43:29.240 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 74.6295ms
+2025-10-10 00:43:29.342 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-10 00:43:29.473 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 131.1502ms
+2025-10-10 00:48:08.266 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-10 00:48:08.333 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:48:08.357 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 00:48:09.246 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:48:09.267 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 899.7387ms
+2025-10-10 00:48:09.275 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 00:48:09.284 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 200 - application/json;+charset=utf-8 1018.4860ms
+2025-10-10 00:49:01.471 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeProperty - 0
+2025-10-10 00:49:01.491 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeProperty (SystemApi)'
+2025-10-10 00:49:01.505 +08:00 [INF] Route matched with {action = "InitializeProperty", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeProperty() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 00:49:02.427 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 00:49:02.432 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeProperty (SystemApi) in 923.4428ms
+2025-10-10 00:49:02.434 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeProperty (SystemApi)'
+2025-10-10 00:49:02.437 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeProperty - 0 - 200 - application/json;+charset=utf-8 965.9384ms
+2025-10-10 01:00:34.792 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0
+2025-10-10 01:00:34.798 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 01:00:34.801 +08:00 [INF] Route matched with {action = "InitializeItemType", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeItemType() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 01:00:35.218 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:00:35.222 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi) in 418.0429ms
+2025-10-10 01:00:35.225 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeItemType (SystemApi)'
+2025-10-10 01:00:35.228 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeItemType - 0 - 200 - application/json;+charset=utf-8 436.5224ms
+2025-10-10 01:00:38.101 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeProperty - 0
+2025-10-10 01:00:38.104 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeProperty (SystemApi)'
+2025-10-10 01:00:38.106 +08:00 [INF] Route matched with {action = "InitializeProperty", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeProperty() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 01:00:38.581 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:00:38.584 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeProperty (SystemApi) in 474.7005ms
+2025-10-10 01:00:38.587 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeProperty (SystemApi)'
+2025-10-10 01:00:38.590 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeProperty - 0 - 200 - application/json;+charset=utf-8 488.3271ms
+2025-10-10 01:00:40.912 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeMenuListAndDropList - 0
+2025-10-10 01:00:40.914 +08:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2025-10-10 01:00:40.916 +08:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2025-10-10 01:00:40.919 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:7002/api/DataBaseInitialize/InitializeMenuListAndDropList - 0 - 405 0 - 7.1575ms
+2025-10-10 01:00:51.433 +08:00 [INF] Request starting HTTP/1.1 PUT https://localhost:7002/api/DataBaseInitialize/InitializeMenuListAndDropList - 0
+2025-10-10 01:00:51.435 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeMenuListAndDropList (SystemApi)'
+2025-10-10 01:00:51.439 +08:00 [INF] Route matched with {action = "InitializeMenuListAndDropList", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeMenuListAndDropList() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 01:00:52.171 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:00:52.173 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeMenuListAndDropList (SystemApi) in 730.9061ms
+2025-10-10 01:00:52.175 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeMenuListAndDropList (SystemApi)'
+2025-10-10 01:00:52.177 +08:00 [INF] Request finished HTTP/1.1 PUT https://localhost:7002/api/DataBaseInitialize/InitializeMenuListAndDropList - 0 - 500 - application/json;+charset=utf-8 743.9896ms
+2025-10-10 01:04:47.960 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-10 01:04:48.051 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-10 01:04:48.052 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-10 01:04:48.072 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-10 01:04:48.073 +08:00 [INF] Hosting environment: Development
+2025-10-10 01:04:48.074 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-10 01:06:14.673 +08:00 [INF] Request starting HTTP/1.1 PUT https://localhost:7002/api/DataBaseInitialize/InitializeMenuListAndDropList - 0
+2025-10-10 01:06:14.757 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeMenuListAndDropList (SystemApi)'
+2025-10-10 01:06:14.771 +08:00 [INF] Route matched with {action = "InitializeMenuListAndDropList", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] InitializeMenuListAndDropList() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 01:06:15.413 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:06:15.420 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.InitializeMenuListAndDropList (SystemApi) in 642.8901ms
+2025-10-10 01:06:15.431 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.InitializeMenuListAndDropList (SystemApi)'
+2025-10-10 01:06:15.436 +08:00 [INF] Request finished HTTP/1.1 PUT https://localhost:7002/api/DataBaseInitialize/InitializeMenuListAndDropList - 0 - 200 - application/json;+charset=utf-8 765.3274ms
+2025-10-10 01:06:18.162 +08:00 [INF] Request starting HTTP/1.1 PUT https://localhost:7002/api/DataBaseInitialize/InitializeDataSource - 0
+2025-10-10 01:06:18.166 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DataBaseInitializeController.UpdateDataSource (SystemApi)'
+2025-10-10 01:06:18.170 +08:00 [INF] Route matched with {action = "UpdateDataSource", controller = "DataBaseInitialize"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateDataSource() on controller Accura_MES.Controllers.DataBaseInitializeController (SystemApi).
+2025-10-10 01:06:18.279 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:06:18.283 +08:00 [INF] Executed action Accura_MES.Controllers.DataBaseInitializeController.UpdateDataSource (SystemApi) in 111.0542ms
+2025-10-10 01:06:18.284 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DataBaseInitializeController.UpdateDataSource (SystemApi)'
+2025-10-10 01:06:18.286 +08:00 [INF] Request finished HTTP/1.1 PUT https://localhost:7002/api/DataBaseInitialize/InitializeDataSource - 0 - 200 - application/json;+charset=utf-8 123.2910ms
+2025-10-10 01:09:39.914 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:09:39.924 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:09:39.928 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 14.6638ms
+2025-10-10 01:09:39.930 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 77
+2025-10-10 01:09:39.936 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:09:39.942 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:09:39.957 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:09:39.997 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:09:40.002 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 42.6643ms
+2025-10-10 01:09:40.004 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:09:40.007 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 77 - 404 - application/json;+charset=utf-8 76.3622ms
+2025-10-10 01:09:43.968 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:09:43.971 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:09:43.973 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 4.3280ms
+2025-10-10 01:09:43.977 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 77
+2025-10-10 01:09:43.979 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:09:43.980 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:09:43.981 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:09:43.991 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:09:43.996 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 11.8373ms
+2025-10-10 01:09:44.000 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:09:44.010 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 77 - 404 - application/json;+charset=utf-8 32.7062ms
+2025-10-10 01:09:50.697 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:09:50.699 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:09:50.700 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 3.2111ms
+2025-10-10 01:09:50.702 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 01:09:50.703 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:09:50.704 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:09:50.705 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:09:50.713 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:09:50.718 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 10.9343ms
+2025-10-10 01:09:50.720 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:09:50.722 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 20.4895ms
+2025-10-10 01:10:04.042 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:10:04.045 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:04.049 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 6.7009ms
+2025-10-10 01:10:04.053 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 01:10:04.054 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:04.054 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:04.055 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:10:04.058 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:10:04.060 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 3.7818ms
+2025-10-10 01:10:04.063 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:04.064 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 11.1184ms
+2025-10-10 01:10:23.810 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:10:23.813 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:23.817 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 6.5525ms
+2025-10-10 01:10:23.822 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 01:10:23.823 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:23.824 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:23.826 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:10:23.863 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:10:23.870 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 28.3047ms
+2025-10-10 01:10:23.873 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:23.876 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 53.7433ms
+2025-10-10 01:10:27.211 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:10:27.212 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:27.213 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 2.0104ms
+2025-10-10 01:10:27.217 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 01:10:27.219 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:27.221 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:27.222 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:10:27.227 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:10:27.231 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 6.5792ms
+2025-10-10 01:10:27.234 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:27.235 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 18.6225ms
+2025-10-10 01:10:27.300 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:10:27.302 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:27.304 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 3.3978ms
+2025-10-10 01:10:27.309 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 01:10:27.311 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:27.312 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:27.314 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:10:27.322 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:10:27.325 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 4.7443ms
+2025-10-10 01:10:27.326 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:27.328 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 19.5732ms
+2025-10-10 01:10:31.966 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:10:31.967 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:31.968 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 2.6291ms
+2025-10-10 01:10:31.971 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 01:10:31.972 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:10:31.974 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:31.975 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:10:31.986 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:10:31.987 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 10.2362ms
+2025-10-10 01:10:31.990 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:10:31.993 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 404 - application/json;+charset=utf-8 21.6477ms
+2025-10-10 01:11:49.011 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:11:49.013 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.015 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 4.6154ms
+2025-10-10 01:11:49.026 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 77
+2025-10-10 01:11:49.028 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.052 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:11:49.055 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:11:49.107 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:49.109 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 51.0063ms
+2025-10-10 01:11:49.111 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:11:49.112 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 77 - 200 - application/json;+charset=utf-8 85.5853ms
+2025-10-10 01:11:49.121 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 01:11:49.123 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.124 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 3.4305ms
+2025-10-10 01:11:49.128 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 01:11:49.129 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.131 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:11:49.135 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:11:49.143 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:49.145 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 8.319ms
+2025-10-10 01:11:49.147 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:11:49.149 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 21.4765ms
+2025-10-10 01:11:49.165 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:49.167 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.169 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.6202ms
+2025-10-10 01:11:49.171 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:11:49.177 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.179 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:49.190 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:49.436 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:49.441 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 247.3034ms
+2025-10-10 01:11:49.444 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:49.445 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 273.9913ms
+2025-10-10 01:11:49.450 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:49.452 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.454 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 4.0478ms
+2025-10-10 01:11:49.457 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153
+2025-10-10 01:11:49.460 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.461 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:49.462 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:49.531 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:49.535 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 70.6382ms
+2025-10-10 01:11:49.540 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:49.541 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153 - 200 - application/json;+charset=utf-8 83.9252ms
+2025-10-10 01:11:49.544 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:49.545 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.546 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.1121ms
+2025-10-10 01:11:49.550 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100
+2025-10-10 01:11:49.551 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:49.553 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:49.555 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:49.597 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:49.600 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 43.267ms
+2025-10-10 01:11:49.602 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:49.603 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100 - 200 - application/json;+charset=utf-8 53.0642ms
+2025-10-10 01:11:53.493 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:53.495 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:53.496 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.1315ms
+2025-10-10 01:11:53.501 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98
+2025-10-10 01:11:53.503 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:53.506 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:53.508 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:53.566 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:53.570 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 61.0248ms
+2025-10-10 01:11:53.573 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:53.574 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98 - 200 - application/json;+charset=utf-8 73.4695ms
+2025-10-10 01:11:53.586 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:53.588 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:53.590 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 4.6572ms
+2025-10-10 01:11:53.597 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:11:53.599 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:53.600 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:53.603 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:53.654 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:53.660 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 54.2646ms
+2025-10-10 01:11:53.661 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:53.662 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 65.2875ms
+2025-10-10 01:11:54.187 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:54.189 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:54.190 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.0789ms
+2025-10-10 01:11:54.192 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 159
+2025-10-10 01:11:54.193 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:54.194 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:54.195 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:54.222 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:54.225 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 28.4495ms
+2025-10-10 01:11:54.226 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:54.227 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 159 - 200 - application/json;+charset=utf-8 35.0191ms
+2025-10-10 01:11:55.604 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:55.610 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:55.612 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 7.8408ms
+2025-10-10 01:11:55.617 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98
+2025-10-10 01:11:55.619 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:55.620 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:55.623 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:55.636 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:55.640 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 12.8558ms
+2025-10-10 01:11:55.642 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:55.644 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98 - 200 - application/json;+charset=utf-8 26.8536ms
+2025-10-10 01:11:55.653 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:55.659 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:55.662 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 9.5570ms
+2025-10-10 01:11:55.668 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:11:55.674 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:55.676 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:55.677 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:55.700 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:55.706 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 25.1485ms
+2025-10-10 01:11:55.709 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:55.711 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 42.5503ms
+2025-10-10 01:11:55.752 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:11:55.754 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:55.756 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.5146ms
+2025-10-10 01:11:55.760 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:11:55.761 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:11:55.762 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:55.765 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:11:55.786 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:11:55.788 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 18.5672ms
+2025-10-10 01:11:55.790 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:11:55.791 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 31.5510ms
+2025-10-10 01:12:43.372 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 01:12:43.373 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.374 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 2.6732ms
+2025-10-10 01:12:43.377 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 01:12:43.378 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.381 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:12:43.383 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:12:43.390 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:43.392 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 6.7984ms
+2025-10-10 01:12:43.393 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:12:43.395 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 17.5926ms
+2025-10-10 01:12:43.492 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:43.493 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.495 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.6106ms
+2025-10-10 01:12:43.500 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:12:43.501 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.502 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.503 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:43.521 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:43.522 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 17.4319ms
+2025-10-10 01:12:43.523 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.524 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 24.1879ms
+2025-10-10 01:12:43.578 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:43.580 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.583 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 4.7246ms
+2025-10-10 01:12:43.586 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153
+2025-10-10 01:12:43.587 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.588 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.589 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:43.613 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:43.617 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 25.7796ms
+2025-10-10 01:12:43.618 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.620 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153 - 200 - application/json;+charset=utf-8 34.2882ms
+2025-10-10 01:12:43.628 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:43.630 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.632 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 4.0086ms
+2025-10-10 01:12:43.637 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100
+2025-10-10 01:12:43.643 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.644 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.646 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:43.661 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:43.664 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 15.4847ms
+2025-10-10 01:12:43.665 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.668 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100 - 200 - application/json;+charset=utf-8 30.6469ms
+2025-10-10 01:12:43.726 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:43.727 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.728 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.4554ms
+2025-10-10 01:12:43.730 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98
+2025-10-10 01:12:43.732 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.733 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.733 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:43.742 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:43.744 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 9.3103ms
+2025-10-10 01:12:43.746 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.747 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98 - 200 - application/json;+charset=utf-8 16.5186ms
+2025-10-10 01:12:43.793 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:43.794 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.795 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.3668ms
+2025-10-10 01:12:43.800 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:12:43.802 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.804 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.805 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:43.823 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:43.825 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 17.4135ms
+2025-10-10 01:12:43.826 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.827 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 27.2717ms
+2025-10-10 01:12:43.835 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:43.836 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.838 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.8483ms
+2025-10-10 01:12:43.848 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:12:43.849 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:43.851 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.852 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:43.860 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:43.862 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 5.8961ms
+2025-10-10 01:12:43.863 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:43.865 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 16.8623ms
+2025-10-10 01:12:49.013 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Edit - -
+2025-10-10 01:12:49.014 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:49.015 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Edit - - - 204 - - 1.5908ms
+2025-10-10 01:12:49.019 +08:00 [INF] Request starting HTTP/2 PUT https://localhost:7002/api/User/Edit application/json 309
+2025-10-10 01:12:49.020 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:49.021 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Edit (SystemApi)'
+2025-10-10 01:12:49.025 +08:00 [INF] Route matched with {action = "Edit", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(System.Collections.Generic.Dictionary`2[System.String,System.Object]) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:12:49.050 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:49.051 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Edit (SystemApi) in 24.7889ms
+2025-10-10 01:12:49.052 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Edit (SystemApi)'
+2025-10-10 01:12:49.053 +08:00 [INF] Request finished HTTP/2 PUT https://localhost:7002/api/User/Edit application/json 309 - 200 - application/json;+charset=utf-8 33.8725ms
+2025-10-10 01:12:50.882 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:50.883 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:50.884 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.7290ms
+2025-10-10 01:12:50.886 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98
+2025-10-10 01:12:50.887 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:50.888 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:50.888 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:50.889 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:50.890 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:50.891 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.0579ms
+2025-10-10 01:12:50.893 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 150
+2025-10-10 01:12:50.895 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:50.896 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:50.897 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:50.898 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:50.901 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 8.0996ms
+2025-10-10 01:12:50.902 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:50.904 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98 - 200 - application/json;+charset=utf-8 17.2912ms
+2025-10-10 01:12:50.910 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:50.912 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 12.5463ms
+2025-10-10 01:12:50.913 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:50.915 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 150 - 200 - application/json;+charset=utf-8 21.5661ms
+2025-10-10 01:12:50.967 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:50.970 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:50.971 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.7619ms
+2025-10-10 01:12:50.975 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:12:50.976 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:50.977 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:50.978 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:50.989 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:50.991 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 11.1276ms
+2025-10-10 01:12:50.992 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:50.993 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 17.7272ms
+2025-10-10 01:12:51.531 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:51.532 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:51.533 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.5071ms
+2025-10-10 01:12:51.536 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 159
+2025-10-10 01:12:51.537 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:51.538 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:51.539 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:51.574 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:51.576 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 35.3253ms
+2025-10-10 01:12:51.577 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:51.578 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 159 - 200 - application/json;+charset=utf-8 42.4800ms
+2025-10-10 01:12:52.940 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:52.941 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:52.943 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.7646ms
+2025-10-10 01:12:52.946 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98
+2025-10-10 01:12:52.948 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:52.949 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:52.951 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:52.978 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:52.982 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 28.9279ms
+2025-10-10 01:12:52.985 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:52.989 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98 - 200 - application/json;+charset=utf-8 42.5804ms
+2025-10-10 01:12:52.992 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:52.993 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:52.994 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.6924ms
+2025-10-10 01:12:53.011 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:12:53.012 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:53.014 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:53.017 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:53.039 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:53.041 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 20.9312ms
+2025-10-10 01:12:53.042 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:53.043 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 32.7343ms
+2025-10-10 01:12:53.046 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:53.048 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:53.050 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.1401ms
+2025-10-10 01:12:53.053 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:12:53.054 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:53.055 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:53.055 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:53.065 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:53.068 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 11.2159ms
+2025-10-10 01:12:53.070 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:53.071 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 17.8386ms
+2025-10-10 01:12:58.016 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Edit - -
+2025-10-10 01:12:58.017 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:58.018 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Edit - - - 204 - - 1.6925ms
+2025-10-10 01:12:58.021 +08:00 [INF] Request starting HTTP/2 PUT https://localhost:7002/api/User/Edit application/json 312
+2025-10-10 01:12:58.022 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:58.023 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Edit (SystemApi)'
+2025-10-10 01:12:58.024 +08:00 [INF] Route matched with {action = "Edit", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(System.Collections.Generic.Dictionary`2[System.String,System.Object]) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:12:58.044 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:58.046 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Edit (SystemApi) in 20.41ms
+2025-10-10 01:12:58.048 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Edit (SystemApi)'
+2025-10-10 01:12:58.049 +08:00 [INF] Request finished HTTP/2 PUT https://localhost:7002/api/User/Edit application/json 312 - 200 - application/json;+charset=utf-8 28.1743ms
+2025-10-10 01:12:58.876 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:12:58.878 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:58.880 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.7608ms
+2025-10-10 01:12:58.883 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 150
+2025-10-10 01:12:58.884 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:12:58.885 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:58.886 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:12:58.904 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:12:58.906 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 18.2664ms
+2025-10-10 01:12:58.908 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:12:58.909 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 150 - 200 - application/json;+charset=utf-8 26.7163ms
+2025-10-10 01:13:02.974 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - -
+2025-10-10 01:13:02.976 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:02.978 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/DbSelecter - - - 204 - - 3.4559ms
+2025-10-10 01:13:02.984 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/api/DbSelecter - -
+2025-10-10 01:13:02.987 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:02.989 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 01:13:02.991 +08:00 [INF] Route matched with {action = "Get", controller = "DbSelecter"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Accura_MES.Controllers.DbSelecter (SystemApi).
+2025-10-10 01:13:02.995 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:03.000 +08:00 [INF] Executed action Accura_MES.Controllers.DbSelecter.Get (SystemApi) in 6.5117ms
+2025-10-10 01:13:03.001 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.DbSelecter.Get (SystemApi)'
+2025-10-10 01:13:03.002 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/api/DbSelecter - - - 200 - application/json;+charset=utf-8 17.7966ms
+2025-10-10 01:13:06.621 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Login - -
+2025-10-10 01:13:06.622 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.624 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Login - - - 204 - - 2.3516ms
+2025-10-10 01:13:06.626 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Login application/json 78
+2025-10-10 01:13:06.627 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.629 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:13:06.631 +08:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(Accura_MES.Models.LoginInfo) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:13:06.639 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:06.641 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Login (SystemApi) in 8.5298ms
+2025-10-10 01:13:06.644 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Login (SystemApi)'
+2025-10-10 01:13:06.645 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Login application/json 78 - 200 - application/json;+charset=utf-8 19.3574ms
+2025-10-10 01:13:06.657 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 01:13:06.659 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.659 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 2.0860ms
+2025-10-10 01:13:06.661 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 01:13:06.662 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.662 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:13:06.664 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:13:06.668 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:06.670 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 4.0432ms
+2025-10-10 01:13:06.671 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:13:06.672 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 11.5674ms
+2025-10-10 01:13:06.678 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:06.679 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.680 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.8789ms
+2025-10-10 01:13:06.684 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:13:06.685 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.686 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:06.687 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:06.699 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:06.701 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 11.954ms
+2025-10-10 01:13:06.703 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:06.704 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 20.8164ms
+2025-10-10 01:13:06.707 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:06.708 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.709 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.8178ms
+2025-10-10 01:13:06.710 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153
+2025-10-10 01:13:06.711 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.712 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:06.713 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:06.742 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:06.746 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 31.1894ms
+2025-10-10 01:13:06.748 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:06.750 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153 - 200 - application/json;+charset=utf-8 39.7247ms
+2025-10-10 01:13:06.756 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:06.757 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.758 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.8251ms
+2025-10-10 01:13:06.760 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100
+2025-10-10 01:13:06.760 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:06.761 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:06.762 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:06.784 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:06.789 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 24.7046ms
+2025-10-10 01:13:06.790 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:06.792 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100 - 200 - application/json;+charset=utf-8 32.1268ms
+2025-10-10 01:13:10.361 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:10.362 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:10.364 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.1099ms
+2025-10-10 01:13:10.368 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 102
+2025-10-10 01:13:10.369 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:10.370 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:10.371 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:10.383 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:10.385 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 12.7628ms
+2025-10-10 01:13:10.388 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:10.389 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 102 - 200 - application/json;+charset=utf-8 21.5522ms
+2025-10-10 01:13:10.391 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:10.392 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:10.393 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.5011ms
+2025-10-10 01:13:10.394 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:13:10.395 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:10.397 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:10.398 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:10.426 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:10.430 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 29.7746ms
+2025-10-10 01:13:10.433 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:10.436 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 41.3367ms
+2025-10-10 01:13:10.945 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:10.947 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:10.949 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 4.1232ms
+2025-10-10 01:13:10.954 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 163
+2025-10-10 01:13:10.954 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:10.954 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:10.955 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:10.977 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:10.979 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 22.6619ms
+2025-10-10 01:13:10.980 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:10.982 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 163 - 200 - application/json;+charset=utf-8 28.5219ms
+2025-10-10 01:13:11.855 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:11.856 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.857 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.8335ms
+2025-10-10 01:13:11.860 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 102
+2025-10-10 01:13:11.861 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.862 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.863 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:11.869 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:11.871 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 6.3399ms
+2025-10-10 01:13:11.872 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.873 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 102 - 200 - application/json;+charset=utf-8 13.2939ms
+2025-10-10 01:13:11.878 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:11.879 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.880 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.4993ms
+2025-10-10 01:13:11.884 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:13:11.887 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.888 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.889 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:11.898 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:11.901 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 9.9616ms
+2025-10-10 01:13:11.903 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.906 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 22.0844ms
+2025-10-10 01:13:11.926 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:11.927 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.928 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.0344ms
+2025-10-10 01:13:11.931 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 94
+2025-10-10 01:13:11.933 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.935 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.936 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:11.950 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:11.952 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 13.4511ms
+2025-10-10 01:13:11.954 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.955 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 94 - 200 - application/json;+charset=utf-8 24.0438ms
+2025-10-10 01:13:11.977 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:11.978 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.979 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.0774ms
+2025-10-10 01:13:11.983 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 107
+2025-10-10 01:13:11.984 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.984 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.985 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:11.989 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:11.990 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.991 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.8791ms
+2025-10-10 01:13:11.993 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100
+2025-10-10 01:13:11.994 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:11.995 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:11.995 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:11.996 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 9.8788ms
+2025-10-10 01:13:11.997 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:11.999 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.002 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 107 - 200 - application/json;+charset=utf-8 19.5973ms
+2025-10-10 01:13:12.006 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:12.007 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.008 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.1812ms
+2025-10-10 01:13:12.009 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:13:12.010 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.011 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:12.011 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.012 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 11.0173ms
+2025-10-10 01:13:12.013 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:12.014 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.017 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100 - 200 - application/json;+charset=utf-8 23.6658ms
+2025-10-10 01:13:12.023 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:12.024 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 8.3797ms
+2025-10-10 01:13:12.025 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.026 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 16.9133ms
+2025-10-10 01:13:12.103 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:12.104 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.106 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.4622ms
+2025-10-10 01:13:12.108 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98
+2025-10-10 01:13:12.111 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.113 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.116 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:12.127 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:12.128 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 10.7295ms
+2025-10-10 01:13:12.130 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.132 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98 - 200 - application/json;+charset=utf-8 23.8323ms
+2025-10-10 01:13:12.581 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:12.586 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.588 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 7.3090ms
+2025-10-10 01:13:12.591 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:13:12.592 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.592 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.593 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:12.604 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:12.606 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 10.0827ms
+2025-10-10 01:13:12.608 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.609 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 18.0954ms
+2025-10-10 01:13:12.614 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:13:12.616 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.617 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.0389ms
+2025-10-10 01:13:12.619 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 158
+2025-10-10 01:13:12.620 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:13:12.621 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.622 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:13:12.636 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:13:12.637 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 13.0873ms
+2025-10-10 01:13:12.639 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:13:12.640 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 158 - 200 - application/json;+charset=utf-8 20.4134ms
+2025-10-10 01:14:19.347 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 01:14:19.351 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.353 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 6.4475ms
+2025-10-10 01:14:19.357 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 01:14:19.358 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.359 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:14:19.360 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:14:19.370 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:19.371 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 9.7688ms
+2025-10-10 01:14:19.373 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:14:19.374 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 17.1821ms
+2025-10-10 01:14:19.598 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:19.599 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.601 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.0826ms
+2025-10-10 01:14:19.604 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:14:19.605 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.606 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:19.608 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:19.629 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:19.632 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 22.0471ms
+2025-10-10 01:14:19.634 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:19.635 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 31.1943ms
+2025-10-10 01:14:19.775 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:19.776 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.778 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.5294ms
+2025-10-10 01:14:19.786 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153
+2025-10-10 01:14:19.788 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.789 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:19.791 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:19.816 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:19.818 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 25.009ms
+2025-10-10 01:14:19.819 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:19.820 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153 - 200 - application/json;+charset=utf-8 34.2348ms
+2025-10-10 01:14:19.834 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:19.836 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.836 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.1844ms
+2025-10-10 01:14:19.839 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100
+2025-10-10 01:14:19.840 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.841 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:19.842 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:19.863 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:19.865 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 21.2317ms
+2025-10-10 01:14:19.866 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:19.867 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100 - 200 - application/json;+charset=utf-8 28.4341ms
+2025-10-10 01:14:19.990 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:19.991 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.992 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.7712ms
+2025-10-10 01:14:19.993 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101
+2025-10-10 01:14:19.994 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:19.995 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:19.996 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:20.005 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:20.006 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 8.6494ms
+2025-10-10 01:14:20.007 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.008 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101 - 200 - application/json;+charset=utf-8 14.8381ms
+2025-10-10 01:14:20.025 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:20.027 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.028 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.7880ms
+2025-10-10 01:14:20.035 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:14:20.036 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.037 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.039 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:20.066 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:20.069 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 27.8284ms
+2025-10-10 01:14:20.071 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.072 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 36.9945ms
+2025-10-10 01:14:20.083 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:20.084 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.084 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.3929ms
+2025-10-10 01:14:20.086 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105
+2025-10-10 01:14:20.087 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.087 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.088 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:20.106 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:20.108 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 18.3517ms
+2025-10-10 01:14:20.111 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.112 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105 - 200 - application/json;+charset=utf-8 25.8712ms
+2025-10-10 01:14:20.133 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:20.134 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.135 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.6148ms
+2025-10-10 01:14:20.139 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101
+2025-10-10 01:14:20.140 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.141 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.142 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:20.168 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:20.170 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 26.2014ms
+2025-10-10 01:14:20.171 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.174 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101 - 200 - application/json;+charset=utf-8 34.5141ms
+2025-10-10 01:14:20.680 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:20.682 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.683 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.9500ms
+2025-10-10 01:14:20.686 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 162
+2025-10-10 01:14:20.687 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:20.688 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.689 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:20.706 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:20.707 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 16.8494ms
+2025-10-10 01:14:20.708 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:20.709 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 162 - 200 - application/json;+charset=utf-8 22.2902ms
+2025-10-10 01:14:22.087 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 01:14:22.088 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.090 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 3.0314ms
+2025-10-10 01:14:22.092 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 01:14:22.093 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.096 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:14:22.098 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:14:22.100 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.102 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 2.664ms
+2025-10-10 01:14:22.103 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:14:22.105 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 12.2582ms
+2025-10-10 01:14:22.231 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:22.232 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.234 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.9007ms
+2025-10-10 01:14:22.237 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:14:22.238 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.239 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.241 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:22.247 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.249 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 6.5209ms
+2025-10-10 01:14:22.252 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.253 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 16.1475ms
+2025-10-10 01:14:22.354 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:22.355 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.356 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.9010ms
+2025-10-10 01:14:22.358 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153
+2025-10-10 01:14:22.359 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.360 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.361 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:22.366 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.368 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 5.2078ms
+2025-10-10 01:14:22.369 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.370 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153 - 200 - application/json;+charset=utf-8 12.4385ms
+2025-10-10 01:14:22.407 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:22.408 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.409 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.5988ms
+2025-10-10 01:14:22.413 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100
+2025-10-10 01:14:22.414 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.415 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.416 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:22.421 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.422 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 4.8712ms
+2025-10-10 01:14:22.423 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.425 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100 - 200 - application/json;+charset=utf-8 11.7697ms
+2025-10-10 01:14:22.508 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:22.509 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.511 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.3838ms
+2025-10-10 01:14:22.514 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101
+2025-10-10 01:14:22.515 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.516 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.517 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:22.521 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.522 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 4.1554ms
+2025-10-10 01:14:22.524 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.525 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101 - 200 - application/json;+charset=utf-8 11.7779ms
+2025-10-10 01:14:22.558 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:22.559 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.560 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.1510ms
+2025-10-10 01:14:22.564 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:14:22.565 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.566 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.567 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:22.575 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.576 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 8.009ms
+2025-10-10 01:14:22.579 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.581 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 16.4693ms
+2025-10-10 01:14:22.611 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:22.612 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.614 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.8736ms
+2025-10-10 01:14:22.619 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105
+2025-10-10 01:14:22.620 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.621 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.625 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:22.635 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.638 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 10.0732ms
+2025-10-10 01:14:22.640 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.644 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105 - 200 - application/json;+charset=utf-8 25.5510ms
+2025-10-10 01:14:22.693 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:22.694 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.697 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.8570ms
+2025-10-10 01:14:22.703 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101
+2025-10-10 01:14:22.704 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:22.705 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.705 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:22.711 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:22.713 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 6.1051ms
+2025-10-10 01:14:22.715 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:22.717 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101 - 200 - application/json;+charset=utf-8 13.3828ms
+2025-10-10 01:14:23.222 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:23.223 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:23.224 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 2.1094ms
+2025-10-10 01:14:23.226 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 162
+2025-10-10 01:14:23.227 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:23.227 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:23.229 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:23.235 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:23.236 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 5.6098ms
+2025-10-10 01:14:23.238 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:23.239 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 162 - 200 - application/json;+charset=utf-8 12.9104ms
+2025-10-10 01:14:27.258 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:27.260 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:27.261 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 3.4201ms
+2025-10-10 01:14:27.266 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105
+2025-10-10 01:14:27.267 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:27.268 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:27.269 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:27.275 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:27.276 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 5.1709ms
+2025-10-10 01:14:27.277 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:27.278 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105 - 200 - application/json;+charset=utf-8 12.5313ms
+2025-10-10 01:14:27.282 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:14:27.283 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:27.284 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 1.7186ms
+2025-10-10 01:14:27.287 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101
+2025-10-10 01:14:27.288 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:14:27.289 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:27.290 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:14:27.297 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:14:27.301 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 8.5897ms
+2025-10-10 01:14:27.303 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:14:27.304 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101 - 200 - application/json;+charset=utf-8 17.5623ms
+2025-10-10 01:16:24.208 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-10 01:16:24.540 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-10 01:16:24.544 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-10 01:16:24.579 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-10 01:16:24.582 +08:00 [INF] Hosting environment: Development
+2025-10-10 01:16:24.585 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-10 01:16:25.001 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-10 01:16:25.321 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 321.9023ms
+2025-10-10 01:16:25.345 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - -
+2025-10-10 01:16:25.354 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_vs/browserLink - -
+2025-10-10 01:16:25.355 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - - - 200 12311 application/javascript;+charset=utf-8 9.2017ms
+2025-10-10 01:16:25.418 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 64.2752ms
+2025-10-10 01:16:25.545 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-10 01:16:25.686 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 141.4505ms
+2025-10-10 01:16:31.099 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - -
+2025-10-10 01:16:31.109 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:31.123 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/TokenDecoded - - - 204 - - 24.8299ms
+2025-10-10 01:16:31.132 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4
+2025-10-10 01:16:31.140 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:31.269 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:16:31.283 +08:00 [INF] Route matched with {action = "TokenDecoded", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult TokenDecoded() on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:16:31.808 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:31.816 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.TokenDecoded (SystemApi) in 523.6925ms
+2025-10-10 01:16:31.822 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.TokenDecoded (SystemApi)'
+2025-10-10 01:16:31.824 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/TokenDecoded application/json 4 - 200 - application/json;+charset=utf-8 692.7810ms
+2025-10-10 01:16:31.832 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:31.834 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:31.837 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 4.8864ms
+2025-10-10 01:16:31.839 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89
+2025-10-10 01:16:31.843 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:31.846 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:31.864 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:31.936 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:31.940 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 72.0972ms
+2025-10-10 01:16:31.943 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:31.945 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 89 - 200 - application/json;+charset=utf-8 106.0066ms
+2025-10-10 01:16:31.950 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:31.954 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:31.957 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 6.6550ms
+2025-10-10 01:16:31.961 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153
+2025-10-10 01:16:31.966 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:31.970 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:31.972 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:32.000 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:32.004 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 28.5974ms
+2025-10-10 01:16:32.007 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.010 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 153 - 200 - application/json;+charset=utf-8 49.1686ms
+2025-10-10 01:16:32.016 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:32.019 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.021 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 5.4931ms
+2025-10-10 01:16:32.026 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100
+2025-10-10 01:16:32.030 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.034 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.036 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:32.054 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:32.057 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 17.2569ms
+2025-10-10 01:16:32.060 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.063 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 100 - 200 - application/json;+charset=utf-8 36.8533ms
+2025-10-10 01:16:32.172 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:32.175 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.177 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 4.8388ms
+2025-10-10 01:16:32.181 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101
+2025-10-10 01:16:32.184 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.186 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.189 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:32.200 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:32.203 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 10.8487ms
+2025-10-10 01:16:32.206 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.210 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101 - 200 - application/json;+charset=utf-8 28.7622ms
+2025-10-10 01:16:32.221 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:32.226 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.232 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 11.0061ms
+2025-10-10 01:16:32.238 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:16:32.241 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.245 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.262 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:32.299 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:32.307 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 34.3794ms
+2025-10-10 01:16:32.310 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.318 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 79.5480ms
+2025-10-10 01:16:32.364 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:32.370 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.375 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 10.9937ms
+2025-10-10 01:16:32.381 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105
+2025-10-10 01:16:32.385 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.389 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.391 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:32.411 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:32.419 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 24.6111ms
+2025-10-10 01:16:32.424 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.427 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 105 - 200 - application/json;+charset=utf-8 46.9199ms
+2025-10-10 01:16:32.438 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:32.441 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.444 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 6.2958ms
+2025-10-10 01:16:32.453 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101
+2025-10-10 01:16:32.456 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:32.459 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.465 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:32.496 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:32.503 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 30.5474ms
+2025-10-10 01:16:32.506 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:32.509 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 101 - 200 - application/json;+charset=utf-8 56.8979ms
+2025-10-10 01:16:33.029 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:33.033 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:33.037 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 8.0247ms
+2025-10-10 01:16:33.040 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 162
+2025-10-10 01:16:33.043 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:33.048 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:33.052 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:33.073 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:33.076 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 20.5274ms
+2025-10-10 01:16:33.082 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:33.087 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 162 - 200 - application/json;+charset=utf-8 46.8374ms
+2025-10-10 01:16:34.435 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:34.438 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:34.441 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 5.9916ms
+2025-10-10 01:16:34.444 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98
+2025-10-10 01:16:34.449 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:34.453 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:34.461 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:34.496 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:34.508 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 37.7362ms
+2025-10-10 01:16:34.516 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:34.523 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 98 - 200 - application/json;+charset=utf-8 78.4977ms
+2025-10-10 01:16:34.556 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:34.563 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:34.571 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 14.7464ms
+2025-10-10 01:16:34.577 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161
+2025-10-10 01:16:34.580 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:34.588 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:34.592 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:34.604 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:34.608 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 12.7195ms
+2025-10-10 01:16:34.611 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:34.614 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 161 - 200 - application/json;+charset=utf-8 37.4409ms
+2025-10-10 01:16:35.131 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:35.135 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:35.137 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 5.7967ms
+2025-10-10 01:16:35.139 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 159
+2025-10-10 01:16:35.142 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:35.144 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:35.150 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:35.164 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:35.169 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 15.7515ms
+2025-10-10 01:16:35.172 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:35.174 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 159 - 200 - application/json;+charset=utf-8 34.7574ms
+2025-10-10 01:16:50.262 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/User/Build - -
+2025-10-10 01:16:50.267 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:50.271 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/User/Build - - - 204 - - 8.7490ms
+2025-10-10 01:16:50.283 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/User/Build application/json 292
+2025-10-10 01:16:50.286 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:50.291 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.UserController.Build (SystemApi)'
+2025-10-10 01:16:50.300 +08:00 [INF] Route matched with {action = "Build", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Build(System.Collections.Generic.Dictionary`2[System.String,System.Object]) on controller Accura_MES.Controllers.UserController (SystemApi).
+2025-10-10 01:16:50.389 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:50.396 +08:00 [INF] Executed action Accura_MES.Controllers.UserController.Build (SystemApi) in 90.0928ms
+2025-10-10 01:16:50.407 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.UserController.Build (SystemApi)'
+2025-10-10 01:16:50.417 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/User/Build application/json 292 - 200 - application/json;+charset=utf-8 133.9023ms
+2025-10-10 01:16:50.436 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - -
+2025-10-10 01:16:50.439 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:50.442 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7002/api/Generic/GetNestedStructure - - - 204 - - 6.3443ms
+2025-10-10 01:16:50.448 +08:00 [INF] Request starting HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 150
+2025-10-10 01:16:50.451 +08:00 [INF] CORS policy execution successful.
+2025-10-10 01:16:50.455 +08:00 [INF] Executing endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:50.460 +08:00 [INF] Route matched with {action = "NestedStructureDataQueryTemplate", controller = "Generic"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] NestedStructureDataQueryTemplate(Accura_MES.Models.AdvancedSearch) on controller Accura_MES.Controllers.GenericController (SystemApi).
+2025-10-10 01:16:50.485 +08:00 [INF] Executing ObjectResult, writing value of type 'Accura_MES.ResponseObject'.
+2025-10-10 01:16:50.496 +08:00 [INF] Executed action Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi) in 28.8061ms
+2025-10-10 01:16:50.501 +08:00 [INF] Executed endpoint 'Accura_MES.Controllers.GenericController.NestedStructureDataQueryTemplate (SystemApi)'
+2025-10-10 01:16:50.508 +08:00 [INF] Request finished HTTP/2 POST https://localhost:7002/api/Generic/GetNestedStructure application/json 150 - 200 - application/json;+charset=utf-8 60.2254ms

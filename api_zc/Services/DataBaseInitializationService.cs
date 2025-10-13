@@ -445,149 +445,149 @@ namespace Accura_MES.Services
             string jsonFilePath = System.IO.Path.Combine(directoryInfo.Parent != null ? directoryInfo.Parent.FullName : string.Empty, "MenuListAndDropList.json");
 
             // 獲取指定 excel 檔案路徑
-            string excelFilePath1 = System.IO.Path.Combine(directoryInfo.Parent != null ? directoryInfo.Parent.FullName : string.Empty, "料件分群碼.xls");
-            string excelFilePath2 = System.IO.Path.Combine(directoryInfo.Parent != null ? directoryInfo.Parent.FullName : string.Empty, "檢驗不良原因.xls");
-            string excelFilePath3 = System.IO.Path.Combine(directoryInfo.Parent != null ? directoryInfo.Parent.FullName : string.Empty, "製程停工代號.xlsx");
+            //string excelFilePath1 = System.IO.Path.Combine(directoryInfo.Parent != null ? directoryInfo.Parent.FullName : string.Empty, "料件分群碼.xls");
+            //string excelFilePath2 = System.IO.Path.Combine(directoryInfo.Parent != null ? directoryInfo.Parent.FullName : string.Empty, "檢驗不良原因.xls");
+            //string excelFilePath3 = System.IO.Path.Combine(directoryInfo.Parent != null ? directoryInfo.Parent.FullName : string.Empty, "製程停工代號.xlsx");
 
             // 讀取 json
             var mappingItems = FileUtils.ReadJsonFile<List<Mapping_MenuListAndDropList>>(jsonFilePath);
 
             // 讀取 excel
-            var excelContentList1 = FileUtils.ReadExcel(excelFilePath1);
-            var excelContentList2 = FileUtils.ReadExcel(excelFilePath2);
-            var excelContentList3 = FileUtils.ReadExcel(excelFilePath3);
+            //var excelContentList1 = FileUtils.ReadExcel(excelFilePath1);
+            //var excelContentList2 = FileUtils.ReadExcel(excelFilePath2);
+            //var excelContentList3 = FileUtils.ReadExcel(excelFilePath3);
 
             // 將 excel 的內容寫進 mappingItems 的對應 droplist 中
-            var excelDropListItem_PartGroupCode = new List<DropListItem>();
-            var excelDropListItem_RejectReason = new List<DropListItem>();
-            var excelDropListItem_StopReason = new List<DropListItem>();
-            var excelDropListItem_faultyReason = new List<DropListItem>();
+            //var excelDropListItem_PartGroupCode = new List<DropListItem>();
+            //var excelDropListItem_RejectReason = new List<DropListItem>();
+            //var excelDropListItem_StopReason = new List<DropListItem>();
+            //var excelDropListItem_faultyReason = new List<DropListItem>();
 
             // 第一個 excel 料件分群碼
-            var sheet = excelContentList1["SQL Results"];
-            sheet.RemoveAt(0); // 第一行不是下拉選單資料，刪除第一行
+            //var sheet = excelContentList1["SQL Results"];
+            //sheet.RemoveAt(0); // 第一行不是下拉選單資料，刪除第一行
 
             // 遍歷 工作表 每行
-            foreach (var col in sheet)
-            {
-                if (string.IsNullOrEmpty(col[0])) continue;
+            //foreach (var col in sheet)
+            //{
+            //    if (string.IsNullOrEmpty(col[0])) continue;
 
-                var row1 = col[0];
-                var row2 = col[1];
+            //    var row1 = col[0];
+            //    var row2 = col[1];
 
-                var dropListItem = new DropListItem()
-                {
-                    I18n = new()
-                    {
-                        ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
-                        En = ""
-                    },
-                    Value = col[0],
-                    Descripetion = "",
-                    Type = "system",
-                    IsDelete = false,
-                };
+            //    var dropListItem = new DropListItem()
+            //    {
+            //        I18n = new()
+            //        {
+            //            ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
+            //            En = ""
+            //        },
+            //        Value = col[0],
+            //        Descripetion = "",
+            //        Type = "system",
+            //        IsDelete = false,
+            //    };
 
-                excelDropListItem_PartGroupCode.Add(dropListItem);
-            }
+            //    excelDropListItem_PartGroupCode.Add(dropListItem);
+            //}
 
             // 第二個 excel 檢驗不良原因
-            sheet = excelContentList2["SQL Results"];
-            sheet.RemoveAt(0); // 第一行不是下拉選單資料，刪除第一行
+            //sheet = excelContentList2["SQL Results"];
+            //sheet.RemoveAt(0); // 第一行不是下拉選單資料，刪除第一行
 
-            foreach (var col in sheet)
-            {
-                if (string.IsNullOrEmpty(col[0])) continue;
+            //foreach (var col in sheet)
+            //{
+            //    if (string.IsNullOrEmpty(col[0])) continue;
 
-                var row1 = col[0];
-                var row2 = col[1];
+            //    var row1 = col[0];
+            //    var row2 = col[1];
 
-                var dropListItem = new DropListItem()
-                {
-                    I18n = new()
-                    {
-                        ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
-                        En = ""
-                    },
-                    Value = col[0],
-                    Descripetion = "",
-                    Type = "system",
-                    IsDelete = false,
-                };
+            //    var dropListItem = new DropListItem()
+            //    {
+            //        I18n = new()
+            //        {
+            //            ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
+            //            En = ""
+            //        },
+            //        Value = col[0],
+            //        Descripetion = "",
+            //        Type = "system",
+            //        IsDelete = false,
+            //    };
 
-                excelDropListItem_RejectReason.Add(dropListItem);
-            }
+            //    excelDropListItem_RejectReason.Add(dropListItem);
+            //}
 
             // 第三個 excel 軋型停工代號 & 產出不良
-            sheet = excelContentList3["停機原因"];
-            sheet.RemoveAt(0); // 第一行不是下拉選單資料
-            sheet.RemoveAt(0); // 第二行不是下拉選單資料
+            //sheet = excelContentList3["停機原因"];
+            //sheet.RemoveAt(0); // 第一行不是下拉選單資料
+            //sheet.RemoveAt(0); // 第二行不是下拉選單資料
 
-            foreach (var col in sheet)
-            {
-                if (string.IsNullOrEmpty(col[0])) continue;
+            //foreach (var col in sheet)
+            //{
+            //    if (string.IsNullOrEmpty(col[0])) continue;
 
-                var row1 = col[0];
-                var row2 = col[1];
-                var dropListItem = new DropListItem()
-                {
-                    I18n = new()
-                    {
-                        ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
-                        En = ""
-                    },
-                    Value = col[0],
-                    Descripetion = "",
-                    Type = "normal",
-                    IsDelete = false,
-                };
-                excelDropListItem_StopReason.Add(dropListItem);
-            }
+            //    var row1 = col[0];
+            //    var row2 = col[1];
+            //    var dropListItem = new DropListItem()
+            //    {
+            //        I18n = new()
+            //        {
+            //            ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
+            //            En = ""
+            //        },
+            //        Value = col[0],
+            //        Descripetion = "",
+            //        Type = "normal",
+            //        IsDelete = false,
+            //    };
+            //    excelDropListItem_StopReason.Add(dropListItem);
+            //}
 
-            sheet = excelContentList3["產出不良"];
-            sheet.RemoveAt(0); // 第一行不是下拉選單資料
-            sheet.RemoveAt(0); // 第二行不是下拉選單資料
+            //sheet = excelContentList3["產出不良"];
+            //sheet.RemoveAt(0); // 第一行不是下拉選單資料
+            //sheet.RemoveAt(0); // 第二行不是下拉選單資料
 
-            foreach (var col in sheet)
-            {
-                if (string.IsNullOrEmpty(col[0])) continue;
+            //foreach (var col in sheet)
+            //{
+            //    if (string.IsNullOrEmpty(col[0])) continue;
 
-                var row1 = col[0];
-                var row2 = col[1];
-                var dropListItem = new DropListItem()
-                {
-                    I18n = new()
-                    {
-                        ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
-                        En = "" 
-                    },
-                    Value = col[0],
-                    Descripetion = "",
-                    Type = "normal",
-                    IsDelete = false,
-                };
-                excelDropListItem_faultyReason.Add(dropListItem);
-            }
+            //    var row1 = col[0];
+            //    var row2 = col[1];
+            //    var dropListItem = new DropListItem()
+            //    {
+            //        I18n = new()
+            //        {
+            //            ZhTW = row2 is null ? row1 : row2,    // 如果中文值是空的，則設為代號
+            //            En = "" 
+            //        },
+            //        Value = col[0],
+            //        Descripetion = "",
+            //        Type = "normal",
+            //        IsDelete = false,
+            //    };
+            //    excelDropListItem_faultyReason.Add(dropListItem);
+            //}
 
             // 加進 mappingItems
-            foreach (var mappingItem in mappingItems)
-            {
-                switch (mappingItem.Name)
-                {
-                    case "Part_Group_Code":
-                        mappingItem.DropList.AddRange(excelDropListItem_PartGroupCode);
-                        break;
-                    case "Inspection_RejectReason":
-                        mappingItem.DropList.AddRange(excelDropListItem_RejectReason);
-                        break;
-                    case "MoReporthistory_StopReason":
-                        mappingItem.DropList.AddRange(excelDropListItem_StopReason);
-                        break;
-                    case "MoReporthistory_FaultyReason":
-                        mappingItem.DropList.AddRange(excelDropListItem_faultyReason);
-                        break;
-                }
-            }
+            //foreach (var mappingItem in mappingItems)
+            //{
+            //    switch (mappingItem.Name)
+            //    {
+            //        case "Part_Group_Code":
+            //            mappingItem.DropList.AddRange(excelDropListItem_PartGroupCode);
+            //            break;
+            //        case "Inspection_RejectReason":
+            //            mappingItem.DropList.AddRange(excelDropListItem_RejectReason);
+            //            break;
+            //        case "MoReporthistory_StopReason":
+            //            mappingItem.DropList.AddRange(excelDropListItem_StopReason);
+            //            break;
+            //        case "MoReporthistory_FaultyReason":
+            //            mappingItem.DropList.AddRange(excelDropListItem_faultyReason);
+            //            break;
+            //    }
+            //}
 
             return mappingItems;
         }

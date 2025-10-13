@@ -71,3 +71,17 @@
 2025-10-09 23:36:53.437 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 45.1371ms
 2025-10-09 23:36:53.636 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
 2025-10-09 23:36:53.730 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 93.5724ms
+2025-10-09 23:59:50.262 +08:00 [INF] User profile is available. Using 'C:\Users\chihy\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-09 23:59:50.545 +08:00 [INF] Now listening on: https://localhost:7002
+2025-10-09 23:59:50.547 +08:00 [INF] Now listening on: http://localhost:5184
+2025-10-09 23:59:50.581 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-09 23:59:50.583 +08:00 [INF] Hosting environment: Development
+2025-10-09 23:59:50.586 +08:00 [INF] Content root path: C:\shengFiles\projects\family\zhenchang\SystemApi_ZC\api_zc\
+2025-10-09 23:59:51.230 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/index.html - -
+2025-10-09 23:59:51.617 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/index.html - - - 200 - text/html;charset=utf-8 387.8884ms
+2025-10-09 23:59:51.719 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - -
+2025-10-09 23:59:51.719 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/_vs/browserLink - -
+2025-10-09 23:59:51.732 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_framework/aspnetcore-browser-refresh.js - - - 200 12311 application/javascript;+charset=utf-8 12.4121ms
+2025-10-09 23:59:51.808 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 89.0415ms
+2025-10-09 23:59:52.076 +08:00 [INF] Request starting HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - -
+2025-10-09 23:59:52.203 +08:00 [INF] Request finished HTTP/2 GET https://localhost:7002/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 126.8154ms

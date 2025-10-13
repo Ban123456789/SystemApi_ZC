@@ -1,10 +1,5 @@
 [
    {
-      "itemTypeName": "factory",
-      "propertyName": "currency",
-      "name": "AmountUnit"
-   },
-   {
       "itemTypeName": "attachment",
       "propertyName": "type",
       "name": "AttachmentType"
@@ -15,64 +10,9 @@
       "name": "CompanyType"
    },
    {
-      "itemTypeName": "dailyEfficiency",
-      "propertyName": "sourceType",
-      "name": "DESourceType"
-   },
-   {
       "itemTypeName": "droplist",
       "propertyName": "type",
       "name": "DroplistType"
-   },
-   {
-      "itemTypeName": "excelHistory",
-      "propertyName": "exeResult",
-      "name": "ExcelHistoryExeResult"
-   },
-   {
-      "itemTypeName": "exceptiondays",
-      "propertyName": "workType",
-      "name": "ExceptiondaysWorkType"
-   },
-   {
-      "itemTypeName": "exceptiondays",
-      "propertyName": "sourceType",
-      "name": "ExceptiondaysSourceType"
-   },
-   {
-      "itemTypeName": "inspection",
-      "propertyName": "status",
-      "name": "InspectionStatus"
-   },
-   {
-      "itemTypeName": "inspection",
-      "propertyName": "inspectionResult",
-      "name": "InspectionResult"
-   },
-   {
-      "itemTypeName": "inspectionhistory",
-      "propertyName": "action",
-      "name": "InspectionhistoryAction"
-   },
-   {
-      "itemTypeName": "machine",
-      "propertyName": "jobType",
-      "name": "MachineJobType"
-   },
-   {
-      "itemTypeName": "machine",
-      "propertyName": "workstationType",
-      "name": "MachineWorkstationType"
-   },
-   {
-      "itemTypeName": "machine",
-      "propertyName": "status",
-      "name": "MachineStatus"
-   },
-   {
-      "itemTypeName": "measurementtools",
-      "propertyName": "status",
-      "name": "MeasurementtoolsStatus"
    },
    {
       "itemTypeName": "menulist",
@@ -80,154 +20,9 @@
       "name": "MenulistType"
    },
    {
-      "itemTypeName": "mo",
-      "propertyName": "moType",
-      "name": "MoType"
-   },
-   {
-      "itemTypeName": "mo",
-      "propertyName": "planQuantityUnit",
-      "name": "Unit"
-   },
-   {
-      "itemTypeName": "mo",
-      "propertyName": "status",
-      "name": "MoStatus"
-   },
-   {
-      "itemTypeName": "mo",
-      "propertyName": "inspectionType",
-      "name": "InspectionType"
-   },
-   {
-      "itemTypeName": "mo",
-      "propertyName": "inspectionFrequencyUnit",
-      "name": "Unit"
-   },
-   {
-      "itemTypeName": "mo_productionunit",
-      "propertyName": "sourceType",
-      "name": "Mo_Pro_SourceType"
-   },
-   {
-      "itemTypeName": "mo_source",
-      "propertyName": "sourceType",
-      "name": "Mo_Source_SourceType"
-   },
-   {
-      "itemTypeName": "mostandardcost",
-      "propertyName": "laborCostUnit",
-      "name": "AmountUnit"
-   },
-   {
-      "itemTypeName": "mostandardcost",
-      "propertyName": "equipmentCostUnit",
-      "name": "AmountUnit"
-   },
-   {
-      "itemTypeName": "mould",
-      "propertyName": "status",
-      "name": "MouldStatus"
-   },
-   {
-      "itemTypeName": "part",
-      "propertyName": "type",
-      "name": "PartType"
-   },
-   {
-      "itemTypeName": "part",
-      "propertyName": "unit",
-      "name": "Unit"
-   },
-   {
-      "itemTypeName": "po",
-      "propertyName": "orderQuantityUnit",
-      "name": "Unit"
-   },
-   {
-      "itemTypeName": "po",
-      "propertyName": "status",
-      "name": "PoStatus"
-   },
-   {
       "itemTypeName": "property",
       "propertyName": "propertyType",
       "name": "PropertyPropertyType"
-   },
-   {
-      "itemTypeName": "sources",
-      "propertyName": "status",
-      "name": "SourcesStatus"
-   },
-   {
-      "itemTypeName": "thread",
-      "propertyName": "jobType",
-      "name": "ThreadJobType"
-   },
-   {
-      "itemTypeName": "thread",
-      "propertyName": "workstationType",
-      "name": "ThreadWorkstationType"
-   },
-   {
-      "itemTypeName": "thread",
-      "propertyName": "status",
-      "name": "ThreadStatus"
-   },
-   {
-      "itemTypeName": "unitconversion",
-      "propertyName": "unit1",
-      "name": "Unit"
-   },
-   {
-      "itemTypeName": "unitconversion",
-      "propertyName": "unit2",
-      "name": "Unit"
-   },
-   {
-      "itemTypeName": "user",
-      "propertyName": "firstPage",
-      "name": "UserFirstPage"
-   },
-   {
-      "itemTypeName": "user",
-      "propertyName": "firstPageForPhone",
-      "name": "UserFirstPageForPhone"
-   },
-   {
-      "itemTypeName": "user",
-      "propertyName": "salaryUnit",
-      "name": "AmountUnit"
-   },
-   {
-      "itemTypeName": "workstation",
-      "propertyName": "jobType",
-      "name": "WorkstationJobType"
-   },
-   {
-      "itemTypeName": "workstation",
-      "propertyName": "workstationType",
-      "name": "WorkstationWorkstationType"
-   },
-   {
-      "itemTypeName": "workstation_productionunit",
-      "propertyName": "sourceType",
-      "name": "Workstation_Pro_SourceType"
-   },
-   {
-      "itemTypeName": "workstation_source",
-      "propertyName": "sourceType",
-      "name": "Workstation_Source_SourceType"
-   },
-   {
-      "itemTypeName": "craft",
-      "propertyName": "status",
-      "name": "Craft_Status"
-   },
-   {
-      "itemTypeName": "processtemplate",
-      "propertyName": "status",
-      "name": "Process_Template_Status"
    },
    {
       "itemTypeName": "synchistory",
@@ -245,133 +40,58 @@
       "name": "Sync_History_Status"
    },
    {
-      "itemTypeName": "craft_mo_productionunit",
-      "propertyName": "sourceType",
-      "name": "Craft_Mo_Productionunit_SourceType"
+      "itemTypeName": "customer",
+      "propertyName": "status",
+      "name": "CustomerStatus"
    },
    {
-      "itemTypeName": "craft_mo_source",
-      "propertyName": "sourceType",
-      "name": "Craft_Mo_Source_sourceType"
+      "itemTypeName": "customer",
+      "propertyName": "invoiceType",
+      "name": "InvoiceType"
    },
    {
-      "itemTypeName": "po",
-      "propertyName": "buildSource",
-      "name": "Po_BuildSource"
+      "itemTypeName": "car",
+      "propertyName": "detentionStatus",
+      "name": "DetentionStatus"
    },
    {
-      "itemTypeName": "mo",
-      "propertyName": "buildSource",
-      "name": "Mo_BuildSource"
+      "itemTypeName": "car",
+      "propertyName": "deductMeter",
+      "name": "DeductMeter"
    },
    {
-      "itemTypeName": "inspection",
-      "propertyName": "sourceType",
-      "name": "Inspection_SourceType"
+      "itemTypeName": "project",
+      "propertyName": "unit",
+      "name": "ProjectUnit"
    },
    {
-      "itemTypeName": "part",
-      "propertyName": "sourceCode",
-      "name": "Part_Source_Code"
+      "itemTypeName": "project",
+      "propertyName": "areaCode",
+      "name": "AreaCode"
    },
    {
-      "itemTypeName": "part",
-      "propertyName": "groupCode",
-      "name": "Part_Group_Code"
+      "itemTypeName": "project",
+      "propertyName": "complateStatus",
+      "name": "ComplateStatus"
    },
    {
-      "itemTypeName": "craft_mo",
-      "propertyName": "inspectionType",
-      "name": "InspectionType"
+      "itemTypeName": "customerPrice",
+      "propertyName": "taxType",
+      "name": "TaxType"
    },
    {
-      "itemTypeName": "craft_mo",
-      "propertyName": "inspectionFrequencyUnit",
-      "name": "InspectionFrequencyUnit"
+      "itemTypeName": "shippingOrder",
+      "propertyName": "mixingTable",
+      "name": "MixingTable"
    },
    {
-      "itemTypeName": "craft_mostandardcost",
-      "propertyName": "laborCostUnit",
-      "name": "AmountUnit"
+      "itemTypeName": "shippingOrder",
+      "propertyName": "shippingType",
+      "name": "ShippingType"
    },
    {
-      "itemTypeName": "craft_mostandardcost",
-      "propertyName": "equipmentCostUnit",
-      "name": "AmountUnit"
-   },
-   {
-      "itemTypeName": "inspection",
-      "propertyName": "rejectReason",
-      "name": "Inspection_RejectReason"
-   },
-   {
-      "itemTypeName": "machine",
-      "propertyName": "classification",
-      "name": "Machine_Classification"
-   },
-   {
-      "itemTypeName": "momodifyrecord",
-      "propertyName": "modifyItem",
-      "name": "MoModifyrecord_ModifyItem"
-   },
-   {
-      "itemTypeName": "moreporthistory",
-      "propertyName": "faultyReason",
-      "name": "MoReporthistory_FaultyReason"
-   },
-   {
-      "itemTypeName": "pomodifyrecord",
-      "propertyName": "modifyItem",
-      "name": "PoModifyrecord_ModifyItem"
-   },
-   {
-      "itemTypeName": "mo_input",
-      "propertyName": "fieldStatus",
-      "name": "MoInput_SiteStatus"
-   },
-   {
-      "itemTypeName": "moreporthistory",
-      "propertyName": "reportStatus",
-      "name": "MoReportHistory_ReportStatus"
-   },
-   {
-      "itemTypeName": "moreporthistory",
-      "propertyName": "productionUnitType",
-      "name": "Mo_Pro_SourceType"
-   },
-   {
-      "itemTypeName": "part",
-      "propertyName": "processType",
-      "name": "Part_ProcessType"
-   },
-   {
-      "itemTypeName": "so",
-      "propertyName": "office",
-      "name": "So_Office"
-   },
-   {
-      "itemTypeName": "po",
-      "propertyName": "material",
-      "name": "Material"
-   },
-   {
-      "itemTypeName": "po",
-      "propertyName": "pc",
-      "name": "PC"
-   },
-   {
-      "itemTypeName": "part",
-      "propertyName": "fixedCapacityUnit",
-      "name": "Unit"
-   },
-   {
-      "itemTypeName": "feedingAndReturnHistory",
-      "propertyName": "type",
-      "name": "FARH_Type"
-   },
-   {
-      "itemTypeName": "feedingAndReturnHistory",
-      "propertyName": "reason",
-      "name": "FARH_Reason"
+      "itemTypeName": "shippingOrder",
+      "propertyName": "outputFactory",
+      "name": "OutputFactory"
    }
 ]

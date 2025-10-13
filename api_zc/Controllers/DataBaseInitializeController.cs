@@ -287,39 +287,6 @@ namespace Accura_MES.Controllers
             }
         }
 
-        /// <summary>
-        /// 初始化 [wareHouse] and [storageLocation] 資料
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="CustomErrorCodeException"></exception>
-        [HttpPost("InitializeWareHouseAndStorageLoaction")]
-        public async Task<IActionResult> InitializeWareHouseAndStorageLoaction()
-        {
-            try
-            {
-                #region 檢查
-                if (!Request.Headers.ContainsKey("Database"))
-                {
-                    throw new CustomErrorCodeException(SelfErrorCode.MISSING_DATABASE);
-                }
-
-                string connectionString = new XML().GetConnection(Request.Headers["Database"].ToString());
-                if (string.IsNullOrEmpty(connectionString))
-                {
-                    throw new CustomErrorCodeException(SelfErrorCode.NOT_FOUND_WITH_MSG, "SQL connection string not exist");
-                }
-                #endregion
-
-                DataBaseInitializationService dataBaseInitializationService =
-                    DataBaseInitializationService.CreateService(connectionString, _webHostService);
-
-                return this.SuccessAccuraResponse();
-            }
-            catch (Exception ex)
-            {
-                return this.CustomAccuraResponse(await ExceptionHandler.HandleExceptionAsync(ex));
-            }
-        }
 
         [HttpPost("InitializeDataBase")]
         public async Task<IActionResult> InitializeDataBase()
