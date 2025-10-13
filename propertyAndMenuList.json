@@ -56,8 +56,13 @@
    },
    {
       "itemTypeName": "car",
-      "propertyName": "deductMeter",
+      "propertyName": "deductMeters",
       "name": "DeductMeter"
+   },
+   {
+      "itemTypeName": "car",
+      "propertyName": "status",
+      "name": "CarStatus"
    },
    {
       "itemTypeName": "project",

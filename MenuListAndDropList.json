@@ -864,5 +864,77 @@
             "isDelete": false
          }
       ]
+   },
+   {
+      "name": "CarStatus",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "車輛狀態",
+         "en": ""
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "請假",
+               "en": ""
+            },
+            "value": "請假",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "修車",
+               "en": ""
+            },
+            "value": "修車",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "攪拌",
+               "en": ""
+            },
+            "value": "攪拌",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "出貨",
+               "en": ""
+            },
+            "value": "出貨",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "待命",
+               "en": ""
+            },
+            "value": "待命",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "隱藏",
+               "en": ""
+            },
+            "value": "隱藏",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
    }
 ]
