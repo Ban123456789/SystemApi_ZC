@@ -488,6 +488,296 @@ namespace Accura_MES.Services
                 return await this.HandleExceptionAsync(ex, null);
             }
         }
+
+        /// <summary>
+        /// 更新出貨單
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="shippingOrderObject">出貨單資料列表</param>
+        /// <returns>響應對象</returns>
+        public async Task<ResponseObject> Update(long userId, List<Dictionary<string, object?>> shippingOrderObject)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                // 收集所有受影響的 orderId
+                var affectedOrderIds = new HashSet<long>();
+
+                // 更新每個出貨單
+                foreach (var shippingOrder in shippingOrderObject)
+                {
+                    // 獲取 id
+                    var idValue = shippingOrder.GetValueOrDefault("id");
+                    if (idValue == null)
+                    {
+                        throw new CustomErrorCodeException(
+                            SelfErrorCode.BAD_REQUEST,
+                            "更新時 id 不能為空"
+                        );
+                    }
+
+                    long id = GetLongValue(idValue, "id");
+                    long orderId = GetOrderIdFromDictionary(shippingOrder);
+
+                    affectedOrderIds.Add(orderId);
+                }
+                // 更新出貨單（使用 GenericRepository 的更新方法）
+                TableDatas tableDatas = new TableDatas();
+                tableDatas.Datasheet = "shippingOrder";
+                tableDatas.DataStructure = shippingOrderObject;
+                await _genericRepository.GenericUpdate(
+                    userId,
+                    tableDatas,
+                    connection,
+                    transaction
+                ); 
+
+                // 重新計算所有受影響的 orderId 的累計米數
+                foreach (var orderId in affectedOrderIds)
+                {
+                    await RecalculateAllMetersForOrder(connection, transaction, orderId);
+                }
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[ShippingOrderService] 成功更新 {shippingOrderObject.Count} 個出貨單");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = "更新成功";
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ShippingOrderService] 更新出貨單失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 刪除出貨單
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="ids">要刪除的出貨單ID列表</param>
+        /// <returns>響應對象</returns>
+        public async Task<ResponseObject> Delete(long userId, List<long> ids)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                if (ids == null || !ids.Any())
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        "要刪除的 ID 列表不能為空"
+                    );
+                }
+
+                // 收集所有受影響的 orderId
+                var affectedOrderIds = new HashSet<long>();
+
+                // 1. 先查詢這些出貨單的 orderId
+                string queryOrderIdsSql = $@"
+                    SELECT DISTINCT orderId 
+                    FROM shippingOrder 
+                    WHERE id IN ({string.Join(",", ids.Select((_, index) => $"@id{index}"))})
+                    AND isDelete = 0";
+
+                using (var queryCommand = new SqlCommand(queryOrderIdsSql, connection, transaction))
+                {
+                    for (int i = 0; i < ids.Count; i++)
+                    {
+                        queryCommand.Parameters.AddWithValue($"@id{i}", ids[i]);
+                    }
+
+                    using var reader = await queryCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        affectedOrderIds.Add(reader.GetInt64(0));
+                    }
+                }
+
+                Debug.WriteLine($"[ShippingOrderService] 刪除操作影響 {affectedOrderIds.Count} 個訂單");
+
+                // 2. 將這些出貨單標記為已刪除（isDelete = true）
+                string deleteSql = $@"
+                    UPDATE shippingOrder 
+                    SET isDelete = 1, 
+                        modifiedBy = @UserId, 
+                        modifiedOn = GETDATE()
+                    WHERE id IN ({string.Join(",", ids.Select((_, index) => $"@id{index}"))})";
+
+                using (var deleteCommand = new SqlCommand(deleteSql, connection, transaction))
+                {
+                    deleteCommand.Parameters.AddWithValue("@UserId", userId);
+                    for (int i = 0; i < ids.Count; i++)
+                    {
+                        deleteCommand.Parameters.AddWithValue($"@id{i}", ids[i]);
+                    }
+
+                    int rowsAffected = await deleteCommand.ExecuteNonQueryAsync();
+                    Debug.WriteLine($"[ShippingOrderService] 標記 {rowsAffected} 個出貨單為已刪除");
+                }
+
+                // 3. 重新計算所有受影響的 orderId 的累計米數
+                foreach (var orderId in affectedOrderIds)
+                {
+                    await RecalculateAllMetersForOrder(connection, transaction, orderId);
+                }
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[ShippingOrderService] 成功刪除 {ids.Count} 個出貨單");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = "刪除成功";
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ShippingOrderService] 刪除出貨單失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 重新計算指定 orderId 的所有出貨單的累計米數
+        /// 按照 number 由小到大排序進行累計計算
+        /// </summary>
+        /// <param name="connection">資料庫連接</param>
+        /// <param name="transaction">事務</param>
+        /// <param name="orderId">訂單ID</param>
+        private async Task RecalculateAllMetersForOrder(
+            SqlConnection connection,
+            SqlTransaction transaction,
+            long orderId)
+        {
+            // 1. 查詢該 orderId 的所有未刪除的出貨單，按 number 排序
+            string querySql = @"
+                SELECT id, outputMeters, returnMeters
+                FROM shippingOrder
+                WHERE orderId = @OrderId AND isDelete = 0
+                ORDER BY number ASC";
+
+            var shippingOrders = new List<(long id, decimal outputMeters, decimal returnMeters)>();
+
+            using (var queryCommand = new SqlCommand(querySql, connection, transaction))
+            {
+                queryCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+                using var reader = await queryCommand.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    long id = reader.GetInt64(0);
+                    decimal outputMeters = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1);
+                    decimal returnMeters = reader.IsDBNull(2) ? 0 : reader.GetDecimal(2);
+
+                    shippingOrders.Add((id, outputMeters, returnMeters));
+                }
+            }
+
+            Debug.WriteLine($"[ShippingOrderService] orderId={orderId} 需要重新計算 {shippingOrders.Count} 個出貨單");
+
+            // 2. 累計計算並更新每個出貨單
+            decimal cumulativeOutputTotal = 0;
+            decimal cumulativeActualTotal = 0;
+
+            foreach (var (id, outputMeters, returnMeters) in shippingOrders)
+            {
+                // 累加當前記錄
+                cumulativeOutputTotal += outputMeters;
+                cumulativeActualTotal += (outputMeters - returnMeters);
+
+                // 更新該出貨單的累計值
+                string updateSql = @"
+                    UPDATE shippingOrder
+                    SET outputTotalMeters = @OutputTotalMeters,
+                        actualTotalMeters = @ActualTotalMeters,
+                        modifiedOn = GETDATE()
+                    WHERE id = @Id";
+
+                using var updateCommand = new SqlCommand(updateSql, connection, transaction);
+                updateCommand.Parameters.AddWithValue("@OutputTotalMeters", cumulativeOutputTotal);
+                updateCommand.Parameters.AddWithValue("@ActualTotalMeters", cumulativeActualTotal);
+                updateCommand.Parameters.AddWithValue("@Id", id);
+
+                await updateCommand.ExecuteNonQueryAsync();
+
+                Debug.WriteLine($"[ShippingOrderService] 更新 id={id}: outputTotalMeters={cumulativeOutputTotal}, actualTotalMeters={cumulativeActualTotal}");
+            }
+        }
+
+        /// <summary>
+        /// 從 object 中獲取 long 值
+        /// </summary>
+        private long GetLongValue(object? value, string fieldName)
+        {
+            if (value == null)
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    $"{fieldName} 不能為空"
+                );
+            }
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetInt64();
+                }
+                else
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"{fieldName} 必須是數字，當前類型: {jsonElement.ValueKind}"
+                    );
+                }
+            }
+            else if (value is long longValue)
+            {
+                return longValue;
+            }
+            else if (value is int intValue)
+            {
+                return intValue;
+            }
+            else
+            {
+                try
+                {
+                    return Convert.ToInt64(value);
+                }
+                catch
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"{fieldName} 類型不正確，無法轉換為數字，當前類型: {value.GetType().Name}"
+                    );
+                }
+            }
+        }
     }
 }
 

@@ -100,6 +100,96 @@ namespace Accura_MES.Controllers
                 return this.HandleAccuraException(null, ex);
             }
         }
+
+        /// <summary>
+        /// 更新出貨單
+        /// </summary>
+        /// <param name="input">出貨單資料列表（每個物件需包含 id）</param>
+        /// <remarks>
+        /// 自動重新計算相關 orderId 的所有出貨單的累計米數（按 number 排序）
+        /// </remarks>
+        /// <returns>返回更新結果</returns>
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update([FromBody] List<Dictionary<string, object?>> input)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                IShippingOrderService shippingOrderService = ShippingOrderService.CreateService(connectionString);
+
+                // 更新 [shippingOrder]
+                ResponseObject responseObject = await shippingOrderService.Update(user, input);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
+
+        /// <summary>
+        /// 刪除出貨單
+        /// </summary>
+        /// <param name="ids">要刪除的出貨單ID數組</param>
+        /// <remarks>
+        /// 將 isDelete 設為 true，並自動重新計算相關 orderId 的所有出貨單的累計米數（按 number 排序）
+        /// </remarks>
+        /// <returns>返回刪除結果</returns>
+        [HttpPost("Delete")]
+        public async Task<IActionResult> Delete([FromBody] List<long> ids)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                IShippingOrderService shippingOrderService = ShippingOrderService.CreateService(connectionString);
+
+                // 刪除 [shippingOrder]
+                ResponseObject responseObject = await shippingOrderService.Delete(user, ids);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
     }
 }
 
