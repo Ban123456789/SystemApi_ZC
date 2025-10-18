@@ -219,6 +219,7 @@ namespace Accura_MES.Services
                         [order].ratio AS ratio,
                         project.businessId AS businessId,
                         business.name AS businessName,
+                        project.areaCode AS areaCode,
                         
                         -- 出貨單總筆數
                         ISNULL(shippingStats.totalshippingOrder, 0) AS totalshippingOrder,
