@@ -220,9 +220,10 @@ namespace Accura_MES.Services
                         project.businessId AS businessId,
                         business.name AS businessName,
                         project.areaCode AS areaCode,
+                        [order].weight as weight,
                         
                         -- 出貨單總筆數
-                        ISNULL(shippingStats.totalshippingOrder, 0) AS totalshippingOrder,
+                        ISNULL(shippingStats.totalShippingOrders, 0) AS totalShippingOrders,
                         
                         -- 總出貨米數
                         ISNULL(shippingStats.totalOutputMeters, 0) AS totalOutputMeters,
@@ -247,7 +248,7 @@ namespace Accura_MES.Services
                     LEFT JOIN (
                         SELECT 
                             orderId,
-                            COUNT(*) AS totalshippingOrder,
+                            COUNT(*) AS totalShippingOrders,
                             SUM(ISNULL(outputMeters, 0)) AS totalOutputMeters,
                             SUM(ISNULL(outputMeters, 0)) - SUM(ISNULL(returnMeters, 0)) AS totalRemaining
                         FROM shippingOrder
