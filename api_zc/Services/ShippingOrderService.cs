@@ -62,6 +62,9 @@ namespace Accura_MES.Services
                 // 為每個出貨單生成編號
                 await GenerateShippingOrderNumbers(connection, transaction, shippingOrderObject);
 
+                // 為每個出貨單生成 carIndex
+                await GenerateCarIndex(connection, transaction, shippingOrderObject);
+
                 // 計算 outputTotalMeters 和 actualTotalMeters
                 await CalculateTotalMeters(connection, transaction, shippingOrderObject);
 
@@ -181,6 +184,62 @@ namespace Accura_MES.Services
                 shippingOrder["number"] = shippingOrderNumber;
 
                 Debug.WriteLine($"[ShippingOrderService] 為 orderId={orderId}, 日期 {groupKey} 生成出貨單編號: {shippingOrderNumber}");
+            }
+        }
+
+        /// <summary>
+        /// 為出貨單生成 carIndex
+        /// 規則：根據 orderId 分組，從 1 開始編號，不需要補齊位數
+        /// </summary>
+        /// <param name="connection">資料庫連接</param>
+        /// <param name="transaction">事務</param>
+        /// <param name="shippingOrderObject">出貨單資料列表</param>
+        private async Task GenerateCarIndex(
+            SqlConnection connection,
+            SqlTransaction transaction,
+            List<Dictionary<string, object?>> shippingOrderObject)
+        {
+            // 按 orderId 分組
+            var groupedByOrderId = shippingOrderObject
+                .GroupBy(so => GetOrderIdFromDictionary(so))
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            foreach (var kvp in groupedByOrderId)
+            {
+                long orderId = kvp.Key;
+                var currentBatchOrders = kvp.Value;
+
+                // 查詢該 orderId 在數據庫中已存在的最大 carIndex
+                string querySql = @"
+                    SELECT ISNULL(MAX(carIndex), 0) AS maxCarIndex
+                    FROM shippingOrder
+                    WHERE orderId = @OrderId AND isDelete = 0";
+
+                int maxCarIndex = 0;
+
+                using (var queryCommand = new SqlCommand(querySql, connection, transaction))
+                {
+                    queryCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+                    var result = await queryCommand.ExecuteScalarAsync();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        maxCarIndex = Convert.ToInt32(result);
+                    }
+                }
+
+                Debug.WriteLine($"[ShippingOrderService] orderId={orderId} 當前最大 carIndex={maxCarIndex}");
+
+                // 為當前批次的出貨單依序生成 carIndex
+                int currentCarIndex = maxCarIndex;
+
+                foreach (var shippingOrder in currentBatchOrders)
+                {
+                    currentCarIndex++;
+                    shippingOrder["carIndex"] = currentCarIndex;
+
+                    Debug.WriteLine($"[ShippingOrderService] 為 orderId={orderId} 生成 carIndex={currentCarIndex}");
+                }
             }
         }
 
