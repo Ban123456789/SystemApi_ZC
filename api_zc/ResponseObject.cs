@@ -502,6 +502,10 @@ namespace Accura_MES
         /// 連線逾時
         /// </summary>
         public static readonly SelfErrorCode CONNECTION_TIME_OUT = new SelfErrorCode("500-14", "SQL connection time out: {0}");
+        /// <summary>
+        /// 已存在相同的工程代號 + 客戶代號 + 成品代號
+        /// </summary>
+        public static readonly SelfErrorCode DUPLICATE_CUSTOMER_PRICE = new SelfErrorCode("400-15", "已存在相同的工程代號 + 客戶代號 + 成品代號");
         #endregion
 
         /// <summary>

@@ -16,6 +16,197 @@ namespace Accura_MES.Utilities
             return Regex.Replace(input, @"[^a-zA-Z0-9_]", ""); // 保留字母、數字和底線
         }
 
+        #region 類型轉換工具方法
+
+        /// <summary>
+        /// 將 JsonElement 或其他類型轉換為 long
+        /// </summary>
+        /// <param name="value">要轉換的值</param>
+        /// <param name="defaultValue">轉換失敗時的預設值，預設為 0</param>
+        /// <returns>轉換後的 long 值</returns>
+        public static long ConvertToLong(object? value, long defaultValue = 0)
+        {
+            if (value == null) return defaultValue;
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetInt64();
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    return long.TryParse(jsonElement.GetString(), out long result) ? result : defaultValue;
+                }
+            }
+
+            if (long.TryParse(value.ToString(), out long parseResult))
+            {
+                return parseResult;
+            }
+
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// 將 JsonElement 或其他類型轉換為 int
+        /// </summary>
+        /// <param name="value">要轉換的值</param>
+        /// <param name="defaultValue">轉換失敗時的預設值，預設為 0</param>
+        /// <returns>轉換後的 int 值</returns>
+        public static int ConvertToInt(object? value, int defaultValue = 0)
+        {
+            if (value == null) return defaultValue;
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetInt32();
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    return int.TryParse(jsonElement.GetString(), out int result) ? result : defaultValue;
+                }
+            }
+
+            if (int.TryParse(value.ToString(), out int parseResult))
+            {
+                return parseResult;
+            }
+
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// 將 JsonElement 或其他類型轉換為 decimal
+        /// </summary>
+        /// <param name="value">要轉換的值</param>
+        /// <param name="defaultValue">轉換失敗時的預設值，預設為 0</param>
+        /// <returns>轉換後的 decimal 值</returns>
+        public static decimal ConvertToDecimal(object? value, decimal defaultValue = 0)
+        {
+            if (value == null) return defaultValue;
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetDecimal();
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    return decimal.TryParse(jsonElement.GetString(), out decimal result) ? result : defaultValue;
+                }
+            }
+
+            if (decimal.TryParse(value.ToString(), out decimal parseResult))
+            {
+                return parseResult;
+            }
+
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// 將 JsonElement 或其他類型轉換為 string
+        /// </summary>
+        /// <param name="value">要轉換的值</param>
+        /// <param name="defaultValue">轉換失敗時的預設值，預設為空字串</param>
+        /// <returns>轉換後的 string 值</returns>
+        public static string ConvertToString(object? value, string defaultValue = "")
+        {
+            if (value == null) return defaultValue;
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    return jsonElement.GetString() ?? defaultValue;
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetRawText();
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.True)
+                {
+                    return "true";
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.False)
+                {
+                    return "false";
+                }
+            }
+
+            return value.ToString() ?? defaultValue;
+        }
+
+        /// <summary>
+        /// 將 JsonElement 或其他類型轉換為 bool
+        /// </summary>
+        /// <param name="value">要轉換的值</param>
+        /// <param name="defaultValue">轉換失敗時的預設值，預設為 false</param>
+        /// <returns>轉換後的 bool 值</returns>
+        public static bool ConvertToBool(object? value, bool defaultValue = false)
+        {
+            if (value == null) return defaultValue;
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.True)
+                {
+                    return true;
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.False)
+                {
+                    return false;
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    return bool.TryParse(jsonElement.GetString(), out bool result) ? result : defaultValue;
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetInt32() != 0;
+                }
+            }
+
+            if (bool.TryParse(value.ToString(), out bool parseResult))
+            {
+                return parseResult;
+            }
+
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// 將 JsonElement 或其他類型轉換為 DateTime
+        /// </summary>
+        /// <param name="value">要轉換的值</param>
+        /// <param name="defaultValue">轉換失敗時的預設值，預設為 DateTime.MinValue</param>
+        /// <returns>轉換後的 DateTime 值</returns>
+        public static DateTime ConvertToDateTime(object? value, DateTime? defaultValue = null)
+        {
+            if (value == null) return defaultValue ?? DateTime.MinValue;
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    return DateTime.TryParse(jsonElement.GetString(), out DateTime result) ? result : (defaultValue ?? DateTime.MinValue);
+                }
+            }
+
+            if (DateTime.TryParse(value.ToString(), out DateTime parseResult))
+            {
+                return parseResult;
+            }
+
+            return defaultValue ?? DateTime.MinValue;
+        }
+
+        #endregion
+
         /// <summary>
         /// 遞迴地移除 "password" 欄位
         /// </summary>
