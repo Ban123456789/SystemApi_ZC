@@ -1,3 +1,5 @@
+using Accura_MES.Models;
+
 namespace Accura_MES.Interfaces.Services
 {
     public interface ICustomerPriceService : IService
@@ -9,5 +11,28 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="customerPriceObject">客戶價格資料列表</param>
         /// <returns></returns>
         Task<ResponseObject> Create(long userId, List<Dictionary<string, object?>> customerPriceObject);
+
+        /// <summary>
+        /// 取得客戶別簡表
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns></returns>
+        Task<ResponseObject> GetAccountingByCustomer(GetAccountingByCustomerRequest request);
+
+        /// <summary>
+        /// 出貨單轉應收帳款
+        /// </summary>
+        /// <param name="request">轉換請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns></returns>
+        Task<ResponseObject> ConverToReceivable(ConverToReceivableRequest request, long userId);
+
+        /// <summary>
+        /// 應收帳款退回
+        /// </summary>
+        /// <param name="request">退回請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns></returns>
+        Task<ResponseObject> RollbackReceivable(RollbackReceivableRequest request, long userId);
     }
 }

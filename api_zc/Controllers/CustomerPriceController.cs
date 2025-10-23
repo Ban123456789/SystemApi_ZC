@@ -1,5 +1,6 @@
 using Accura_MES.Extensions;
 using Accura_MES.Interfaces.Services;
+using Accura_MES.Models;
 using Accura_MES.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,6 +48,143 @@ namespace Accura_MES.Controllers
 
                 // 建立客戶價格資料
                 ResponseObject responseObject = await customerPriceService.Create(user, customerPriceData);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
+
+        /// <summary>
+        /// 取得客戶別簡表
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns></returns>
+        [HttpPost("GetAccountingByCustomer")]
+        public async Task<IActionResult> GetAccountingByCustomer([FromBody] GetAccountingByCustomerRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "查詢請求不能為空");
+                }
+                #endregion
+
+                ICustomerPriceService customerPriceService = CustomerPriceService.CreateService(connectionString);
+
+                // 取得客戶別簡表
+                ResponseObject responseObject = await customerPriceService.GetAccountingByCustomer(request);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
+
+        /// <summary>
+        /// 出貨單轉應收帳款
+        /// </summary>
+        /// <param name="request">轉換請求</param>
+        /// <returns></returns>
+        [HttpPost("ConverToReceivable")]
+        public async Task<IActionResult> ConverToReceivable([FromBody] ConverToReceivableRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "轉換請求不能為空");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                ICustomerPriceService customerPriceService = CustomerPriceService.CreateService(connectionString);
+
+                // 出貨單轉應收帳款
+                ResponseObject responseObject = await customerPriceService.ConverToReceivable(request, user);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
+
+        /// <summary>
+        /// 應收帳款退回
+        /// </summary>
+        /// <param name="request">退回請求</param>
+        /// <returns></returns>
+        [HttpPost("RollbackReceivable")]
+        public async Task<IActionResult> RollbackReceivable([FromBody] RollbackReceivableRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "退回請求不能為空");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                ICustomerPriceService customerPriceService = CustomerPriceService.CreateService(connectionString);
+
+                // 應收帳款退回
+                ResponseObject responseObject = await customerPriceService.RollbackReceivable(request, user);
 
                 // 直接返回
                 return this.CustomAccuraResponse(responseObject);
