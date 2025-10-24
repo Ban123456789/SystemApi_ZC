@@ -231,11 +231,14 @@ namespace Accura_MES.Services
                         customer.id as customerId,
                         customer.number as customerNumber,
                         customer.nickName as customerNickName,
+                        customer.phone as phone,
+                        customer.address as customerAddress,
                         [order].id as orderId,
                         [order].shippedDate as shippedDate,
                         project.id as projectId,
                         project.number as projectNumber,
                         project.name as projectName,
+                        project.address as address,
                         [product].id as productId,
                         [product].number as productNumber
                     FROM
@@ -297,11 +300,14 @@ namespace Accura_MES.Services
                         customerId = reader.IsDBNull(reader.GetOrdinal("customerId")) ? null : reader.GetInt64(reader.GetOrdinal("customerId")),
                         customerNumber = reader.IsDBNull(reader.GetOrdinal("customerNumber")) ? null : reader.GetString(reader.GetOrdinal("customerNumber")),
                         customerNickName = reader.IsDBNull(reader.GetOrdinal("customerNickName")) ? null : reader.GetString(reader.GetOrdinal("customerNickName")),
+                        phone = reader.IsDBNull(reader.GetOrdinal("phone")) ? null : reader.GetString(reader.GetOrdinal("phone")),
+                        customerAddress = reader.IsDBNull(reader.GetOrdinal("customerAddress")) ? null : reader.GetString(reader.GetOrdinal("customerAddress")),
                         orderId = reader.IsDBNull(reader.GetOrdinal("orderId")) ? null : reader.GetInt64(reader.GetOrdinal("orderId")),
                         shippedDate = reader.IsDBNull(reader.GetOrdinal("shippedDate")) ? null : reader.GetDateTime(reader.GetOrdinal("shippedDate")).ToString("yyyy-MM-dd"),
                         projectId = reader.IsDBNull(reader.GetOrdinal("projectId")) ? null : reader.GetInt64(reader.GetOrdinal("projectId")),
                         projectNumber = reader.IsDBNull(reader.GetOrdinal("projectNumber")) ? null : reader.GetString(reader.GetOrdinal("projectNumber")),
                         projectName = reader.IsDBNull(reader.GetOrdinal("projectName")) ? null : reader.GetString(reader.GetOrdinal("projectName")),
+                        address = reader.IsDBNull(reader.GetOrdinal("address")) ? null : reader.GetString(reader.GetOrdinal("address")),
                         productId = reader.IsDBNull(reader.GetOrdinal("productId")) ? null : reader.GetInt64(reader.GetOrdinal("productId")),
                         productNumber = reader.IsDBNull(reader.GetOrdinal("productNumber")) ? null : reader.GetString(reader.GetOrdinal("productNumber"))
                     });

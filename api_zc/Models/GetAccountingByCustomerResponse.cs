@@ -41,6 +41,16 @@ namespace Accura_MES.Models
         public string? customerNickName { get; set; } = string.Empty;
 
         /// <summary>
+        /// 客戶電話
+        /// </summary>
+        public string? phone { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 客戶地址
+        /// </summary>
+        public string? customerAddress { get; set; } = string.Empty;
+
+        /// <summary>
         /// 訂單 ID
         /// </summary>
         public long? orderId { get; set; }
@@ -51,19 +61,24 @@ namespace Accura_MES.Models
         public string? shippedDate { get; set; }
 
         /// <summary>
-        /// 專案 ID
+        /// 工程 ID
         /// </summary>
         public long? projectId { get; set; }
 
         /// <summary>
-        /// 專案編號
+        /// 工程編號
         /// </summary>
         public string? projectNumber { get; set; } = string.Empty;
 
         /// <summary>
-        /// 專案名稱
+        /// 工程名稱
         /// </summary>
         public string? projectName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 工程地址
+        /// </summary>
+        public string? address { get; set; } = string.Empty;
 
         /// <summary>
         /// 產品 ID
