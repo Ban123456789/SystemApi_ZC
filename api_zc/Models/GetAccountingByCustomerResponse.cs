@@ -31,6 +31,11 @@ namespace Accura_MES.Models
         public long? customerId { get; set; }
 
         /// <summary>
+        /// 客戶編號
+        /// </summary>
+        public string customerNumber { get; set; }
+
+        /// <summary>
         /// 客戶暱稱
         /// </summary>
         public string? customerNickName { get; set; } = string.Empty;
