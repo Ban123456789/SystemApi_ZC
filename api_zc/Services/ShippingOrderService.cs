@@ -445,12 +445,14 @@ namespace Accura_MES.Services
                 string baseSql = @"
                     SELECT
                         shippingOrder.*,
-                        [order].shippedDate AS orderShippedDate,
+                        [order].shippedDate AS shippedDate,
                         [order].number AS orderNumber,
                         customer.number AS customerNumber,
                         customer.nickName AS customerNickName,
                         [product].number AS productNumber,
-                        project.name AS projectName
+                        project.name AS projectName,
+                        project.areaCode as areaCode,
+                        car.number as carNumber
                     FROM shippingOrder
                     LEFT JOIN [order]
                         ON [order].id = shippingOrder.orderId
@@ -459,27 +461,23 @@ namespace Accura_MES.Services
                     LEFT JOIN [product]
                         ON [product].id = shippingOrder.productId
                     LEFT JOIN project
-                        ON project.id = shippingOrder.projectId";
+                        ON project.id = shippingOrder.projectId
+                    LEFT JOIN car
+                        ON car.id = shippingOrder.carId";
 
                 // 動態構建 WHERE 條件
                 var whereConditions = new List<string>();
                 var parameters = new List<SqlParameter>();
 
+                // 基礎條件
+                whereConditions.Add("shippingOrder.isDelete = 0");
+
                 // 處理 ids 參數
                 if (searchParams.ContainsKey("ids") && searchParams["ids"] != null)
                 {
                     var idsValue = searchParams["ids"];
-                    List<long> idList = new List<long>();
-
-                    // 簡單處理：轉換為 JsonElement 後遍歷
-                    if (idsValue is JsonElement jsonElement && jsonElement.ValueKind == JsonValueKind.Array)
-                    {
-                        foreach (var item in jsonElement.EnumerateArray())
-                        {
-                            idList.Add(item.GetInt64());
-                        }
-                    }
-
+                    var idList = ParseArrayToLongList(idsValue);
+                    
                     if (idList.Any())
                     {
                         var idParams = string.Join(",", idList.Select((id, index) =>
@@ -492,23 +490,102 @@ namespace Accura_MES.Services
                     }
                 }
 
-                // 處理 orderId 參數
-                if (searchParams.ContainsKey("orderId") && searchParams["orderId"] != null)
+                // 處理 startShippedDate 參數
+                if (searchParams.ContainsKey("startShippedDate") && searchParams["startShippedDate"] != null)
                 {
-                    var orderIdValue = searchParams["orderId"];
+                    var dateValue = searchParams["startShippedDate"];
+                    string dateStr = ParseValueToString(dateValue);
                     
-                    long orderId;
-                    if (orderIdValue is JsonElement jsonElement && jsonElement.ValueKind == JsonValueKind.Number)
+                    if (!string.IsNullOrEmpty(dateStr))
                     {
-                        orderId = jsonElement.GetInt64();
+                        whereConditions.Add("[order].shippedDate >= @startShippedDate");
+                        parameters.Add(new SqlParameter("@startShippedDate", DateTime.Parse(dateStr)));
                     }
-                    else
-                    {
-                        orderId = Convert.ToInt64(orderIdValue);
-                    }
+                }
+
+                // 處理 endShippedDate 參數
+                if (searchParams.ContainsKey("endShippedDate") && searchParams["endShippedDate"] != null)
+                {
+                    var dateValue = searchParams["endShippedDate"];
+                    string dateStr = ParseValueToString(dateValue);
                     
-                    whereConditions.Add("shippingOrder.orderId = @orderId");
-                    parameters.Add(new SqlParameter("@orderId", orderId));
+                    if (!string.IsNullOrEmpty(dateStr))
+                    {
+                        whereConditions.Add("[order].shippedDate <= @endShippedDate");
+                        parameters.Add(new SqlParameter("@endShippedDate", DateTime.Parse(dateStr).AddDays(1).AddSeconds(-1)));
+                    }
+                }
+
+                // 處理 customerIds 參數
+                if (searchParams.ContainsKey("customerIds") && searchParams["customerIds"] != null)
+                {
+                    var customerIdsValue = searchParams["customerIds"];
+                    var customerIdList = ParseArrayToLongList(customerIdsValue);
+                    
+                    if (customerIdList.Any())
+                    {
+                        var customerIdParams = string.Join(",", customerIdList.Select((id, index) =>
+                        {
+                            var paramName = $"@customerId{index}";
+                            parameters.Add(new SqlParameter(paramName, id));
+                            return paramName;
+                        }));
+                        whereConditions.Add($"shippingOrder.customerId IN ({customerIdParams})");
+                    }
+                }
+
+                // 處理 shippingOrderNumbers 參數
+                if (searchParams.ContainsKey("shippingOrderNumbers") && searchParams["shippingOrderNumbers"] != null)
+                {
+                    var numbersValue = searchParams["shippingOrderNumbers"];
+                    var numberList = ParseArrayToStringList(numbersValue);
+                    
+                    if (numberList.Any())
+                    {
+                        var numberParams = string.Join(",", numberList.Select((num, index) =>
+                        {
+                            var paramName = $"@shippingOrderNumber{index}";
+                            parameters.Add(new SqlParameter(paramName, num));
+                            return paramName;
+                        }));
+                        whereConditions.Add($"shippingOrder.number IN ({numberParams})");
+                    }
+                }
+
+                // 處理 orderNumbers 參數
+                if (searchParams.ContainsKey("orderNumbers") && searchParams["orderNumbers"] != null)
+                {
+                    var orderNumbersValue = searchParams["orderNumbers"];
+                    var orderNumberList = ParseArrayToStringList(orderNumbersValue);
+                    
+                    if (orderNumberList.Any())
+                    {
+                        var orderNumberParams = string.Join(",", orderNumberList.Select((num, index) =>
+                        {
+                            var paramName = $"@orderNumber{index}";
+                            parameters.Add(new SqlParameter(paramName, num));
+                            return paramName;
+                        }));
+                        whereConditions.Add($"[order].number IN ({orderNumberParams})");
+                    }
+                }
+
+                // 處理 carIds 參數
+                if (searchParams.ContainsKey("carIds") && searchParams["carIds"] != null)
+                {
+                    var carIdsValue = searchParams["carIds"];
+                    var carIdList = ParseArrayToLongList(carIdsValue);
+                    
+                    if (carIdList.Any())
+                    {
+                        var carIdParams = string.Join(",", carIdList.Select((id, index) =>
+                        {
+                            var paramName = $"@carId{index}";
+                            parameters.Add(new SqlParameter(paramName, id));
+                            return paramName;
+                        }));
+                        whereConditions.Add($"shippingOrder.carId IN ({carIdParams})");
+                    }
                 }
 
                 // 組合 SQL
@@ -517,6 +594,9 @@ namespace Accura_MES.Services
                 {
                     finalSql += "\nWHERE " + string.Join(" AND ", whereConditions);
                 }
+                
+                // 添加預設排序
+                finalSql += "\nORDER BY [order].shippedDate DESC";
 
                 // 執行查詢
                 using var command = new SqlCommand(finalSql, connection);
@@ -530,7 +610,20 @@ namespace Accura_MES.Services
                     var row = new Dictionary<string, object>();
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        row[reader.GetName(i)] = reader.IsDBNull(i) ? null : reader.GetValue(i);
+                        string fieldName = reader.GetName(i);
+                        object? fieldValue = reader.IsDBNull(i) ? null : reader.GetValue(i);
+                        
+                        // 格式化日期字段為 yyyy-MM-dd
+                        if (fieldValue is DateTime dateTime)
+                        {
+                            fieldValue = dateTime.ToString("yyyy-MM-dd");
+                        }
+                        else if (fieldValue is DateTimeOffset dateTimeOffset)
+                        {
+                            fieldValue = dateTimeOffset.ToString("yyyy-MM-dd");
+                        }
+                        
+                        row[fieldName] = fieldValue;
                     }
                     result.Add(row);
                 }
@@ -836,6 +929,83 @@ namespace Accura_MES.Services
                     );
                 }
             }
+        }
+
+        /// <summary>
+        /// 解析數組為 long list
+        /// </summary>
+        private List<long> ParseArrayToLongList(object? value)
+        {
+            var result = new List<long>();
+            
+            if (value == null)
+            {
+                return result;
+            }
+
+            if (value is JsonElement jsonElement && jsonElement.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var item in jsonElement.EnumerateArray())
+                {
+                    if (item.ValueKind == JsonValueKind.Number)
+                    {
+                        result.Add(item.GetInt64());
+                    }
+                }
+            }
+            
+            return result;
+        }
+
+        /// <summary>
+        /// 解析數組為 string list
+        /// </summary>
+        private List<string> ParseArrayToStringList(object? value)
+        {
+            var result = new List<string>();
+            
+            if (value == null)
+            {
+                return result;
+            }
+
+            if (value is JsonElement jsonElement && jsonElement.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var item in jsonElement.EnumerateArray())
+                {
+                    if (item.ValueKind == JsonValueKind.String)
+                    {
+                        result.Add(item.GetString() ?? string.Empty);
+                    }
+                }
+            }
+            
+            return result;
+        }
+
+        /// <summary>
+        /// 解析值為 string
+        /// </summary>
+        private string ParseValueToString(object? value)
+        {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    return jsonElement.GetString() ?? string.Empty;
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.Null)
+                {
+                    return string.Empty;
+                }
+            }
+
+            return value.ToString() ?? string.Empty;
         }
     }
 }

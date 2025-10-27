@@ -59,13 +59,18 @@ namespace Accura_MES.Controllers
         }
 
         /// <summary>
-        /// todo 查詢出貨單列表
+        /// 查詢出貨單列表
         /// </summary>
         /// <param name="searchParams">查詢參數</param>
         /// <remarks>
         /// 查詢參數：
         /// - ids: 出貨單ID數組 [1, 2, 3]
-        /// - orderId: 訂單ID
+        /// - startShippedDate: 出貨開始日期 (字符串格式)
+        /// - endShippedDate: 出貨結束日期 (字符串格式)
+        /// - customerIds: 客戶ID數組 [1, 2, 3]
+        /// - shippingOrderNumbers: 出貨單編號數組 ["0001", "0002"]
+        /// - orderNumbers: 訂單編號數組 ["ORDER001", "ORDER002"]
+        /// - carIds: 車輛ID數組 [1, 2, 3]
         /// </remarks>
         /// <returns>返回出貨單列表</returns>
         [HttpPost("GetList")]
