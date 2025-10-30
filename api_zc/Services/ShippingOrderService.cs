@@ -588,6 +588,18 @@ namespace Accura_MES.Services
                     }
                 }
 
+                // 處理 includeFinalRemaining 參數
+                if (searchParams.ContainsKey("includeFinalRemaining") && searchParams["includeFinalRemaining"] != null)
+                {
+                    var includeFinalRemainingValue = searchParams["includeFinalRemaining"];
+                    var includeFinalRemaining = Utils.ConvertToBool(includeFinalRemainingValue);
+                    
+                    if (includeFinalRemaining)
+                    {
+                        whereConditions.Add("shippingOrder.finalRemaining > 0");
+                    }
+                }
+
                 // 組合 SQL
                 string finalSql = baseSql;
                 if (whereConditions.Any())
