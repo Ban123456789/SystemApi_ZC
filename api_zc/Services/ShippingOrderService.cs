@@ -452,7 +452,8 @@ namespace Accura_MES.Services
                         [product].number AS productNumber,
                         project.name AS projectName,
                         project.areaCode as areaCode,
-                        car.number as carNumber
+                        car.number as carNumber,
+                        car.license as license
                     FROM shippingOrder
                     LEFT JOIN [order]
                         ON [order].id = shippingOrder.orderId
