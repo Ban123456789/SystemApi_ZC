@@ -683,7 +683,78 @@
          "zh-TW": "區域代碼",
          "en": ""
       },
-      "dropList": []
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "A",
+               "en": ""
+            },
+            "value": "A",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "B",
+               "en": ""
+            },
+            "value": "B",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "C",
+               "en": ""
+            },
+            "value": "C",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "D",
+               "en": ""
+            },
+            "value": "D",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "E",
+               "en": ""
+            },
+            "value": "E",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "F",
+               "en": ""
+            },
+            "value": "F",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "G",
+               "en": ""
+            },
+            "value": "G",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
    },
    {
       "name": "ComplateStatus",
@@ -931,6 +1002,68 @@
                "en": ""
             },
             "value": "隱藏",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         }
+      ]
+   },
+   {
+      "name": "PaymentType",
+      "type": "system",
+      "isItemList": false,
+      "isDelete": false,
+      "i18n": {
+         "zh-TW": "收款類別",
+         "en": ""
+      },
+      "dropList": [
+         {
+            "i18n": {
+               "zh-TW": "現金",
+               "en": ""
+            },
+            "value": "現金",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "支票",
+               "en": ""
+            },
+            "value": "支票",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "電匯",
+               "en": ""
+            },
+            "value": "電匯",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "溢轉",
+               "en": ""
+            },
+            "value": "溢轉",
+            "description": "",
+            "type": "system",
+            "isDelete": false
+         },
+         {
+            "i18n": {
+               "zh-TW": "其他",
+               "en": ""
+            },
+            "value": "其他",
             "description": "",
             "type": "system",
             "isDelete": false

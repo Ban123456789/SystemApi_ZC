@@ -98,5 +98,10 @@
       "itemTypeName": "shippingOrder",
       "propertyName": "outputFactory",
       "name": "OutputFactory"
+   },
+   {
+      "itemTypeName": "receipt",
+      "propertyName": "paymentType",
+      "name": "PaymentType"
    }
 ]
