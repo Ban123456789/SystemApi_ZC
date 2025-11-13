@@ -360,6 +360,7 @@ namespace Accura_MES.Services
                         ON shippingOrder.projectId = project.id
                     WHERE 
                         shippingOrder.isDelete = 0
+                        AND shippingOrder.type = '1'
                         AND shippingOrder.price = 0";
 
                 var parameters = new List<SqlParameter>();
@@ -517,7 +518,8 @@ namespace Accura_MES.Services
                     INNER JOIN project
                         ON shippingOrder.projectId = project.id
                     WHERE 
-                        shippingOrder.isDelete = 0";
+                        shippingOrder.isDelete = 0
+                        AND shippingOrder.type = '1'";
 
                 var parameters = new List<SqlParameter>();
 

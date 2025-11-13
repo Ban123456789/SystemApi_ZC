@@ -252,7 +252,7 @@ namespace Accura_MES.Services
                             SUM(ISNULL(outputMeters, 0)) AS totalOutputMeters,
                             SUM(ISNULL(outputMeters, 0)) - SUM(ISNULL(returnMeters, 0)) AS totalRemaining
                         FROM shippingOrder
-                        WHERE isDelete = 0
+                        WHERE isDelete = 0 and type='1'
                         GROUP BY orderId
                     ) AS shippingStats
                         ON shippingStats.orderId = [order].id";
@@ -263,6 +263,7 @@ namespace Accura_MES.Services
 
                 // 基礎條件
                 whereConditions.Add("[order].isDelete = 0");
+                whereConditions.Add("[order].type = '1'");
 
                 // 處理 ids 參數
                 if (searchParams.ContainsKey("ids") && searchParams["ids"] != null)

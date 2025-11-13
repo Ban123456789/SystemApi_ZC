@@ -213,7 +213,7 @@ namespace Accura_MES.Services
                 string querySql = @"
                     SELECT ISNULL(MAX(carIndex), 0) AS maxCarIndex
                     FROM shippingOrder
-                    WHERE orderId = @OrderId AND isDelete = 0";
+                    WHERE orderId = @OrderId AND type='1' AND isDelete = 0";
 
                 int maxCarIndex = 0;
 
@@ -270,7 +270,7 @@ namespace Accura_MES.Services
                         ISNULL(SUM(outputMeters), 0) AS totalOutputMeters,
                         ISNULL(SUM(outputMeters - returnMeters), 0) AS totalActualMeters
                     FROM shippingOrder
-                    WHERE orderId = @OrderId AND isDelete = 0";
+                    WHERE orderId = @OrderId AND type='1' AND isDelete = 0";
 
                 using var queryCommand = new SqlCommand(querySql, connection, transaction);
                 queryCommand.Parameters.AddWithValue("@OrderId", orderId);
@@ -472,6 +472,7 @@ namespace Accura_MES.Services
 
                 // 基礎條件
                 whereConditions.Add("shippingOrder.isDelete = 0");
+                whereConditions.Add("shippingOrder.type = '1'");
 
                 // 處理 ids 參數
                 if (searchParams.ContainsKey("ids") && searchParams["ids"] != null)
@@ -842,7 +843,7 @@ namespace Accura_MES.Services
             string querySql = @"
                 SELECT id, outputMeters, returnMeters
                 FROM shippingOrder
-                WHERE orderId = @OrderId AND isDelete = 0
+                WHERE orderId = @OrderId AND isDelete = 0 AND type='1'
                 ORDER BY number ASC";
 
             var shippingOrders = new List<(long id, decimal outputMeters, decimal returnMeters)>();
