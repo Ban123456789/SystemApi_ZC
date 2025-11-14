@@ -6,6 +6,7 @@ using Accura_MES.Repositories;
 using Accura_MES.Utilities;
 using Microsoft.Data.SqlClient;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace Accura_MES.Services
 {
@@ -13,11 +14,13 @@ namespace Accura_MES.Services
     {
         private string _connectionString;
         private IGenericRepository _genericRepository;
+        private ISequenceService _sequenceService;
 
-        private CustomerPriceService(string connectionString, IGenericRepository genericRepository)
+        private CustomerPriceService(string connectionString, IGenericRepository genericRepository, ISequenceService sequenceService)
         {
             _connectionString = connectionString;
             _genericRepository = genericRepository;
+            _sequenceService = sequenceService;
         }
 
         /// <summary>
@@ -29,8 +32,11 @@ namespace Accura_MES.Services
         {
             // 建立通用 repository
             IGenericRepository genericRepository = GenericRepository.CreateRepository(connectionString, null);
+            
+            // 建立序列號服務
+            ISequenceService sequenceService = SequenceService.CreateService(connectionString);
 
-            return new CustomerPriceService(connectionString, genericRepository);
+            return new CustomerPriceService(connectionString, genericRepository, sequenceService);
         }
 
         /// <summary>
@@ -621,6 +627,449 @@ namespace Accura_MES.Services
             finally
             {
                 SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 建立應收帳款
+        /// </summary>
+        /// <param name="request">建立應收帳款請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns>響應對象，包含創建的出貨單ID列表</returns>
+        public async Task<ResponseObject> CreateReceivable(CreateReceivableRequest request, long userId)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                // 檢查 Body
+                if (request == null)
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "建立應收帳款請求不能為空";
+                    return responseObject;
+                }
+
+                if (request.order == null || !request.order.Any())
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "訂單資料不能為空";
+                    return responseObject;
+                }
+
+                if (request.shippingOrder == null || !request.shippingOrder.Any())
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "出貨單資料不能為空";
+                    return responseObject;
+                }
+
+                // 創建統一的連接和事務
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                // 1. 建立 order
+                // 1.1 為訂單生成編號
+                await GenerateOrderNumber(connection, transaction, request.order);
+
+                // 1.2 插入訂單數據
+                List<Dictionary<string, object?>> orderList = new List<Dictionary<string, object?>> { request.order };
+                var insertedOrderIds = await _genericRepository.CreateDataGeneric(
+                    connection,
+                    transaction,
+                    userId,
+                    "order",
+                    orderList
+                );
+
+                if (insertedOrderIds == null || !insertedOrderIds.Any())
+                {
+                    await transaction.RollbackAsync();
+                    responseObject.SetErrorCode(SelfErrorCode.INTERNAL_SERVER_ERROR);
+                    responseObject.Message = "建立訂單失敗：無法獲取訂單ID";
+                    return responseObject;
+                }
+
+                long orderId = insertedOrderIds.First();
+
+                // 2. 將 orderId 寫入到 shippingOrder.orderId
+                Dictionary<string, object?> shippingOrderCopy = new Dictionary<string, object?>(request.shippingOrder);
+                shippingOrderCopy["orderId"] = orderId;
+
+                // 3. 建立 shippingOrder
+                // 3.1 為出貨單生成編號
+                await GenerateShippingOrderNumber(connection, transaction, shippingOrderCopy);
+
+                // 3.2 為出貨單生成 carIndex
+                await GenerateCarIndex(connection, transaction, shippingOrderCopy);
+
+                // 3.3 計算 outputTotalMeters 和 actualTotalMeters
+                await CalculateTotalMeters(connection, transaction, shippingOrderCopy);
+
+                // 3.4 插入出貨單數據
+                List<Dictionary<string, object?>> shippingOrderList = new List<Dictionary<string, object?>> { shippingOrderCopy };
+                var insertedShippingOrderIds = await _genericRepository.CreateDataGeneric(
+                    connection,
+                    transaction,
+                    userId,
+                    "shippingOrder",
+                    shippingOrderList
+                );
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[CustomerPriceService] 成功建立應收帳款：orderId={orderId}, shippingOrderId={insertedShippingOrderIds.FirstOrDefault()}");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = insertedShippingOrderIds;
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[CustomerPriceService] 建立應收帳款失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 為訂單生成編號
+        /// </summary>
+        private async Task GenerateOrderNumber(
+            SqlConnection connection,
+            SqlTransaction transaction,
+            Dictionary<string, object?> order)
+        {
+            var shippedDate = order.GetValueOrDefault("shippedDate");
+
+            if (shippedDate == null)
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    "shippedDate 不能為空"
+                );
+            }
+
+            // 將日期轉換為字符串作為分組鍵
+            string groupKey;
+
+            if (shippedDate is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    string dateString = jsonElement.GetString() ?? string.Empty;
+                    if (DateTime.TryParse(dateString, out DateTime parsedDate))
+                    {
+                        groupKey = parsedDate.ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        throw new CustomErrorCodeException(
+                            SelfErrorCode.BAD_REQUEST,
+                            $"shippedDate 格式不正確: {dateString}"
+                        );
+                    }
+                }
+                else
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"shippedDate 必須是日期字符串，當前類型: {jsonElement.ValueKind}"
+                    );
+                }
+            }
+            else if (shippedDate is DateTime dateValue)
+            {
+                groupKey = dateValue.ToString("yyyy-MM-dd");
+            }
+            else if (shippedDate is string dateString)
+            {
+                if (DateTime.TryParse(dateString, out DateTime parsedDate))
+                {
+                    groupKey = parsedDate.ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"shippedDate 格式不正確: {dateString}"
+                    );
+                }
+            }
+            else
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    $"shippedDate 類型不正確，當前類型: {shippedDate.GetType().Name}"
+                );
+            }
+
+            // 生成訂單編號（格式：01, 02, 03...）
+            string orderNumber = await _sequenceService.GetNextNumberAsync(
+                connection,
+                transaction,
+                tableName: "order",
+                groupKey: groupKey,
+                numberFormat: "00"  // 2位數格式
+            );
+
+            // 將生成的編號寫入數據
+            order["number"] = orderNumber;
+
+            Debug.WriteLine($"[CustomerPriceService] 為日期 {groupKey} 生成訂單編號: {orderNumber}");
+        }
+
+        /// <summary>
+        /// 為出貨單生成編號
+        /// </summary>
+        private async Task GenerateShippingOrderNumber(
+            SqlConnection connection,
+            SqlTransaction transaction,
+            Dictionary<string, object?> shippingOrder)
+        {
+            var orderIdValue = shippingOrder.GetValueOrDefault("orderId");
+
+            if (orderIdValue == null)
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    "orderId 不能為空"
+                );
+            }
+
+            // 解析 orderId
+            long orderId;
+            if (orderIdValue is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    orderId = jsonElement.GetInt64();
+                }
+                else
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"orderId 必須是數字，當前類型: {jsonElement.ValueKind}"
+                    );
+                }
+            }
+            else if (orderIdValue is long longValue)
+            {
+                orderId = longValue;
+            }
+            else if (orderIdValue is int intValue)
+            {
+                orderId = intValue;
+            }
+            else
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    $"orderId 類型不正確，當前類型: {orderIdValue.GetType().Name}"
+                );
+            }
+
+            // 根據 orderId 查詢 order 的 shippedDate
+            string querySql = "SELECT shippedDate FROM [order] WHERE id = @OrderId";
+            using var queryCommand = new SqlCommand(querySql, connection, transaction);
+            queryCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+            var shippedDateResult = await queryCommand.ExecuteScalarAsync();
+
+            if (shippedDateResult == null || shippedDateResult == DBNull.Value)
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.NOT_FOUND_WITH_MSG,
+                    $"找不到 orderId={orderId} 的訂單或該訂單沒有 shippedDate"
+                );
+            }
+
+            // 解析 shippedDate 並格式化為分組鍵
+            DateTime shippedDate = Convert.ToDateTime(shippedDateResult);
+            string groupKey = shippedDate.ToString("yyyy-MM-dd");
+
+            // 生成出貨單編號（格式：0001, 0002, 0003...）
+            string shippingOrderNumber = await _sequenceService.GetNextNumberAsync(
+                connection,
+                transaction,
+                tableName: "shippingOrder",
+                groupKey: groupKey,
+                numberFormat: "0000"  // 4位數格式
+            );
+
+            // 將生成的編號寫入數據
+            shippingOrder["number"] = shippingOrderNumber;
+
+            Debug.WriteLine($"[CustomerPriceService] 為 orderId={orderId}, 日期 {groupKey} 生成出貨單編號: {shippingOrderNumber}");
+        }
+
+        /// <summary>
+        /// 為出貨單生成 carIndex
+        /// </summary>
+        private async Task GenerateCarIndex(
+            SqlConnection connection,
+            SqlTransaction transaction,
+            Dictionary<string, object?> shippingOrder)
+        {
+            var orderIdValue = shippingOrder.GetValueOrDefault("orderId");
+            if (orderIdValue == null)
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    "orderId 不能為空"
+                );
+            }
+
+            long orderId = Convert.ToInt64(orderIdValue);
+
+            // 查詢該 orderId 在數據庫中已存在的最大 carIndex
+            string querySql = @"
+                SELECT ISNULL(MAX(carIndex), 0) AS maxCarIndex
+                FROM shippingOrder
+                WHERE orderId = @OrderId AND type='1' AND isDelete = 0";
+
+            int maxCarIndex = 0;
+
+            using (var queryCommand = new SqlCommand(querySql, connection, transaction))
+            {
+                queryCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+                var result = await queryCommand.ExecuteScalarAsync();
+                if (result != null && result != DBNull.Value)
+                {
+                    maxCarIndex = Convert.ToInt32(result);
+                }
+            }
+
+            // 生成新的 carIndex
+            int newCarIndex = maxCarIndex + 1;
+            shippingOrder["carIndex"] = newCarIndex;
+
+            Debug.WriteLine($"[CustomerPriceService] 為 orderId={orderId} 生成 carIndex={newCarIndex}");
+        }
+
+        /// <summary>
+        /// 計算出貨單的 outputTotalMeters 和 actualTotalMeters
+        /// </summary>
+        private async Task CalculateTotalMeters(
+            SqlConnection connection,
+            SqlTransaction transaction,
+            Dictionary<string, object?> shippingOrder)
+        {
+            var orderIdValue = shippingOrder.GetValueOrDefault("orderId");
+            if (orderIdValue == null)
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    "orderId 不能為空"
+                );
+            }
+
+            long orderId = Convert.ToInt64(orderIdValue);
+
+            // 1. 查詢數據庫中已存在的相同 orderId 的統計數據
+            string querySql = @"
+                SELECT 
+                    ISNULL(SUM(outputMeters), 0) AS totalOutputMeters,
+                    ISNULL(SUM(outputMeters - returnMeters), 0) AS totalActualMeters
+                FROM shippingOrder
+                WHERE orderId = @OrderId AND type='1' AND isDelete = 0";
+
+            using var queryCommand = new SqlCommand(querySql, connection, transaction);
+            queryCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+            decimal existingOutputTotal = 0;
+            decimal existingActualTotal = 0;
+
+            using (var reader = await queryCommand.ExecuteReaderAsync())
+            {
+                if (await reader.ReadAsync())
+                {
+                    existingOutputTotal = reader.IsDBNull(0) ? 0 : reader.GetDecimal(0);
+                    existingActualTotal = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1);
+                }
+            }
+
+            // 2. 獲取當前出貨單的 outputMeters 和 returnMeters
+            decimal outputMeters = GetDecimalValue(shippingOrder, "outputMeters");
+            decimal returnMeters = GetDecimalValue(shippingOrder, "returnMeters");
+
+            // 3. 計算包含當前記錄的總計
+            decimal outputTotalMeters = existingOutputTotal + outputMeters;
+            decimal actualTotalMeters = existingActualTotal + (outputMeters - returnMeters);
+
+            // 4. 寫入計算結果
+            shippingOrder["outputTotalMeters"] = outputTotalMeters;
+            shippingOrder["actualTotalMeters"] = actualTotalMeters;
+
+            Debug.WriteLine($"[CustomerPriceService] orderId={orderId} 計算完成: outputMeters={outputMeters}, returnMeters={returnMeters}, outputTotalMeters={outputTotalMeters}, actualTotalMeters={actualTotalMeters}");
+        }
+
+        /// <summary>
+        /// 從 Dictionary 中獲取 decimal 值
+        /// </summary>
+        private decimal GetDecimalValue(Dictionary<string, object?> dict, string key)
+        {
+            var value = dict.GetValueOrDefault(key);
+
+            if (value == null)
+            {
+                return 0;
+            }
+
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetDecimal();
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.Null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"{key} 必須是數字，當前類型: {jsonElement.ValueKind}"
+                    );
+                }
+            }
+            else if (value is decimal decimalValue)
+            {
+                return decimalValue;
+            }
+            else if (value is double doubleValue)
+            {
+                return Convert.ToDecimal(doubleValue);
+            }
+            else if (value is int intValue)
+            {
+                return intValue;
+            }
+            else if (value is long longValue)
+            {
+                return longValue;
+            }
+            else
+            {
+                try
+                {
+                    return Convert.ToDecimal(value);
+                }
+                catch
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"{key} 類型不正確，無法轉換為數字，當前類型: {value.GetType().Name}"
+                    );
+                }
             }
         }
 

@@ -3,6 +3,7 @@ using Accura_MES.Interfaces.Services;
 using Accura_MES.Models;
 using Accura_MES.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace Accura_MES.Controllers
 {
@@ -185,6 +186,53 @@ namespace Accura_MES.Controllers
 
                 // 應收帳款退回
                 ResponseObject responseObject = await customerPriceService.RollbackReceivable(request, user);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
+
+        /// <summary>
+        /// 建立應收帳款
+        /// </summary>
+        /// <param name="request">建立應收帳款請求</param>
+        /// <returns></returns>
+        [HttpPost("CreateReceivable")]
+        public async Task<IActionResult> CreateReceivable([FromBody] CreateReceivableRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "建立應收帳款請求不能為空");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                ICustomerPriceService customerPriceService = CustomerPriceService.CreateService(connectionString);
+
+                // 建立應收帳款
+                ResponseObject responseObject = await customerPriceService.CreateReceivable(request, user);
 
                 // 直接返回
                 return this.CustomAccuraResponse(responseObject);

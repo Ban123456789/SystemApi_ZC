@@ -34,5 +34,13 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="userId">使用者 ID</param>
         /// <returns></returns>
         Task<ResponseObject> RollbackReceivable(RollbackReceivableRequest request, long userId);
+
+        /// <summary>
+        /// 建立應收帳款
+        /// </summary>
+        /// <param name="request">建立應收帳款請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns></returns>
+        Task<ResponseObject> CreateReceivable(CreateReceivableRequest request, long userId);
     }
 }
