@@ -286,5 +286,52 @@ namespace Accura_MES.Controllers
                 return this.HandleAccuraException(null, ex);
             }
         }
+
+        /// <summary>
+        /// 刪除應收帳款
+        /// </summary>
+        /// <param name="request">刪除請求</param>
+        /// <returns></returns>
+        [HttpPost("DeleteReceivable")]
+        public async Task<IActionResult> DeleteReceivable([FromBody] DeleteReceivableRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "刪除請求不能為空");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                ICustomerPriceService customerPriceService = CustomerPriceService.CreateService(connectionString);
+
+                // 刪除應收帳款
+                ResponseObject responseObject = await customerPriceService.DeleteReceivable(request, user);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
     }
 }

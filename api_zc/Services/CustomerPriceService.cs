@@ -1215,5 +1215,84 @@ namespace Accura_MES.Services
             }
         }
 
+        /// <summary>
+        /// 刪除應收帳款
+        /// </summary>
+        /// <param name="request">刪除請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns>響應對象，包含處理結果</returns>
+        public async Task<ResponseObject> DeleteReceivable(DeleteReceivableRequest request, long userId)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                // 檢查 Body
+                if (request == null)
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "刪除請求不能為空";
+                    return responseObject;
+                }
+
+                if (request.ids == null || !request.ids.Any())
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "要刪除的 ID 列表不能為空";
+                    return responseObject;
+                }
+
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                // 將這些出貨單標記為已刪除（isDelete = 1）
+                var idParams = string.Join(",", request.ids.Select((id, index) => $"@id{index}"));
+                string deleteSql = $@"
+                    UPDATE shippingOrder 
+                    SET isDelete = 1, 
+                        modifiedBy = @UserId, 
+                        modifiedOn = GETDATE()
+                    WHERE id IN ({idParams})
+                    AND type = '2'
+                    AND isDelete = 0";
+
+                using var deleteCommand = new SqlCommand(deleteSql, connection, transaction);
+                deleteCommand.Parameters.AddWithValue("@UserId", userId);
+                
+                for (int i = 0; i < request.ids.Count; i++)
+                {
+                    deleteCommand.Parameters.AddWithValue($"@id{i}", request.ids[i]);
+                }
+
+                int rowsAffected = await deleteCommand.ExecuteNonQueryAsync();
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[CustomerPriceService] 成功刪除 {rowsAffected} 筆應收帳款");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = new
+                {
+                    totalRequested = request.ids.Count,
+                    deletedCount = rowsAffected,
+                    message = $"刪除完成：共請求 {request.ids.Count} 筆，成功刪除 {rowsAffected} 筆"
+                };
+
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[CustomerPriceService] 刪除應收帳款失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
     }
 }

@@ -49,5 +49,13 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="request">查詢請求</param>
         /// <returns></returns>
         Task<ResponseObject> GetReceivableList(GetReceivableListRequest request);
+
+        /// <summary>
+        /// 刪除應收帳款
+        /// </summary>
+        /// <param name="request">刪除請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns></returns>
+        Task<ResponseObject> DeleteReceivable(DeleteReceivableRequest request, long userId);
     }
 }
