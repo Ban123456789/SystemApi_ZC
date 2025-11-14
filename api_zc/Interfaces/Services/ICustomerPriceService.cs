@@ -42,5 +42,12 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="userId">使用者 ID</param>
         /// <returns></returns>
         Task<ResponseObject> CreateReceivable(CreateReceivableRequest request, long userId);
+
+        /// <summary>
+        /// 取得應收帳款清單
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns></returns>
+        Task<ResponseObject> GetReceivableList(GetReceivableListRequest request);
     }
 }

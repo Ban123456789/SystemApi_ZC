@@ -1073,5 +1073,147 @@ namespace Accura_MES.Services
             }
         }
 
+        /// <summary>
+        /// 取得應收帳款清單
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含應收帳款清單資料</returns>
+        public async Task<ResponseObject> GetReceivableList(GetReceivableListRequest request)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                // 建立 SQL 查詢
+                var sqlBuilder = new System.Text.StringBuilder(@"
+                    SELECT
+                        shippingOrder.id as id,
+                        shippingOrder.number as number,
+                        shippingOrder.customerId as customerId,
+                        shippingOrder.projectId as projectId,
+                        shippingOrder.productId as productId,
+                        shippingOrder.orderId as orderId,
+                        shippingOrder.type as type,
+                        shippingOrder.price as price,
+                        [order].shippedDate as shippedDate,
+                        customer.number as customerNumber,
+                        customer.name as customerName,
+                        project.number as projectNumber,
+                        project.name as projectName,
+                        [product].number as productNumber
+                    FROM
+                        shippingOrder
+                    INNER JOIN [order]
+                        ON shippingOrder.orderId = [order].id
+                    INNER JOIN project
+                        ON shippingOrder.projectId = project.id
+                    INNER JOIN [product]
+                        ON shippingOrder.productId = [product].id
+                    INNER JOIN customer
+                        ON shippingOrder.customerId = customer.id
+                    WHERE
+                        shippingOrder.isDelete = 0
+                        AND shippingOrder.type = '2'");
+
+                var parameters = new List<SqlParameter>();
+
+                // 動態添加日期條件
+                if (!string.IsNullOrEmpty(request.shippedDateStart))
+                {
+                    if (DateTime.TryParse(request.shippedDateStart, out DateTime shippedDateStart))
+                    {
+                        sqlBuilder.Append(" AND [order].shippedDate >= @shippedDateStart");
+                        parameters.Add(new SqlParameter("@shippedDateStart", shippedDateStart.Date));
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(request.shippedDateEnd))
+                {
+                    if (DateTime.TryParse(request.shippedDateEnd, out DateTime shippedDateEnd))
+                    {
+                        // 結束日期需要包含當天的所有時間，所以加上 23:59:59
+                        sqlBuilder.Append(" AND [order].shippedDate <= @shippedDateEnd");
+                        parameters.Add(new SqlParameter("@shippedDateEnd", shippedDateEnd.Date.AddDays(1).AddSeconds(-1)));
+                    }
+                }
+
+                // 動態添加客戶 ID 條件
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIdParams = string.Join(",", request.customerIds.Select((id, index) => $"@customerId{index}"));
+                    sqlBuilder.Append($" AND shippingOrder.customerId IN ({customerIdParams})");
+                    
+                    for (int i = 0; i < request.customerIds.Count; i++)
+                    {
+                        parameters.Add(new SqlParameter($"@customerId{i}", request.customerIds[i]));
+                    }
+                }
+
+                // 動態添加出貨單 ID 條件
+                if (request.ids != null && request.ids.Any())
+                {
+                    var idParams = string.Join(",", request.ids.Select((id, index) => $"@id{index}"));
+                    sqlBuilder.Append($" AND shippingOrder.id IN ({idParams})");
+                    
+                    for (int i = 0; i < request.ids.Count; i++)
+                    {
+                        parameters.Add(new SqlParameter($"@id{i}", request.ids[i]));
+                    }
+                }
+
+                using var command = new SqlCommand(sqlBuilder.ToString(), connection);
+                command.Parameters.AddRange(parameters.ToArray());
+
+                var results = new List<Dictionary<string, object>>();
+
+                using var reader = await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    var row = new Dictionary<string, object>();
+                    row["id"] = reader.IsDBNull(reader.GetOrdinal("id")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("id"));
+                    row["number"] = reader.IsDBNull(reader.GetOrdinal("number")) ? null : reader.GetString(reader.GetOrdinal("number"));
+                    row["customerId"] = reader.IsDBNull(reader.GetOrdinal("customerId")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("customerId"));
+                    row["projectId"] = reader.IsDBNull(reader.GetOrdinal("projectId")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("projectId"));
+                    row["productId"] = reader.IsDBNull(reader.GetOrdinal("productId")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("productId"));
+                    row["orderId"] = reader.IsDBNull(reader.GetOrdinal("orderId")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("orderId"));
+                    row["type"] = reader.IsDBNull(reader.GetOrdinal("type")) ? null : reader.GetString(reader.GetOrdinal("type"));
+                    row["price"] = reader.IsDBNull(reader.GetOrdinal("price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("price"));
+                    
+                    // 格式化日期為 yyyy-MM-dd
+                    if (!reader.IsDBNull(reader.GetOrdinal("shippedDate")))
+                    {
+                        DateTime shippedDate = reader.GetDateTime(reader.GetOrdinal("shippedDate"));
+                        row["shippedDate"] = shippedDate.ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        row["shippedDate"] = null;
+                    }
+                    
+                    row["customerNumber"] = reader.IsDBNull(reader.GetOrdinal("customerNumber")) ? null : reader.GetString(reader.GetOrdinal("customerNumber"));
+                    row["customerName"] = reader.IsDBNull(reader.GetOrdinal("customerName")) ? null : reader.GetString(reader.GetOrdinal("customerName"));
+                    row["projectNumber"] = reader.IsDBNull(reader.GetOrdinal("projectNumber")) ? null : reader.GetString(reader.GetOrdinal("projectNumber"));
+                    row["projectName"] = reader.IsDBNull(reader.GetOrdinal("projectName")) ? null : reader.GetString(reader.GetOrdinal("projectName"));
+                    row["productNumber"] = reader.IsDBNull(reader.GetOrdinal("productNumber")) ? null : reader.GetString(reader.GetOrdinal("productNumber"));
+                    
+                    results.Add(row);
+                }
+
+                Debug.WriteLine($"[CustomerPriceService] 成功取得 {results.Count} 筆應收帳款清單資料");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = results;
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[CustomerPriceService] 取得應收帳款清單失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, null);
+            }
+        }
+
     }
 }

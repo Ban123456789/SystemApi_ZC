@@ -243,5 +243,48 @@ namespace Accura_MES.Controllers
                 return this.HandleAccuraException(null, ex);
             }
         }
+
+        /// <summary>
+        /// 取得應收帳款清單
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns></returns>
+        [HttpPost("GetReceivableList")]
+        public async Task<IActionResult> GetReceivableList([FromBody] GetReceivableListRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "查詢請求不能為空");
+                }
+                #endregion
+
+                ICustomerPriceService customerPriceService = CustomerPriceService.CreateService(connectionString);
+
+                // 取得應收帳款清單
+                ResponseObject responseObject = await customerPriceService.GetReceivableList(request);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
     }
 }
