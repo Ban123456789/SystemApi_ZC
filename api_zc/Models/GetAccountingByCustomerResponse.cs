@@ -11,6 +11,11 @@ namespace Accura_MES.Models
         public long? shippingOrderId { get; set; }
 
         /// <summary>
+        /// 出貨單類型
+        /// </summary>
+        public string? type { get; set; }
+
+        /// <summary>
         /// 出貨公尺數
         /// </summary>
         public decimal outputMeters { get; set; }

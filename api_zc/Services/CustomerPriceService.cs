@@ -235,6 +235,7 @@ namespace Accura_MES.Services
                         shippingOrder.outputMeters as outputMeters,
                         shippingOrder.remaining as remaining,
                         shippingOrder.price as price,
+                        shippingOrder.type as type,
                         customer.id as customerId,
                         customer.number as customerNumber,
                         customer.nickName as customerNickName,
@@ -316,7 +317,8 @@ namespace Accura_MES.Services
                         projectName = reader.IsDBNull(reader.GetOrdinal("projectName")) ? null : reader.GetString(reader.GetOrdinal("projectName")),
                         address = reader.IsDBNull(reader.GetOrdinal("address")) ? null : reader.GetString(reader.GetOrdinal("address")),
                         productId = reader.IsDBNull(reader.GetOrdinal("productId")) ? null : reader.GetInt64(reader.GetOrdinal("productId")),
-                        productNumber = reader.IsDBNull(reader.GetOrdinal("productNumber")) ? null : reader.GetString(reader.GetOrdinal("productNumber"))
+                        productNumber = reader.IsDBNull(reader.GetOrdinal("productNumber")) ? null : reader.GetString(reader.GetOrdinal("productNumber")),
+                        type = reader.IsDBNull(reader.GetOrdinal("type")) ? null : reader.GetString(reader.GetOrdinal("type"))
                     });
                 }
 
