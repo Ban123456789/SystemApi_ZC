@@ -18,6 +18,14 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="request">查詢請求</param>
         /// <returns></returns>
         Task<ResponseObject> GetReceiptList(GetReceiptListRequest request);
+
+        /// <summary>
+        /// 刪除收款單
+        /// </summary>
+        /// <param name="request">刪除請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns></returns>
+        Task<ResponseObject> DeleteReceipts(DeleteReceiptsRequest request, long userId);
     }
 }
 

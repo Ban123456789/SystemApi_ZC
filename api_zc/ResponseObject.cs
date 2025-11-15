@@ -506,6 +506,10 @@ namespace Accura_MES
         /// 已存在相同的工程代號 + 客戶代號 + 成品代號
         /// </summary>
         public static readonly SelfErrorCode DUPLICATE_CUSTOMER_PRICE = new SelfErrorCode("400-15", "已存在相同的工程代號 + 客戶代號 + 成品代號");
+        /// <summary>
+        /// 已沖帳的收款單不能刪除
+        /// </summary>
+        public static readonly SelfErrorCode RECEIPT_ALREADY_OFFSET = new SelfErrorCode("400-16", "已沖帳的收款單不能刪除");
         #endregion
 
         /// <summary>
