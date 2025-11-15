@@ -146,6 +146,53 @@ namespace Accura_MES.Controllers
                 return this.HandleAccuraException(null, ex);
             }
         }
+
+        /// <summary>
+        /// 編輯收款單
+        /// </summary>
+        /// <param name="input">收款單資料列表</param>
+        /// <returns></returns>
+        [HttpPost("UpdateReceipts")]
+        public async Task<IActionResult> UpdateReceipts([FromBody] List<Dictionary<string, object?>> input)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (input == null || !input.Any())
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "編輯請求不能為空");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                IReceiptService receiptService = ReceiptService.CreateService(connectionString);
+
+                // 編輯收款單
+                ResponseObject responseObject = await receiptService.UpdateReceipts(input, user);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
     }
 }
 

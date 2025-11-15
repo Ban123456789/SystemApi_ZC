@@ -467,6 +467,167 @@ namespace Accura_MES.Services
                 SqlHelper.RollbackAndDisposeTransaction(transaction);
             }
         }
+
+        /// <summary>
+        /// 編輯收款單
+        /// </summary>
+        /// <param name="receiptObject">收款單資料列表</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns>響應對象，包含處理結果</returns>
+        public async Task<ResponseObject> UpdateReceipts(List<Dictionary<string, object?>> receiptObject, long userId)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                // 檢查 Body
+                if (receiptObject == null || !receiptObject.Any())
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "收款單資料不能為空";
+                    return responseObject;
+                }
+
+                // 檢查所有 receipt 是否包含 id
+                var receiptIds = new List<long>();
+                foreach (var receipt in receiptObject)
+                {
+                    if (!receipt.ContainsKey("id") || receipt["id"] == null)
+                    {
+                        responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                        responseObject.Message = "收款單資料必須包含 id";
+                        return responseObject;
+                    }
+
+                    // 將 id 轉換為 long
+                    if (receipt["id"] is long id)
+                    {
+                        receiptIds.Add(id);
+                    }
+                    else if (receipt["id"] is int intId)
+                    {
+                        receiptIds.Add(intId);
+                    }
+                    else if (long.TryParse(receipt["id"]?.ToString(), out long parsedId))
+                    {
+                        receiptIds.Add(parsedId);
+                    }
+                    else
+                    {
+                        responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                        responseObject.Message = "收款單 id 格式錯誤";
+                        return responseObject;
+                    }
+                }
+
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                // 1. 檢查所有 receipt id 是否已沖帳
+                var idParams = string.Join(",", receiptIds.Select((id, index) => $"@id{index}"));
+                string checkOffsetSql = $@"
+                    SELECT DISTINCT receiptId
+                    FROM offsetRecord_receipt
+                    WHERE receiptId IN ({idParams})
+                    AND isDelete = 0";
+
+                using var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction);
+                for (int i = 0; i < receiptIds.Count; i++)
+                {
+                    checkCommand.Parameters.AddWithValue($"@id{i}", receiptIds[i]);
+                }
+
+                var offsetReceiptIds = new List<long>();
+                using (var reader = await checkCommand.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        offsetReceiptIds.Add(reader.GetInt64(0));
+                    }
+                }
+
+                // 2. 如果有任何一筆 receipt 已經建立 offsetRecord_receipt，就回傳錯誤訊息
+                if (offsetReceiptIds.Any())
+                {
+                    // 查詢已沖帳的 receipt 資訊（id 和 number）
+                    var offsetIdParams = string.Join(",", offsetReceiptIds.Select((id, index) => $"@offsetId{index}"));
+                    string getReceiptInfoSql = $@"
+                        SELECT id, number
+                        FROM receipt
+                        WHERE id IN ({offsetIdParams})";
+
+                    using var infoCommand = new SqlCommand(getReceiptInfoSql, connection, transaction);
+                    for (int i = 0; i < offsetReceiptIds.Count; i++)
+                    {
+                        infoCommand.Parameters.AddWithValue($"@offsetId{i}", offsetReceiptIds[i]);
+                    }
+
+                    var offsetReceipts = new List<Dictionary<string, object>>();
+                    using (var reader = await infoCommand.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            offsetReceipts.Add(new Dictionary<string, object>
+                            {
+                                ["id"] = reader.GetInt64(0),
+                                ["number"] = reader.IsDBNull(1) ? null : reader.GetString(1)
+                            });
+                        }
+                    }
+
+                    await transaction.RollbackAsync();
+
+                    responseObject.SetErrorCode(SelfErrorCode.RECEIPT_ALREADY_OFFSET_CANNOT_EDIT);
+                    responseObject.ErrorData = offsetReceipts;
+                    return responseObject;
+                }
+
+                // 3. 如果檢查出來的 receipt 都沒有建立 offsetRecord_receipt，那就針對 receipt 做更新
+                // 轉換 Dictionary<string, object?> 為 Dictionary<string, object>
+                var receiptList = new List<Dictionary<string, object>>();
+                foreach (var receipt in receiptObject)
+                {
+                    Dictionary<string, object> receiptDict = new Dictionary<string, object>();
+                    foreach (var kvp in receipt)
+                    {
+                        receiptDict[kvp.Key] = kvp.Value ?? (object)DBNull.Value;
+                    }
+                    receiptList.Add(receiptDict);
+                }
+
+                TableDatas receiptTableDatas = new TableDatas();
+                receiptTableDatas.Datasheet = "receipt";
+                receiptTableDatas.DataStructure = receiptList;
+
+                await _genericRepository.GenericUpdate(
+                    userId,
+                    receiptTableDatas,
+                    connection,
+                    transaction
+                );
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[ReceiptService] 成功更新 {receiptObject.Count} 筆收款單");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = "更新成功";
+
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ReceiptService] 編輯收款單失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
     }
 }
 

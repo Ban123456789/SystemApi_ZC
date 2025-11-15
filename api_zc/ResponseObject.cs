@@ -510,6 +510,10 @@ namespace Accura_MES
         /// 已沖帳的收款單不能刪除
         /// </summary>
         public static readonly SelfErrorCode RECEIPT_ALREADY_OFFSET = new SelfErrorCode("400-16", "已沖帳的收款單不能刪除");
+        /// <summary>
+        /// 已沖帳的收款單不能編輯
+        /// </summary>
+        public static readonly SelfErrorCode RECEIPT_ALREADY_OFFSET_CANNOT_EDIT = new SelfErrorCode("400-17", "已沖帳的收款單不能編輯");
         #endregion
 
         /// <summary>

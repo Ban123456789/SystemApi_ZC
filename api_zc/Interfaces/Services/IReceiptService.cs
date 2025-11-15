@@ -26,6 +26,14 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="userId">使用者 ID</param>
         /// <returns></returns>
         Task<ResponseObject> DeleteReceipts(DeleteReceiptsRequest request, long userId);
+
+        /// <summary>
+        /// 編輯收款單
+        /// </summary>
+        /// <param name="receiptObject">收款單資料列表</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns></returns>
+        Task<ResponseObject> UpdateReceipts(List<Dictionary<string, object?>> receiptObject, long userId);
     }
 }
 
