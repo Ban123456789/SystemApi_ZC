@@ -5,6 +5,7 @@ using Accura_MES.Models;
 using Accura_MES.Repositories;
 using Accura_MES.Utilities;
 using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -1286,6 +1287,119 @@ namespace Accura_MES.Services
             catch (Exception ex)
             {
                 Debug.WriteLine($"[CustomerPriceService] 刪除應收帳款失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 更新應收帳款
+        /// </summary>
+        /// <param name="request">更新請求</param>
+        /// <param name="userId">使用者 ID</param>
+        /// <returns>響應對象</returns>
+        public async Task<ResponseObject> UpdateReceivable(CreateReceivableRequest request, long userId)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                // 檢查 Body
+                if (request == null)
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "更新請求不能為空";
+                    return responseObject;
+                }
+
+                if (request.order == null || !request.order.Any())
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "訂單資料不能為空";
+                    return responseObject;
+                }
+
+                if (request.shippingOrder == null || !request.shippingOrder.Any())
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "出貨單資料不能為空";
+                    return responseObject;
+                }
+
+                // 檢查 order 和 shippingOrder 是否包含 id
+                if (!request.order.ContainsKey("id") || request.order["id"] == null)
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "訂單資料必須包含 id";
+                    return responseObject;
+                }
+
+                if (!request.shippingOrder.ContainsKey("id") || request.shippingOrder["id"] == null)
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.MISSING_PARAMETERS);
+                    responseObject.Message = "出貨單資料必須包含 id";
+                    return responseObject;
+                }
+
+                // 創建統一的連接和事務
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                // 1. 更新 order
+                // 轉換 Dictionary<string, object?> 為 Dictionary<string, object>
+                Dictionary<string, object> orderDict = new Dictionary<string, object>();
+                foreach (var kvp in request.order)
+                {
+                    orderDict[kvp.Key] = kvp.Value ?? (object)DBNull.Value;
+                }
+
+                TableDatas orderTableDatas = new TableDatas();
+                orderTableDatas.Datasheet = "order";
+                orderTableDatas.DataStructure = new List<Dictionary<string, object>> { orderDict };
+                
+                await _genericRepository.GenericUpdate(
+                    userId,
+                    orderTableDatas,
+                    connection,
+                    transaction
+                );
+
+                // 2. 更新 shippingOrder
+                // 轉換 Dictionary<string, object?> 為 Dictionary<string, object>
+                Dictionary<string, object> shippingOrderDict = new Dictionary<string, object>();
+                foreach (var kvp in request.shippingOrder)
+                {
+                    shippingOrderDict[kvp.Key] = kvp.Value ?? (object)DBNull.Value;
+                }
+
+                TableDatas shippingOrderTableDatas = new TableDatas();
+                shippingOrderTableDatas.Datasheet = "shippingOrder";
+                shippingOrderTableDatas.DataStructure = new List<Dictionary<string, object>> { shippingOrderDict };
+                
+                await _genericRepository.GenericUpdate(
+                    userId,
+                    shippingOrderTableDatas,
+                    connection,
+                    transaction
+                );
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[CustomerPriceService] 成功更新應收帳款：orderId={request.order["id"]}, shippingOrderId={request.shippingOrder["id"]}");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = "更新成功";
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[CustomerPriceService] 更新應收帳款失敗: {ex.Message}");
                 return await this.HandleExceptionAsync(ex, transaction);
             }
             finally
