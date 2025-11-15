@@ -1,3 +1,5 @@
+using Accura_MES.Models;
+
 namespace Accura_MES.Interfaces.Services
 {
     public interface IReceiptService : IService
@@ -9,6 +11,13 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="receiptObject">收款單資料列表</param>
         /// <returns></returns>
         Task<ResponseObject> Create(long userId, List<Dictionary<string, object?>> receiptObject);
+
+        /// <summary>
+        /// 取得收款單清單
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns></returns>
+        Task<ResponseObject> GetReceiptList(GetReceiptListRequest request);
     }
 }
 

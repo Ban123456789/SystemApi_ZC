@@ -185,6 +185,152 @@ namespace Accura_MES.Services
                 Debug.WriteLine($"[ReceiptService] 為日期 {groupKey} 生成收款單編號: {receiptNumber}");
             }
         }
+
+        /// <summary>
+        /// 取得收款單清單
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含收款單清單資料</returns>
+        public async Task<ResponseObject> GetReceiptList(GetReceiptListRequest request)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                // 建立 SQL 查詢
+                var sqlBuilder = new System.Text.StringBuilder(@"
+                    SELECT
+                        receipt.id as id,
+                        receipt.number as number,
+                        receipt.receiptDate as receiptDate,
+                        receipt.customerId as customerId,
+                        customer.nickName as customerNickName,
+                        receipt.paymentDate as paymentDate,
+                        receipt.paymentType as paymentType,
+                        receipt.price as price,
+                        offsetRecord.id as offsetRecordId,
+                        ISNULL(offsetRecord.shouldBeOffsetMoney, 0) as shouldBeOffsetMoney
+                    FROM
+                        receipt
+                    LEFT JOIN customer
+                        ON receipt.customerId = customer.id
+                    LEFT JOIN offsetRecord_receipt
+                        ON receipt.id = offsetRecord_receipt.receiptId AND offsetRecord_receipt.isDelete = 0
+                    LEFT JOIN offsetRecord
+                        ON offsetRecord.id = offsetRecord_receipt.offsetRecordId AND offsetRecord.isDelete = 0
+                    WHERE
+                        receipt.isDelete = 0");
+
+                var parameters = new List<SqlParameter>();
+
+                // 動態添加收款單 ID 條件
+                if (request.ids != null && request.ids.Any())
+                {
+                    var idParams = string.Join(",", request.ids.Select((id, index) => $"@id{index}"));
+                    sqlBuilder.Append($" AND receipt.id IN ({idParams})");
+                    
+                    for (int i = 0; i < request.ids.Count; i++)
+                    {
+                        parameters.Add(new SqlParameter($"@id{i}", request.ids[i]));
+                    }
+                }
+
+                // 動態添加客戶 ID 條件
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIdParams = string.Join(",", request.customerIds.Select((id, index) => $"@customerId{index}"));
+                    sqlBuilder.Append($" AND receipt.customerId IN ({customerIdParams})");
+                    
+                    for (int i = 0; i < request.customerIds.Count; i++)
+                    {
+                        parameters.Add(new SqlParameter($"@customerId{i}", request.customerIds[i]));
+                    }
+                }
+
+                // 動態添加收款日期開始條件
+                if (!string.IsNullOrEmpty(request.receiptDateStart))
+                {
+                    if (DateTime.TryParse(request.receiptDateStart, out DateTime receiptDateStart))
+                    {
+                        sqlBuilder.Append(" AND receipt.receiptDate >= @receiptDateStart");
+                        parameters.Add(new SqlParameter("@receiptDateStart", receiptDateStart.Date));
+                    }
+                }
+
+                // 動態添加收款日期結束條件
+                if (!string.IsNullOrEmpty(request.receiptDateEnd))
+                {
+                    if (DateTime.TryParse(request.receiptDateEnd, out DateTime receiptDateEnd))
+                    {
+                        // 結束日期需要包含當天的所有時間，所以加上 23:59:59
+                        sqlBuilder.Append(" AND receipt.receiptDate <= @receiptDateEnd");
+                        parameters.Add(new SqlParameter("@receiptDateEnd", receiptDateEnd.Date.AddDays(1).AddSeconds(-1)));
+                    }
+                }
+
+                using var command = new SqlCommand(sqlBuilder.ToString(), connection);
+                command.Parameters.AddRange(parameters.ToArray());
+
+                var results = new List<Dictionary<string, object>>();
+
+                using var reader = await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    var row = new Dictionary<string, object>();
+                    row["id"] = reader.IsDBNull(reader.GetOrdinal("id")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("id"));
+                    row["number"] = reader.IsDBNull(reader.GetOrdinal("number")) ? null : reader.GetString(reader.GetOrdinal("number"));
+                    // 格式化日期為 yyyy-MM-dd
+                    if (!reader.IsDBNull(reader.GetOrdinal("receiptDate")))
+                    {
+                        DateTime receiptDate = reader.GetDateTime(reader.GetOrdinal("receiptDate"));
+                        row["receiptDate"] = receiptDate.ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        row["receiptDate"] = null;
+                    }
+                    
+                    row["customerId"] = reader.IsDBNull(reader.GetOrdinal("customerId")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("customerId"));
+                    row["customerNickName"] = reader.IsDBNull(reader.GetOrdinal("customerNickName")) ? null : reader.GetString(reader.GetOrdinal("customerNickName"));
+                    
+                    // 格式化日期為 yyyy-MM-dd
+                    if (!reader.IsDBNull(reader.GetOrdinal("paymentDate")))
+                    {
+                        DateTime paymentDate = reader.GetDateTime(reader.GetOrdinal("paymentDate"));
+                        row["paymentDate"] = paymentDate.ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        row["paymentDate"] = null;
+                    }
+                    
+                    row["paymentType"] = reader.IsDBNull(reader.GetOrdinal("paymentType")) ? null : reader.GetString(reader.GetOrdinal("paymentType"));
+                    row["price"] = reader.IsDBNull(reader.GetOrdinal("price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("price"));
+                    row["offsetRecordId"] = reader.IsDBNull(reader.GetOrdinal("offsetRecordId")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("offsetRecordId"));
+                    row["shouldBeOffsetMoney"] = reader.IsDBNull(reader.GetOrdinal("shouldBeOffsetMoney")) ? 0 : reader.GetDecimal(reader.GetOrdinal("shouldBeOffsetMoney"));
+                    
+                    // 根據 offsetRecordId 判斷 offset 值
+                    bool offset = !reader.IsDBNull(reader.GetOrdinal("offsetRecordId"));
+                    row["offset"] = offset;
+                    
+                    results.Add(row);
+                }
+
+                Debug.WriteLine($"[ReceiptService] 成功取得 {results.Count} 筆收款單清單資料");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = results;
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ReceiptService] 取得收款單清單失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, null);
+            }
+        }
     }
 }
 

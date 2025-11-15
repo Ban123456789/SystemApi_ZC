@@ -1,5 +1,6 @@
 using Accura_MES.Extensions;
 using Accura_MES.Interfaces.Services;
+using Accura_MES.Models;
 using Accura_MES.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,6 +46,49 @@ namespace Accura_MES.Controllers
 
                 // 建立收款單
                 ResponseObject responseObject = await receiptService.Create(user, input);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
+
+        /// <summary>
+        /// 取得收款單清單
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns></returns>
+        [HttpPost("GetReceiptList")]
+        public async Task<IActionResult> GetReceiptList([FromBody] GetReceiptListRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "查詢請求不能為空");
+                }
+                #endregion
+
+                IReceiptService receiptService = ReceiptService.CreateService(connectionString);
+
+                // 取得收款單清單
+                ResponseObject responseObject = await receiptService.GetReceiptList(request);
 
                 // 直接返回
                 return this.CustomAccuraResponse(responseObject);
