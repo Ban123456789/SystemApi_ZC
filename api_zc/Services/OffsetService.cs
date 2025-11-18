@@ -50,10 +50,16 @@ namespace Accura_MES.Services
 
                 // 1. 查詢未沖帳的收款單
                 var receiptSqlBuilder = new System.Text.StringBuilder(@"
-                    SELECT receipt.*
+                    SELECT 
+                        receipt.*,
+                        customer.number as customerNumber,
+                        customer.name as customerName,
+                        customer.nickName as customerNickName
                     FROM receipt
                     LEFT JOIN offsetRecord_receipt
                         ON receipt.id = offsetRecord_receipt.receiptId AND offsetRecord_receipt.isDelete = 0
+                    INNER JOIN customer
+                        ON receipt.customerId = customer.id
                     WHERE 
                         receipt.isDelete = 0
                         AND offsetRecord_receipt.id IS NULL");
@@ -68,6 +74,12 @@ namespace Accura_MES.Services
                         receiptSqlBuilder.Append(" AND receipt.receiptDate = @receiptDate");
                         receiptParameters.Add(new SqlParameter("@receiptDate", receiptDate.Date));
                     }
+                }
+                // 如果 customerId 不為 null，添加條件
+                if (request.customerId.HasValue)
+                {
+                    receiptSqlBuilder.Append(" AND receipt.customerId = @customerId");
+                    receiptParameters.Add(new SqlParameter("@customerId", request.customerId.Value));
                 }
 
                 var receipts = new List<Dictionary<string, object>>();
@@ -92,7 +104,16 @@ namespace Accura_MES.Services
                                 // 處理日期格式
                                 if (value is DateTime dateTime)
                                 {
-                                    receipt[columnName] = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                                    // receiptDate、ticketDate、paymentDate、cashDate 使用 yyyy-MM-dd 格式
+                                    if (columnName == "receiptDate" || columnName == "ticketDate" || 
+                                        columnName == "paymentDate" || columnName == "cashDate")
+                                    {
+                                        receipt[columnName] = dateTime.ToString("yyyy-MM-dd");
+                                    }
+                                    else
+                                    {
+                                        receipt[columnName] = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                                    }
                                 }
                                 else
                                 {
@@ -257,7 +278,7 @@ namespace Accura_MES.Services
                 responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
                 responseObject.Data = new
                 {
-                    receipt = receipts,
+                    receipts = receipts,
                     shippingOrders = shippingOrders
                 };
 
