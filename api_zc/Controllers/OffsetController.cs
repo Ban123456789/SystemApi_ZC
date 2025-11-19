@@ -2,6 +2,7 @@ using Accura_MES.Extensions;
 using Accura_MES.Interfaces.Services;
 using Accura_MES.Models;
 using Accura_MES.Services;
+using Accura_MES.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Accura_MES.Controllers
@@ -44,6 +45,53 @@ namespace Accura_MES.Controllers
 
                 // 取得未沖帳清單
                 ResponseObject responseObject = await offsetService.GetUnOffsetList(request);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
+
+        /// <summary>
+        /// 沖帳
+        /// </summary>
+        /// <param name="requests">沖帳請求列表</param>
+        /// <returns></returns>
+        [HttpPost("Offset")]
+        public async Task<IActionResult> Offset([FromBody] List<OffsetRequest> requests)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (requests == null || !requests.Any())
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "沖帳請求不能為空");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                IOffsetService offsetService = OffsetService.CreateService(connectionString);
+
+                // 執行沖帳
+                ResponseObject responseObject = await offsetService.Offset(user, requests);
 
                 // 直接返回
                 return this.CustomAccuraResponse(responseObject);

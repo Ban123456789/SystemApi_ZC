@@ -14,11 +14,13 @@ namespace Accura_MES.Services
     {
         private string _connectionString;
         private IGenericRepository _genericRepository;
+        private ISequenceService _sequenceService;
 
-        private OffsetService(string connectionString, IGenericRepository genericRepository)
+        private OffsetService(string connectionString, IGenericRepository genericRepository, ISequenceService sequenceService)
         {
             _connectionString = connectionString;
             _genericRepository = genericRepository;
+            _sequenceService = sequenceService;
         }
 
         /// <summary>
@@ -30,8 +32,11 @@ namespace Accura_MES.Services
         {
             // 建立通用 repository
             IGenericRepository genericRepository = GenericRepository.CreateRepository(connectionString, null);
+            
+            // 建立序列號服務
+            ISequenceService sequenceService = SequenceService.CreateService(connectionString);
 
-            return new OffsetService(connectionString, genericRepository);
+            return new OffsetService(connectionString, genericRepository, sequenceService);
         }
 
         /// <summary>
@@ -159,7 +164,7 @@ namespace Accura_MES.Services
                         AND ISNULL(shippingOrder.price, 0) > 0
                         AND (
                             (shippingOrder.type = '1' 
-                             AND ISNULL(shippingOrder.price, 0) * ISNULL(shippingOrder.outputMeters, 0) > ISNULL(shippingOrder.offsetMoney, 0))
+                             AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.outputMeters, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
                             OR
                             (shippingOrder.type = '2' 
                              AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
@@ -289,6 +294,218 @@ namespace Accura_MES.Services
                 Debug.WriteLine($"[OffsetService] 取得未沖帳清單失敗: {ex.Message}");
                 return await this.HandleExceptionAsync(ex, null);
             }
+        }
+
+        /// <summary>
+        /// 沖帳
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="requests">沖帳請求列表</param>
+        /// <returns>響應對象</returns>
+        public async Task<ResponseObject> Offset(long userId, List<OffsetRequest> requests)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                var createdOffsetRecordIds = new List<long>();
+
+                // 1. 迴圈 api payload 陣列
+                foreach (var request in requests)
+                {
+                    // 2. 先針對 offsetRecord 做建立
+                    var offsetRecord = request.offsetRecord;
+                    
+                    // 生成編號
+                    string offsetNumber = await GenerateOffsetNumber(connection, transaction, offsetRecord.offsetDate);
+                    
+                    // 準備 offsetRecord 資料（只包含資料表需要的欄位）
+                    var offsetRecordData = new Dictionary<string, object?>
+                    {
+                        ["number"] = offsetNumber,
+                        ["offsetDate"] = DateTime.Parse(offsetRecord.offsetDate).Date,
+                        ["customerId"] = offsetRecord.customerId,
+                        ["note"] = offsetRecord.note,
+                        ["discount"] = offsetRecord.discount,
+                        ["prePayMoney"] = offsetRecord.prePayMoney,
+                        ["totalOffsetMoney"] = offsetRecord.totalOffsetMoney,
+                        ["shouldBeOffsetMoney"] = offsetRecord.shouldBeOffsetMoney
+                    };
+
+                    // 建立 offsetRecord
+                    var offsetRecordIds = await _genericRepository.CreateDataGeneric(
+                        connection,
+                        transaction,
+                        userId,
+                        "offsetRecord",
+                        new List<Dictionary<string, object?>> { offsetRecordData }
+                    );
+
+                    if (offsetRecordIds == null || !offsetRecordIds.Any())
+                    {
+                        throw new Exception("建立 offsetRecord 失敗");
+                    }
+
+                    long offsetRecordId = offsetRecordIds.First();
+                    createdOffsetRecordIds.Add(offsetRecordId);
+
+                    // 3. 迴圈 offsetRecordReceipts，建立 offsetRecord_receipt
+                    if (request.offsetRecordReceipts != null && request.offsetRecordReceipts.Any())
+                    {
+                        var receiptDataList = new List<Dictionary<string, object?>>();
+                        foreach (var receipt in request.offsetRecordReceipts)
+                        {
+                            var receiptData = new Dictionary<string, object?>
+                            {
+                                ["offsetRecordId"] = offsetRecordId,
+                                ["receiptId"] = receipt.receiptId,
+                                ["price"] = receipt.price
+                            };
+                            receiptDataList.Add(receiptData);
+                        }
+
+                        await _genericRepository.CreateDataGeneric(
+                            connection,
+                            transaction,
+                            userId,
+                            "offsetRecord_receipt",
+                            receiptDataList
+                        );
+                    }
+
+                    // 4. 迴圈 offsetRecordShippingOrders，建立 offsetRecord_shippingOrder
+                    if (request.offsetRecordShippingOrders != null && request.offsetRecordShippingOrders.Any())
+                    {
+                        var shippingOrderDataList = new List<Dictionary<string, object?>>();
+                        foreach (var shippingOrder in request.offsetRecordShippingOrders)
+                        {
+                            var shippingOrderData = new Dictionary<string, object?>
+                            {
+                                ["offsetRecordId"] = offsetRecordId,
+                                ["shippingOrderId"] = shippingOrder.shippingOrderId,
+                                ["price"] = shippingOrder.price,
+                                ["quantity"] = shippingOrder.quantity,
+                                ["offsetMoney"] = shippingOrder.offsetMoney
+                            };
+                            shippingOrderDataList.Add(shippingOrderData);
+                        }
+
+                        await _genericRepository.CreateDataGeneric(
+                            connection,
+                            transaction,
+                            userId,
+                            "offsetRecord_shippingOrder",
+                            shippingOrderDataList
+                        );
+
+                        // 5. 迴圈 offsetRecordShippingOrders，更新 shippingOrder.offsetMoney
+                        foreach (var shippingOrder in request.offsetRecordShippingOrders)
+                        {
+                            // 先查詢當前的 offsetMoney
+                            string getCurrentOffsetMoneySql = @"
+                                SELECT ISNULL(offsetMoney, 0)
+                                FROM shippingOrder
+                                WHERE id = @shippingOrderId";
+
+                            decimal currentOffsetMoney = 0;
+                            using (var getCommand = new SqlCommand(getCurrentOffsetMoneySql, connection, transaction))
+                            {
+                                getCommand.Parameters.AddWithValue("@shippingOrderId", shippingOrder.shippingOrderId);
+                                var result = await getCommand.ExecuteScalarAsync();
+                                if (result != null && result != DBNull.Value)
+                                {
+                                    currentOffsetMoney = Convert.ToDecimal(result);
+                                }
+                            }
+
+                            // 計算新的 offsetMoney（原先的 + 本次沖帳金額）
+                            decimal newOffsetMoney = currentOffsetMoney + shippingOrder.offsetMoney;
+
+                            // 更新 shippingOrder.offsetMoney
+                            string updateOffsetMoneySql = @"
+                                UPDATE shippingOrder
+                                SET offsetMoney = @offsetMoney,
+                                    modifiedBy = @modifiedBy,
+                                    modifiedOn = GETDATE()
+                                WHERE id = @shippingOrderId";
+
+                            using (var updateCommand = new SqlCommand(updateOffsetMoneySql, connection, transaction))
+                            {
+                                updateCommand.Parameters.AddWithValue("@offsetMoney", newOffsetMoney);
+                                updateCommand.Parameters.AddWithValue("@modifiedBy", userId);
+                                updateCommand.Parameters.AddWithValue("@shippingOrderId", shippingOrder.shippingOrderId);
+                                await updateCommand.ExecuteNonQueryAsync();
+                            }
+                        }
+                    }
+                }
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[OffsetService] 成功創建 {createdOffsetRecordIds.Count} 筆沖帳記錄");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = createdOffsetRecordIds;
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[OffsetService] 沖帳失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 生成沖帳編號
+        /// 格式：民國年 + MMdd + 序列號（0001開始）
+        /// 例如：offsetDate = '2025-01-02'，編號為 11401020001（114是民國年，0102是月日，0001是序列號）
+        /// </summary>
+        private async Task<string> GenerateOffsetNumber(
+            SqlConnection connection,
+            SqlTransaction transaction,
+            string offsetDate)
+        {
+            if (!DateTime.TryParse(offsetDate, out DateTime date))
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    $"offsetDate 格式不正確: {offsetDate}"
+                );
+            }
+
+            // 使用 offsetDate 作為分組鍵（格式：yyyy-MM-dd）
+            string groupKey = date.ToString("yyyy-MM-dd");
+
+            // 生成序列號（格式：0001, 0002, 0003...）
+            string sequenceNumber = await _sequenceService.GetNextNumberAsync(
+                connection,
+                transaction,
+                tableName: "offsetRecord",
+                groupKey: groupKey,
+                numberFormat: "0000"
+            );
+
+            // 計算民國年（民國年 = 西元年 - 1911）
+            int rocYear = date.Year - 1911;
+            string monthDay = date.ToString("MMdd");
+            
+            // 組合編號：民國年 + MMdd + 序列號
+            // 例如：114 + 0102 + 0001 = 11401020001
+            string offsetNumber = $"{rocYear}{monthDay}{sequenceNumber}";
+
+            Debug.WriteLine($"[OffsetService] 為日期 {groupKey} 生成沖帳編號: {offsetNumber}");
+
+            return offsetNumber;
         }
     }
 }
