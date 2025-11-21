@@ -18,6 +18,13 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="requests">沖帳請求列表</param>
         /// <returns>響應對象</returns>
         Task<ResponseObject> Offset(long userId, List<OffsetRequest> requests);
+
+        /// <summary>
+        /// 取得沖帳紀錄
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含沖帳紀錄及其關聯的收款單和出貨單</returns>
+        Task<ResponseObject> GetOffsetRecords(GetOffsetRecordsRequest request);
     }
 }
 

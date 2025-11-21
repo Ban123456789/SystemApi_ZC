@@ -466,6 +466,324 @@ namespace Accura_MES.Services
         }
 
         /// <summary>
+        /// 取得沖帳紀錄
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含沖帳紀錄及其關聯的收款單和出貨單</returns>
+        public async Task<ResponseObject> GetOffsetRecords(GetOffsetRecordsRequest request)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                // 1. 查詢沖帳紀錄
+                var offsetRecordSqlBuilder = new System.Text.StringBuilder(@"
+                    SELECT 
+                        offsetRecord.id as id,
+                        offsetRecord.number as number,
+                        offsetRecord.offsetDate as offsetDate,
+                        offsetRecord.customerId as customerId,
+                        offsetRecord.note as note,
+                        offsetRecord.discount as discount,
+                        offsetRecord.prePayMoney as prePayMoney,
+                        offsetRecord.totalOffsetMoney as totalOffsetMoney,
+                        offsetRecord.shouldBeOffsetMoney as shouldBeOffsetMoney,
+                        offsetRecord.createdOn as createdOn,
+                        customer.number as customerNumber,
+                        customer.name as customerName,
+                        customer.nickName as customerNickName,
+                        [user].name as createdBy
+                    FROM offsetRecord 
+                    INNER JOIN [user]
+                        ON offsetRecord.createdBy = [user].id
+                    INNER JOIN customer
+                        ON offsetRecord.customerId = customer.id
+                    WHERE offsetRecord.isDelete = 0");
+
+                var offsetRecordParameters = new List<SqlParameter>();
+
+                // 動態添加日期條件
+                if (!string.IsNullOrEmpty(request.offsetDateStart))
+                {
+                    offsetRecordSqlBuilder.Append($" AND offsetRecord.offsetDate >= '{request.offsetDateStart}'");
+                }
+
+                if (!string.IsNullOrEmpty(request.offsetDateEnd))
+                {
+                    offsetRecordSqlBuilder.Append($" AND offsetRecord.offsetDate <= '{request.offsetDateEnd}'");
+                }
+
+                // 動態添加客戶 ID 條件
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIds = string.Join(",", request.customerIds);
+                    offsetRecordSqlBuilder.Append($" AND offsetRecord.customerId IN ({customerIds})");
+                }
+
+                var offsetRecords = new List<Dictionary<string, object>>();
+                using (var offsetRecordCommand = new SqlCommand(offsetRecordSqlBuilder.ToString(), connection))
+                {
+                    offsetRecordCommand.Parameters.AddRange(offsetRecordParameters.ToArray());
+                    using var offsetRecordReader = await offsetRecordCommand.ExecuteReaderAsync();
+                    
+                    while (await offsetRecordReader.ReadAsync())
+                    {
+                        var offsetRecord = new Dictionary<string, object>();
+                        offsetRecord["id"] = offsetRecordReader.GetInt64(offsetRecordReader.GetOrdinal("id"));
+                        offsetRecord["number"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("number")) ? null : offsetRecordReader.GetString(offsetRecordReader.GetOrdinal("number"));
+                        
+                        // 格式化日期為 yyyy-MM-dd
+                        if (!offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("offsetDate")))
+                        {
+                            DateTime offsetDate = offsetRecordReader.GetDateTime(offsetRecordReader.GetOrdinal("offsetDate"));
+                            offsetRecord["offsetDate"] = offsetDate.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            offsetRecord["offsetDate"] = null;
+                        }
+                        
+                        offsetRecord["customerId"] = offsetRecordReader.GetInt64(offsetRecordReader.GetOrdinal("customerId"));
+                        offsetRecord["note"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("note")) ? null : offsetRecordReader.GetString(offsetRecordReader.GetOrdinal("note"));
+                        offsetRecord["discount"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("discount")) ? 0 : offsetRecordReader.GetDecimal(offsetRecordReader.GetOrdinal("discount"));
+                        offsetRecord["prePayMoney"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("prePayMoney")) ? 0 : offsetRecordReader.GetDecimal(offsetRecordReader.GetOrdinal("prePayMoney"));
+                        offsetRecord["totalOffsetMoney"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("totalOffsetMoney")) ? 0 : offsetRecordReader.GetDecimal(offsetRecordReader.GetOrdinal("totalOffsetMoney"));
+                        offsetRecord["shouldBeOffsetMoney"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("shouldBeOffsetMoney")) ? 0 : offsetRecordReader.GetDecimal(offsetRecordReader.GetOrdinal("shouldBeOffsetMoney"));
+                        
+                        // 格式化日期為 yyyy-MM-dd HH:mm:ss
+                        if (!offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("createdOn")))
+                        {
+                            DateTime createdOn = offsetRecordReader.GetDateTime(offsetRecordReader.GetOrdinal("createdOn"));
+                            offsetRecord["createdOn"] = createdOn.ToString("yyyy-MM-dd HH:mm:ss");
+                        }
+                        else
+                        {
+                            offsetRecord["createdOn"] = null;
+                        }
+                        
+                        offsetRecord["customerNumber"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("customerNumber")) ? null : offsetRecordReader.GetString(offsetRecordReader.GetOrdinal("customerNumber"));
+                        offsetRecord["customerName"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("customerName")) ? null : offsetRecordReader.GetString(offsetRecordReader.GetOrdinal("customerName"));
+                        offsetRecord["customerNickName"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("customerNickName")) ? null : offsetRecordReader.GetString(offsetRecordReader.GetOrdinal("customerNickName"));
+                        offsetRecord["createdBy"] = offsetRecordReader.IsDBNull(offsetRecordReader.GetOrdinal("createdBy")) ? null : offsetRecordReader.GetString(offsetRecordReader.GetOrdinal("createdBy"));
+                        
+                        offsetRecords.Add(offsetRecord);
+                    }
+                }
+
+                // 2. 查詢沖帳紀錄與收款單關聯
+                var receiptSqlBuilder = new System.Text.StringBuilder(@"
+                    SELECT
+                        offsetRecord_receipt.id as id,
+                        offsetRecord_receipt.offsetRecordId as offsetRecordId,
+                        offsetRecord_receipt.receiptId as receiptId,
+                        offsetRecord_receipt.price as price,
+                        receipt.number as receiptNumber,
+                        receipt.receiptDate as receiptDate,
+                        receipt.paymentType as paymentType,
+                        receipt.note as receiptNote,
+                        receipt.price as receiptPrice
+                    FROM offsetRecord_receipt
+                    INNER JOIN offsetRecord
+                        ON offsetRecord_receipt.offsetRecordId = offsetRecord.id AND offsetRecord.isDelete = 0
+                    INNER JOIN receipt
+                        ON offsetRecord_receipt.receiptId = receipt.id
+                    WHERE offsetRecord_receipt.isDelete = 0");
+
+                var receiptParameters = new List<SqlParameter>();
+
+                // 動態添加日期條件
+                if (!string.IsNullOrEmpty(request.offsetDateStart))
+                {
+                    receiptSqlBuilder.Append($" AND offsetRecord.offsetDate >= '{request.offsetDateStart}'");
+                }
+
+                if (!string.IsNullOrEmpty(request.offsetDateEnd))
+                {
+                    receiptSqlBuilder.Append($" AND offsetRecord.offsetDate <='{request.offsetDateEnd}'");
+                }
+
+                // 動態添加客戶 ID 條件
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIds = string.Join(",", request.customerIds);
+                    receiptSqlBuilder.Append($" AND offsetRecord.customerId IN ({customerIds})");
+                }
+
+                var offsetRecordReceipts = new List<Dictionary<string, object>>();
+                using (var receiptCommand = new SqlCommand(receiptSqlBuilder.ToString(), connection))
+                {
+                    receiptCommand.Parameters.AddRange(receiptParameters.ToArray());
+                    using var receiptReader = await receiptCommand.ExecuteReaderAsync();
+                    
+                    while (await receiptReader.ReadAsync())
+                    {
+                        var receipt = new Dictionary<string, object>();
+                        receipt["id"] = receiptReader.GetInt64(receiptReader.GetOrdinal("id"));
+                        receipt["offsetRecordId"] = receiptReader.GetInt64(receiptReader.GetOrdinal("offsetRecordId"));
+                        receipt["receiptId"] = receiptReader.GetInt64(receiptReader.GetOrdinal("receiptId"));
+                        receipt["price"] = receiptReader.IsDBNull(receiptReader.GetOrdinal("price")) ? 0 : receiptReader.GetDecimal(receiptReader.GetOrdinal("price"));
+                        receipt["receiptNumber"] = receiptReader.IsDBNull(receiptReader.GetOrdinal("receiptNumber")) ? null : receiptReader.GetString(receiptReader.GetOrdinal("receiptNumber"));
+                        
+                        // 格式化日期為 yyyy-MM-dd
+                        if (!receiptReader.IsDBNull(receiptReader.GetOrdinal("receiptDate")))
+                        {
+                            DateTime receiptDate = receiptReader.GetDateTime(receiptReader.GetOrdinal("receiptDate"));
+                            receipt["receiptDate"] = receiptDate.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            receipt["receiptDate"] = null;
+                        }
+                        
+                        receipt["paymentType"] = receiptReader.IsDBNull(receiptReader.GetOrdinal("paymentType")) ? null : receiptReader.GetString(receiptReader.GetOrdinal("paymentType"));
+                        receipt["receiptNote"] = receiptReader.IsDBNull(receiptReader.GetOrdinal("receiptNote")) ? null : receiptReader.GetString(receiptReader.GetOrdinal("receiptNote"));
+                        receipt["receiptPrice"] = receiptReader.IsDBNull(receiptReader.GetOrdinal("receiptPrice")) ? 0 : receiptReader.GetDecimal(receiptReader.GetOrdinal("receiptPrice"));
+                        
+                        offsetRecordReceipts.Add(receipt);
+                    }
+                }
+
+                // 3. 查詢沖帳紀錄與出貨單關聯
+                var shippingOrderSqlBuilder = new System.Text.StringBuilder(@"
+                    SELECT
+                        offsetRecord_shippingOrder.id as id,
+                        offsetRecord_shippingOrder.offsetRecordId as offsetRecordId,
+                        offsetRecord_shippingOrder.shippingOrderId as shippingOrderId,
+                        offsetRecord_shippingOrder.price as price,
+                        offsetRecord_shippingOrder.quantity as quantity,
+                        offsetRecord_shippingOrder.offsetMoney as offsetMoney,
+                        shippingOrder.type as type,
+                        shippingOrder.price as shippingOrderPrice,
+                        shippingOrder.outputMeters as outputMeters,
+                        shippingOrder.offsetMoney as shippingOrderOffsetMoney,
+                        [order].id as orderId,
+                        [order].shippedDate as shippedDate,
+                        customer.id as customerId,
+                        customer.number as customerNumber,
+                        customer.name as customerName,
+                        customer.nickName as customerNickName,
+                        project.id as projectId,
+                        project.number as projectNumber,
+                        project.name as projectName,
+                        [product].id as productId,
+                        [product].number as productNumber
+                    FROM offsetRecord_shippingOrder
+                    INNER JOIN offsetRecord
+                        ON offsetRecord_shippingOrder.offsetRecordId = offsetRecord.id AND offsetRecord.isDelete = 0
+                    INNER JOIN shippingOrder
+                        ON offsetRecord_shippingOrder.shippingOrderId = shippingOrder.id
+                    INNER JOIN [order]
+                        ON shippingOrder.orderId = [order].id
+                    INNER JOIN customer
+                        ON shippingOrder.customerId = customer.id
+                    INNER JOIN project
+                        ON shippingOrder.projectId = project.id
+                    INNER JOIN [product]
+                        ON shippingOrder.productId = [product].id
+                    WHERE offsetRecord_shippingOrder.isDelete = 0");
+
+                var shippingOrderParameters = new List<SqlParameter>();
+
+                // 動態添加日期條件
+                if (!string.IsNullOrEmpty(request.offsetDateStart))
+                {
+                    shippingOrderSqlBuilder.Append($" AND offsetRecord.offsetDate >= '{request.offsetDateStart}'");
+                }
+
+                if (!string.IsNullOrEmpty(request.offsetDateEnd))
+                {
+                    shippingOrderSqlBuilder.Append($" AND offsetRecord.offsetDate <= '{request.offsetDateEnd}'");
+                }
+
+                // 動態添加客戶 ID 條件
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIds = string.Join(",", request.customerIds);
+                    shippingOrderSqlBuilder.Append($" AND offsetRecord.customerId IN ({customerIds})");
+                }
+
+                var offsetRecordShippingOrders = new List<Dictionary<string, object>>();
+                using (var shippingOrderCommand = new SqlCommand(shippingOrderSqlBuilder.ToString(), connection))
+                {
+                    shippingOrderCommand.Parameters.AddRange(shippingOrderParameters.ToArray());
+                    using var shippingOrderReader = await shippingOrderCommand.ExecuteReaderAsync();
+                    
+                    while (await shippingOrderReader.ReadAsync())
+                    {
+                        var shippingOrder = new Dictionary<string, object>();
+                        shippingOrder["id"] = shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("id"));
+                        shippingOrder["offsetRecordId"] = shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("offsetRecordId"));
+                        shippingOrder["shippingOrderId"] = shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("shippingOrderId"));
+                        shippingOrder["price"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("price")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("price"));
+                        shippingOrder["quantity"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("quantity")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("quantity"));
+                        shippingOrder["offsetMoney"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("offsetMoney")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("offsetMoney"));
+                        shippingOrder["type"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("type")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("type"));
+                        shippingOrder["shippingOrderPrice"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("shippingOrderPrice")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("shippingOrderPrice"));
+                        shippingOrder["outputMeters"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("outputMeters")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("outputMeters"));
+                        shippingOrder["shippingOrderOffsetMoney"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("shippingOrderOffsetMoney")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("shippingOrderOffsetMoney"));
+                        shippingOrder["orderId"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("orderId")) ? (long?)null : shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("orderId"));
+                        
+                        // 格式化日期為 yyyy-MM-dd
+                        if (!shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("shippedDate")))
+                        {
+                            DateTime shippedDate = shippingOrderReader.GetDateTime(shippingOrderReader.GetOrdinal("shippedDate"));
+                            shippingOrder["shippedDate"] = shippedDate.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            shippingOrder["shippedDate"] = null;
+                        }
+                        
+                        shippingOrder["customerId"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("customerId")) ? (long?)null : shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("customerId"));
+                        shippingOrder["customerNumber"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("customerNumber")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("customerNumber"));
+                        shippingOrder["customerName"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("customerName")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("customerName"));
+                        shippingOrder["customerNickName"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("customerNickName")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("customerNickName"));
+                        shippingOrder["projectId"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("projectId")) ? (long?)null : shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("projectId"));
+                        shippingOrder["projectNumber"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("projectNumber")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("projectNumber"));
+                        shippingOrder["projectName"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("projectName")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("projectName"));
+                        shippingOrder["productId"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("productId")) ? (long?)null : shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("productId"));
+                        shippingOrder["productNumber"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("productNumber")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("productNumber"));
+                        
+                        offsetRecordShippingOrders.Add(shippingOrder);
+                    }
+                }
+
+                // 4. 依照 offsetRecords 為主，將相同的 offsetRecord.id 整合在一起
+                var result = new List<Dictionary<string, object>>();
+                
+                foreach (var offsetRecord in offsetRecords)
+                {
+                    long offsetRecordId = (long)offsetRecord["id"];
+                    
+                    // 在 offsetRecord 本身添加 offsetRecordReceipts 和 offsetRecordShippingOrders 陣列
+                    offsetRecord["offsetRecordReceipts"] = offsetRecordReceipts
+                        .Where(r => (long)r["offsetRecordId"] == offsetRecordId)
+                        .ToList();
+                    offsetRecord["offsetRecordShippingOrders"] = offsetRecordShippingOrders
+                        .Where(s => (long)s["offsetRecordId"] == offsetRecordId)
+                        .ToList();
+                    
+                    result.Add(offsetRecord);
+                }
+
+                Debug.WriteLine($"[OffsetService] 成功取得 {result.Count} 筆沖帳紀錄");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = result;
+
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[OffsetService] 取得沖帳紀錄失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, null);
+            }
+        }
+
+        /// <summary>
         /// 生成沖帳編號
         /// 格式：民國年 + MMdd + 序列號（0001開始）
         /// 例如：offsetDate = '2025-01-02'，編號為 11401020001（114是民國年，0102是月日，0001是序列號）
