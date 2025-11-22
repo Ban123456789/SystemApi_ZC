@@ -517,7 +517,8 @@ namespace Accura_MES.Services
                         shippingOrder.id,
                         shippingOrder.customerId,
                         shippingOrder.projectId,
-                        shippingOrder.productId
+                        shippingOrder.productId,
+                        shippingOrder.offsetMoney
                     FROM
                         shippingOrder
                     INNER JOIN [order]
@@ -565,6 +566,17 @@ namespace Accura_MES.Services
                 using var reader = await command.ExecuteReaderAsync();
                 while (await reader.ReadAsync())
                 {
+                    // 檢查 offsetMoney 是否大於 0，如果大於 0 就直接返回錯誤
+                    decimal offsetMoney = reader.IsDBNull(reader.GetOrdinal("offsetMoney")) ? 0 : reader.GetDecimal(reader.GetOrdinal("offsetMoney"));
+                    
+                    if (offsetMoney > 0)
+                    {
+                        reader.Close();
+                        await transaction.RollbackAsync();
+                        responseObject.SetErrorCode(SelfErrorCode.SHIPPING_ORDER_ALREADY_OFFSET_CANNOT_RECALCULATE);
+                        return responseObject;
+                    }
+                    
                     shippingOrdersToUpdate.Add(new Dictionary<string, object>
                     {
                         ["id"] = reader.GetInt64(reader.GetOrdinal("id")),

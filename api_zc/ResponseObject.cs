@@ -543,6 +543,10 @@ namespace Accura_MES
         /// 該應收帳款已沖銷，故不能編輯
         /// </summary>
         public static readonly SelfErrorCode RECEIVABLE_ALREADY_OFFSET_CANNOT_EDIT = new SelfErrorCode("400-24", "該應收帳款已沖銷，故不能編輯");
+        /// <summary>
+        /// 重新計算的條件內包含已沖銷的出貨單，故不能重新計算
+        /// </summary>
+        public static readonly SelfErrorCode SHIPPING_ORDER_ALREADY_OFFSET_CANNOT_RECALCULATE = new SelfErrorCode("400-25", "重新計算的條件內包含已沖銷的出貨單，故不能重新計算");
         #endregion
 
         /// <summary>
