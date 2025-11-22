@@ -1399,6 +1399,52 @@ namespace Accura_MES.Services
                 await connection.OpenAsync();
                 transaction = connection.BeginTransaction();
 
+                // 0. 檢查出貨單是否已沖帳過
+                string checkOffsetSql = $@"
+                    SELECT 
+                        shippingOrder.id as id,
+                        shippingOrder.number as number,
+                        [order].shippedDate as shippedDate
+                    FROM shippingOrder
+                    INNER JOIN [order]
+                        ON shippingOrder.orderId = [order].id
+                    WHERE shippingOrder.offsetMoney > 0
+                    AND shippingOrder.id IN ({request.shippingOrder["id"]})";
+
+                var offsetShippingOrders = new List<Dictionary<string, object>>();
+                using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))
+                {
+                    using var reader = await checkCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        var shippingOrder = new Dictionary<string, object>();
+                        shippingOrder["id"] = reader.GetInt64(reader.GetOrdinal("id"));
+                        shippingOrder["number"] = reader.IsDBNull(reader.GetOrdinal("number")) ? null : reader.GetString(reader.GetOrdinal("number"));
+                        
+                        // 格式化日期為 yyyy-MM-dd
+                        if (!reader.IsDBNull(reader.GetOrdinal("shippedDate")))
+                        {
+                            DateTime shippedDate = reader.GetDateTime(reader.GetOrdinal("shippedDate"));
+                            shippingOrder["shippedDate"] = shippedDate.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            shippingOrder["shippedDate"] = null;
+                        }
+                        
+                        offsetShippingOrders.Add(shippingOrder);
+                    }
+                }
+
+                // 如果取出來的筆數 > 0，將資料放到 errorData 並返回錯誤
+                if (offsetShippingOrders.Any())
+                {
+                    await transaction.RollbackAsync();
+                    responseObject.SetErrorCode(SelfErrorCode.RECEIVABLE_ALREADY_OFFSET_CANNOT_EDIT);
+                    responseObject.ErrorData = offsetShippingOrders;
+                    return responseObject;
+                }
+
                 // 1. 更新 order
                 // 轉換 Dictionary<string, object?> 為 Dictionary<string, object>
                 Dictionary<string, object> orderDict = new Dictionary<string, object>();

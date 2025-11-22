@@ -538,6 +538,11 @@ namespace Accura_MES
         /// 該應收帳款已沖銷，故不能刪除
         /// </summary>
         public static readonly SelfErrorCode RECEIVABLE_ALREADY_OFFSET_CANNOT_DELETE = new SelfErrorCode("400-23", "該應收帳款已沖銷，故不能刪除");
+
+        /// <summary>
+        /// 該應收帳款已沖銷，故不能編輯
+        /// </summary>
+        public static readonly SelfErrorCode RECEIVABLE_ALREADY_OFFSET_CANNOT_EDIT = new SelfErrorCode("400-24", "該應收帳款已沖銷，故不能編輯");
         #endregion
 
         /// <summary>
