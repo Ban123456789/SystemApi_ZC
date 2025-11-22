@@ -518,6 +518,22 @@ namespace Accura_MES
         /// 反沖銷作業錯誤: 出貨單沖銷金額扣除反沖銷金額結果小於0，請聯絡工程團隊協助處理 (出貨單 ID: {0})
         /// </summary>
         public static readonly SelfErrorCode ROLLBACK_OFFSET_NEGATIVE_AMOUNT = new SelfErrorCode("400-18", "反沖銷作業錯誤: 出貨單沖銷金額扣除反沖銷金額結果小於0，請聯絡工程團隊協助處理 (出貨單 ID: {0})");
+        /// <summary>
+        /// 本次沖帳有收款單已沖帳過，請重新整理畫面後重新沖帳
+        /// </summary>
+        public static readonly SelfErrorCode RECEIPT_ALREADY_OFFSET_IN_CURRENT_REQUEST = new SelfErrorCode("400-19", "本次沖帳有收款單已沖帳過，請重新整理畫面後重新沖帳");
+        /// <summary>
+        /// 本次沖帳有出貨單已完全沖帳，請重新整理畫面後重新沖帳
+        /// </summary>
+        public static readonly SelfErrorCode SHIPPING_ORDER_ALREADY_FULLY_OFFSET = new SelfErrorCode("400-20", "本次沖帳有出貨單已完全沖帳，請重新整理畫面後重新沖帳");
+        /// <summary>
+        /// 本次沖帳有已被刪除的收款單，請重新整理畫面後重新沖帳
+        /// </summary>
+        public static readonly SelfErrorCode RECEIPT_DELETED_IN_CURRENT_REQUEST = new SelfErrorCode("400-21", "本次沖帳有已被刪除的收款單，請重新整理畫面後重新沖帳");
+        /// <summary>
+        /// 本次沖帳有出貨單已被刪除，請重新整理畫面後重新沖帳
+        /// </summary>
+        public static readonly SelfErrorCode SHIPPING_ORDER_DELETED_IN_CURRENT_REQUEST = new SelfErrorCode("400-22", "本次沖帳有出貨單已被刪除，請重新整理畫面後重新沖帳");
         #endregion
 
         /// <summary>

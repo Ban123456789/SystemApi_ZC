@@ -357,6 +357,61 @@ namespace Accura_MES.Services
                     // 3. 迴圈 offsetRecordReceipts，建立 offsetRecord_receipt
                     if (request.offsetRecordReceipts != null && request.offsetRecordReceipts.Any())
                     {
+                        // 檢查是否有收款單已沖帳過
+                        var receiptIds = request.offsetRecordReceipts.Select(r => r.receiptId).ToList();
+                        var receiptIdParams = string.Join(",", receiptIds);
+                        
+                        string checkReceiptSql = $@"
+                            SELECT id 
+                            FROM offsetRecord_receipt 
+                            WHERE receiptId IN ({receiptIdParams}) AND isDelete = 0";
+                        
+                        var existingReceiptIds = new List<long>();
+                        using (var checkCommand = new SqlCommand(checkReceiptSql, connection, transaction))
+                        {
+                            using var reader = await checkCommand.ExecuteReaderAsync();
+                            while (await reader.ReadAsync())
+                            {
+                                existingReceiptIds.Add(reader.GetInt64(0));
+                            }
+                        }
+                        
+                        // 如果有收款單已沖帳過，拋出錯誤
+                        if (existingReceiptIds.Any())
+                        {
+                            await transaction.RollbackAsync();
+                            throw new CustomErrorCodeException(
+                                SelfErrorCode.RECEIPT_ALREADY_OFFSET_IN_CURRENT_REQUEST,
+                                "本次沖帳有收款單已沖帳過，請重新整理畫面後重新沖帳"
+                            );
+                        }
+                        
+                        // 檢查是否有收款單已被刪除
+                        string checkReceiptDeletedSql = $@"
+                            SELECT id 
+                            FROM receipt 
+                            WHERE id IN ({receiptIdParams}) AND isDelete = 1";
+                        
+                        var deletedReceiptIds = new List<long>();
+                        using (var checkCommand = new SqlCommand(checkReceiptDeletedSql, connection, transaction))
+                        {
+                            using var reader = await checkCommand.ExecuteReaderAsync();
+                            while (await reader.ReadAsync())
+                            {
+                                deletedReceiptIds.Add(reader.GetInt64(0));
+                            }
+                        }
+                        
+                        // 如果有收款單已被刪除，拋出錯誤
+                        if (deletedReceiptIds.Any())
+                        {
+                            await transaction.RollbackAsync();
+                            throw new CustomErrorCodeException(
+                                SelfErrorCode.RECEIPT_DELETED_IN_CURRENT_REQUEST,
+                                "本次沖帳有已被刪除的收款單，請重新整理畫面後重新沖帳"
+                            );
+                        }
+                        
                         var receiptDataList = new List<Dictionary<string, object?>>();
                         foreach (var receipt in request.offsetRecordReceipts)
                         {
@@ -381,6 +436,70 @@ namespace Accura_MES.Services
                     // 4. 迴圈 offsetRecordShippingOrders，建立 offsetRecord_shippingOrder
                     if (request.offsetRecordShippingOrders != null && request.offsetRecordShippingOrders.Any())
                     {
+                        // 檢查出貨單是否已完全沖帳
+                        var shippingOrderIds = request.offsetRecordShippingOrders.Select(s => s.shippingOrderId).ToList();
+                        var shippingOrderIdParams = string.Join(",", shippingOrderIds);
+                        
+                        string checkShippingOrderSql = $@"
+                            SELECT id 
+                            FROM shippingOrder
+                            WHERE id IN ({shippingOrderIdParams})
+                            AND ISNULL(shippingOrder.price, 0) > 0
+                            AND (
+                                (shippingOrder.type = '1' 
+                                    AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.outputMeters, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
+                                OR
+                                (shippingOrder.type = '2' 
+                                    AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
+                            )";
+                        
+                        var validShippingOrderIds = new List<long>();
+                        using (var checkCommand = new SqlCommand(checkShippingOrderSql, connection, transaction))
+                        {
+                            using var reader = await checkCommand.ExecuteReaderAsync();
+                            while (await reader.ReadAsync())
+                            {
+                                validShippingOrderIds.Add(reader.GetInt64(0));
+                            }
+                        }
+                        
+                        // 檢查是否有出貨單已完全沖帳（不在查詢結果中）
+                        var invalidShippingOrderIds = shippingOrderIds.Except(validShippingOrderIds).ToList();
+                        if (invalidShippingOrderIds.Any())
+                        {
+                            await transaction.RollbackAsync();
+                            throw new CustomErrorCodeException(
+                                SelfErrorCode.SHIPPING_ORDER_ALREADY_FULLY_OFFSET,
+                                "本次沖帳有出貨單已完全沖帳，請重新整理畫面後重新沖帳"
+                            );
+                        }
+                        
+                        // 檢查是否有出貨單已被刪除
+                        string checkShippingOrderDeletedSql = $@"
+                            SELECT id 
+                            FROM shippingOrder 
+                            WHERE id IN ({shippingOrderIdParams}) AND isDelete = 1";
+                        
+                        var deletedShippingOrderIds = new List<long>();
+                        using (var checkCommand = new SqlCommand(checkShippingOrderDeletedSql, connection, transaction))
+                        {
+                            using var reader = await checkCommand.ExecuteReaderAsync();
+                            while (await reader.ReadAsync())
+                            {
+                                deletedShippingOrderIds.Add(reader.GetInt64(0));
+                            }
+                        }
+                        
+                        // 如果有出貨單已被刪除，拋出錯誤
+                        if (deletedShippingOrderIds.Any())
+                        {
+                            await transaction.RollbackAsync();
+                            throw new CustomErrorCodeException(
+                                SelfErrorCode.SHIPPING_ORDER_DELETED_IN_CURRENT_REQUEST,
+                                "本次沖帳有出貨單已被刪除，請重新整理畫面後重新沖帳"
+                            );
+                        }
+                        
                         var shippingOrderDataList = new List<Dictionary<string, object?>>();
                         foreach (var shippingOrder in request.offsetRecordShippingOrders)
                         {
