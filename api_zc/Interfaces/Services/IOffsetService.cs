@@ -25,6 +25,14 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="request">查詢請求</param>
         /// <returns>響應對象，包含沖帳紀錄及其關聯的收款單和出貨單</returns>
         Task<ResponseObject> GetOffsetRecords(GetOffsetRecordsRequest request);
+
+        /// <summary>
+        /// 反沖銷
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="request">反沖銷請求</param>
+        /// <returns>響應對象</returns>
+        Task<ResponseObject> RollbackOffset(long userId, RollbackOffsetRequest request);
     }
 }
 

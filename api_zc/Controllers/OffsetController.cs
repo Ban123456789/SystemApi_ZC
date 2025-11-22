@@ -145,6 +145,53 @@ namespace Accura_MES.Controllers
                 return this.HandleAccuraException(null, ex);
             }
         }
+
+        /// <summary>
+        /// 反沖銷
+        /// </summary>
+        /// <param name="request">反沖銷請求</param>
+        /// <returns></returns>
+        [HttpPost("RollbackOffset")]
+        public async Task<IActionResult> RollbackOffset([FromBody] RollbackOffsetRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "反沖銷請求不能為空");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                IOffsetService offsetService = OffsetService.CreateService(connectionString);
+
+                // 執行反沖銷
+                ResponseObject responseObject = await offsetService.RollbackOffset(user, request);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
     }
 }
 

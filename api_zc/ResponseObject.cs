@@ -514,6 +514,10 @@ namespace Accura_MES
         /// 已沖帳的收款單不能編輯
         /// </summary>
         public static readonly SelfErrorCode RECEIPT_ALREADY_OFFSET_CANNOT_EDIT = new SelfErrorCode("400-17", "已沖帳的收款單不能編輯");
+        /// <summary>
+        /// 反沖銷作業錯誤: 出貨單沖銷金額扣除反沖銷金額結果小於0，請聯絡工程團隊協助處理 (出貨單 ID: {0})
+        /// </summary>
+        public static readonly SelfErrorCode ROLLBACK_OFFSET_NEGATIVE_AMOUNT = new SelfErrorCode("400-18", "反沖銷作業錯誤: 出貨單沖銷金額扣除反沖銷金額結果小於0，請聯絡工程團隊協助處理 (出貨單 ID: {0})");
         #endregion
 
         /// <summary>

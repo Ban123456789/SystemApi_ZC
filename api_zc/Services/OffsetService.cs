@@ -784,6 +784,187 @@ namespace Accura_MES.Services
         }
 
         /// <summary>
+        /// 反沖銷
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="request">反沖銷請求</param>
+        /// <returns>響應對象</returns>
+        public async Task<ResponseObject> RollbackOffset(long userId, RollbackOffsetRequest request)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                // 1. 用 offsetRecordIds 找到所有 offsetRecord
+                if (request.offsetRecordIds == null || !request.offsetRecordIds.Any())
+                {
+                    responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                    return responseObject;
+                }
+
+                var offsetRecordIdParams = string.Join(",", request.offsetRecordIds);
+                string getOffsetRecordsSql = $@"
+                    SELECT id 
+                    FROM offsetRecord 
+                    WHERE id IN ({offsetRecordIdParams}) AND isDelete = 0";
+
+                var validOffsetRecordIds = new List<long>();
+                using (var getCommand = new SqlCommand(getOffsetRecordsSql, connection, transaction))
+                {
+                    using var reader = await getCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        validOffsetRecordIds.Add(reader.GetInt64(0));
+                    }
+                }
+
+                // 2. 如果取出來的 offsetRecord ids 為空就直接返回成功
+                if (!validOffsetRecordIds.Any())
+                {
+                    await transaction.CommitAsync();
+                    responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                    return responseObject;
+                }
+
+                var validOffsetRecordIdParams = string.Join(",", validOffsetRecordIds);
+
+                // 3. 更新 offsetRecord set isDelete=1
+                string updateOffsetRecordSql = $@"
+                    UPDATE offsetRecord 
+                    SET isDelete = 1,
+                        modifiedBy = @modifiedBy,
+                        modifiedOn = GETDATE()
+                    WHERE id IN ({validOffsetRecordIdParams})";
+
+                using (var updateCommand = new SqlCommand(updateOffsetRecordSql, connection, transaction))
+                {
+                    updateCommand.Parameters.AddWithValue("@modifiedBy", userId);
+                    await updateCommand.ExecuteNonQueryAsync();
+                }
+
+                // 4. 更新 offsetRecord_receipt set isDelete=1
+                string updateOffsetRecordReceiptSql = $@"
+                    UPDATE offsetRecord_receipt 
+                    SET isDelete = 1,
+                        modifiedBy = @modifiedBy,
+                        modifiedOn = GETDATE()
+                    WHERE offsetRecordId IN ({validOffsetRecordIdParams})";
+
+                using (var updateCommand = new SqlCommand(updateOffsetRecordReceiptSql, connection, transaction))
+                {
+                    updateCommand.Parameters.AddWithValue("@modifiedBy", userId);
+                    await updateCommand.ExecuteNonQueryAsync();
+                }
+
+                // 5. 更新 offsetRecord_shippingOrder set isDelete=1
+                string updateOffsetRecordShippingOrderSql = $@"
+                    UPDATE offsetRecord_shippingOrder 
+                    SET isDelete = 1,
+                        modifiedBy = @modifiedBy,
+                        modifiedOn = GETDATE()
+                    WHERE offsetRecordId IN ({validOffsetRecordIdParams})";
+
+                using (var updateCommand = new SqlCommand(updateOffsetRecordShippingOrderSql, connection, transaction))
+                {
+                    updateCommand.Parameters.AddWithValue("@modifiedBy", userId);
+                    await updateCommand.ExecuteNonQueryAsync();
+                }
+
+                // 6. 取出所有的 offsetRecord_shippingOrder 並更新 shippingOrder.offsetMoney
+                string getOffsetRecordShippingOrdersSql = $@"
+                    SELECT shippingOrderId, offsetMoney
+                    FROM offsetRecord_shippingOrder
+                    WHERE offsetRecordId IN ({validOffsetRecordIdParams})";
+
+                var shippingOrderUpdates = new List<(long shippingOrderId, decimal offsetMoney)>();
+                using (var getCommand = new SqlCommand(getOffsetRecordShippingOrdersSql, connection, transaction))
+                {
+                    using var reader = await getCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        long shippingOrderId = reader.GetInt64(0);
+                        decimal offsetMoney = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1);
+                        shippingOrderUpdates.Add((shippingOrderId, offsetMoney));
+                    }
+                }
+
+                // 針對每一筆 offsetRecord_shippingOrder.shippingOrderId 做更新
+                foreach (var (shippingOrderId, offsetMoney) in shippingOrderUpdates)
+                {
+                    // 先查詢當前的 offsetMoney
+                    string getCurrentOffsetMoneySql = @"
+                        SELECT ISNULL(offsetMoney, 0)
+                        FROM shippingOrder
+                        WHERE id = @shippingOrderId";
+
+                    decimal currentOffsetMoney = 0;
+                    using (var getCommand = new SqlCommand(getCurrentOffsetMoneySql, connection, transaction))
+                    {
+                        getCommand.Parameters.AddWithValue("@shippingOrderId", shippingOrderId);
+                        var result = await getCommand.ExecuteScalarAsync();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            currentOffsetMoney = Convert.ToDecimal(result);
+                        }
+                    }
+
+                    // 計算新的 offsetMoney（原先的 - 本次反沖銷金額）
+                    decimal newOffsetMoney = currentOffsetMoney - offsetMoney;
+
+                    // 檢查結果是否小於 0
+                    if (newOffsetMoney < 0)
+                    {
+                        await transaction.RollbackAsync();
+                        throw new CustomErrorCodeException(
+                            SelfErrorCode.ROLLBACK_OFFSET_NEGATIVE_AMOUNT,
+                            $"反沖銷作業錯誤: 出貨單沖銷金額扣除反沖銷金額結果小於0，請聯絡工程團隊協助處理 (出貨單 ID: {shippingOrderId})",
+                            shippingOrderId
+                        );
+                    }
+
+                    // 更新 shippingOrder.offsetMoney
+                    string updateShippingOrderOffsetMoneySql = @"
+                        UPDATE shippingOrder
+                        SET offsetMoney = @offsetMoney,
+                            modifiedBy = @modifiedBy,
+                            modifiedOn = GETDATE()
+                        WHERE id = @shippingOrderId";
+
+                    using (var updateCommand = new SqlCommand(updateShippingOrderOffsetMoneySql, connection, transaction))
+                    {
+                        updateCommand.Parameters.AddWithValue("@offsetMoney", newOffsetMoney);
+                        updateCommand.Parameters.AddWithValue("@modifiedBy", userId);
+                        updateCommand.Parameters.AddWithValue("@shippingOrderId", shippingOrderId);
+                        await updateCommand.ExecuteNonQueryAsync();
+                    }
+                }
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[OffsetService] 成功反沖銷 {validOffsetRecordIds.Count} 筆沖帳紀錄");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = validOffsetRecordIds;
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[OffsetService] 反沖銷失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
         /// 生成沖帳編號
         /// 格式：民國年 + MMdd + 序列號（0001開始）
         /// 例如：offsetDate = '2025-01-02'，編號為 11401020001（114是民國年，0102是月日，0001是序列號）
