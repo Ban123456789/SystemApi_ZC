@@ -342,6 +342,130 @@ namespace Accura_MES.Services
                 return await this.HandleExceptionAsync(ex, null);
             }
         }
+
+        /// <summary>
+        /// 刪除訂單
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="request">刪除請求</param>
+        /// <returns>響應對象</returns>
+        public async Task<ResponseObject> DeleteOrders(long userId, DeleteOrdersRequest request)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                if (request.orderIds == null || !request.orderIds.Any())
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        "要刪除的訂單 ID 列表不能為空"
+                    );
+                }
+
+                // 1. 取得這些訂單底下的所有出貨單，並檢查這些出貨單是否有至少一筆是已經沖銷過
+                var orderIdParams = string.Join(",", request.orderIds);
+                string checkOffsetSql = $@"
+                    SELECT 
+                        shippingOrder.id, 
+                        shippingOrder.orderId, 
+                        [order].number
+                    FROM shippingOrder 
+                    INNER JOIN [order] 
+                        ON shippingOrder.orderId = [order].id 
+                    WHERE shippingOrder.isDelete = 0 
+                    AND shippingOrder.orderId IN ({orderIdParams})
+                    AND shippingOrder.offsetMoney > 0";
+
+                var offsetOrders = new List<Dictionary<string, object>>();
+                var processedOrderIds = new HashSet<long>();
+
+                using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))
+                {
+                    using var reader = await checkCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        long orderId = reader.GetInt64(reader.GetOrdinal("orderId"));
+                        
+                        // 相同的 orderId 就放一筆即可
+                        if (!processedOrderIds.Contains(orderId))
+                        {
+                            var orderInfo = new Dictionary<string, object>
+                            {
+                                ["orderId"] = orderId,
+                                ["orderNumber"] = reader.IsDBNull(reader.GetOrdinal("number")) ? null : reader.GetString(reader.GetOrdinal("number"))
+                            };
+                            offsetOrders.Add(orderInfo);
+                            processedOrderIds.Add(orderId);
+                        }
+                    }
+                }
+
+                // 如果取出來的資料筆數大於 0，返回錯誤
+                if (offsetOrders.Any())
+                {
+                    await transaction.RollbackAsync();
+                    responseObject.SetErrorCode(SelfErrorCode.ORDER_HAS_OFFSET_SHIPPING_ORDER_CANNOT_DELETE);
+                    responseObject.ErrorData = offsetOrders;
+                    return responseObject;
+                }
+
+                // 2. 將這些訂單標記為已刪除（isDelete = 1）
+                string deleteSql = $@"
+                    UPDATE [order] 
+                    SET isDelete = 1, 
+                        modifiedBy = @UserId, 
+                        modifiedOn = GETDATE()
+                    WHERE id IN ({orderIdParams})
+                    AND isDelete = 0";
+
+                using (var deleteCommand = new SqlCommand(deleteSql, connection, transaction))
+                {
+                    deleteCommand.Parameters.AddWithValue("@UserId", userId);
+                    int rowsAffected = await deleteCommand.ExecuteNonQueryAsync();
+                    Debug.WriteLine($"[OrderService] 標記 {rowsAffected} 個訂單為已刪除");
+                }
+
+                // 3. 將這些訂單底下的所有出貨單都刪除
+                string deleteShippingOrderSql = $@"
+                    UPDATE shippingOrder 
+                    SET isDelete = 1, 
+                        modifiedBy = @UserId, 
+                        modifiedOn = GETDATE()
+                    WHERE orderId IN ({orderIdParams})
+                    AND isDelete = 0";
+
+                using (var deleteShippingOrderCommand = new SqlCommand(deleteShippingOrderSql, connection, transaction))
+                {
+                    deleteShippingOrderCommand.Parameters.AddWithValue("@UserId", userId);
+                    int shippingOrderRowsAffected = await deleteShippingOrderCommand.ExecuteNonQueryAsync();
+                    Debug.WriteLine($"[OrderService] 標記 {shippingOrderRowsAffected} 個出貨單為已刪除");
+                }
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[OrderService] 成功刪除 {request.orderIds.Count} 個訂單");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = "刪除成功";
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[OrderService] 刪除訂單失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
     }
 }
 

@@ -1,3 +1,5 @@
+using Accura_MES.Models;
+
 namespace Accura_MES.Interfaces.Services
 {
     public interface IOrderService : IService
@@ -16,6 +18,14 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="searchParams">查詢參數（ids, shippedDate）</param>
         /// <returns></returns>
         Task<ResponseObject> GetList(Dictionary<string, object?> searchParams);
+
+        /// <summary>
+        /// 刪除訂單
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="request">刪除請求</param>
+        /// <returns>響應對象</returns>
+        Task<ResponseObject> DeleteOrders(long userId, DeleteOrdersRequest request);
     }
 }
 

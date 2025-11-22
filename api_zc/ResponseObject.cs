@@ -547,6 +547,10 @@ namespace Accura_MES
         /// 重新計算的條件內包含已沖銷的出貨單，故不能重新計算
         /// </summary>
         public static readonly SelfErrorCode SHIPPING_ORDER_ALREADY_OFFSET_CANNOT_RECALCULATE = new SelfErrorCode("400-25", "重新計算的條件內包含已沖銷的出貨單，故不能重新計算");
+        /// <summary>
+        /// 該訂單底下的出貨單已經沖銷，故不能刪除
+        /// </summary>
+        public static readonly SelfErrorCode ORDER_HAS_OFFSET_SHIPPING_ORDER_CANNOT_DELETE = new SelfErrorCode("400-26", "該訂單底下的出貨單已經沖銷，故不能刪除");
         #endregion
 
         /// <summary>
