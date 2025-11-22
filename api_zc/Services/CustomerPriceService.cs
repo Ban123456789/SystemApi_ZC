@@ -1250,14 +1250,61 @@ namespace Accura_MES.Services
                 await connection.OpenAsync();
                 transaction = connection.BeginTransaction();
 
+                // 檢查該出貨單是否已沖帳
+                var idParams = string.Join(",", request.ids);
+                string checkOffsetSql = $@"
+                    SELECT 
+                        shippingOrder.id as id,
+                        shippingOrder.number as number,
+                        [order].shippedDate as shippedDate
+                    FROM shippingOrder
+                    INNER JOIN [order]
+                        ON shippingOrder.orderId = [order].id
+                    WHERE shippingOrder.offsetMoney > 0
+                    AND shippingOrder.id IN ({idParams})";
+
+                var offsetShippingOrders = new List<Dictionary<string, object>>();
+                using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))
+                {
+                    using var reader = await checkCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        var shippingOrder = new Dictionary<string, object>();
+                        shippingOrder["id"] = reader.GetInt64(reader.GetOrdinal("id"));
+                        shippingOrder["number"] = reader.IsDBNull(reader.GetOrdinal("number")) ? null : reader.GetString(reader.GetOrdinal("number"));
+                        
+                        // 格式化日期為 yyyy-MM-dd
+                        if (!reader.IsDBNull(reader.GetOrdinal("shippedDate")))
+                        {
+                            DateTime shippedDate = reader.GetDateTime(reader.GetOrdinal("shippedDate"));
+                            shippingOrder["shippedDate"] = shippedDate.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            shippingOrder["shippedDate"] = null;
+                        }
+                        
+                        offsetShippingOrders.Add(shippingOrder);
+                    }
+                }
+
+                // 如果取出來的筆數 > 0，將資料放到 errorData 並返回錯誤
+                if (offsetShippingOrders.Any())
+                {
+                    await transaction.RollbackAsync();
+                    responseObject.SetErrorCode(SelfErrorCode.RECEIVABLE_ALREADY_OFFSET_CANNOT_DELETE);
+                    responseObject.ErrorData = offsetShippingOrders;
+                    return responseObject;
+                }
+
                 // 將這些出貨單標記為已刪除（isDelete = 1）
-                var idParams = string.Join(",", request.ids.Select((id, index) => $"@id{index}"));
+                var idParamsForDelete = string.Join(",", request.ids.Select((id, index) => $"@id{index}"));
                 string deleteSql = $@"
                     UPDATE shippingOrder 
                     SET isDelete = 1, 
                         modifiedBy = @UserId, 
                         modifiedOn = GETDATE()
-                    WHERE id IN ({idParams})
+                    WHERE id IN ({idParamsForDelete})
                     AND type = '2'
                     AND isDelete = 0";
 

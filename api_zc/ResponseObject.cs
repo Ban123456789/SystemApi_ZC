@@ -534,6 +534,10 @@ namespace Accura_MES
         /// 本次沖帳有出貨單已被刪除，請重新整理畫面後重新沖帳
         /// </summary>
         public static readonly SelfErrorCode SHIPPING_ORDER_DELETED_IN_CURRENT_REQUEST = new SelfErrorCode("400-22", "本次沖帳有出貨單已被刪除，請重新整理畫面後重新沖帳");
+        /// <summary>
+        /// 該應收帳款已沖銷，故不能刪除
+        /// </summary>
+        public static readonly SelfErrorCode RECEIVABLE_ALREADY_OFFSET_CANNOT_DELETE = new SelfErrorCode("400-23", "該應收帳款已沖銷，故不能刪除");
         #endregion
 
         /// <summary>
