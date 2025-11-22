@@ -154,6 +154,58 @@ namespace Accura_MES.Controllers
                 return this.HandleAccuraException(null, ex);
             }
         }
+
+        /// <summary>
+        /// 編輯訂單
+        /// </summary>
+        /// <param name="input">訂單資料（需包含 id）</param>
+        /// <returns></returns>
+        [HttpPost("UpdateOrder")]
+        public async Task<IActionResult> UpdateOrder([FromBody] Dictionary<string, object?> input)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (input == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "訂單資料不能為空");
+                }
+
+                if (!input.ContainsKey("id") || input["id"] == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "訂單資料必須包含 id");
+                }
+                #endregion
+
+                // 獲取 token
+                var token = JwtService.AnalysisToken(HttpContext.Request.Headers["Authorization"]);
+                long user = long.Parse(token["sub"]);
+
+                IOrderService orderService = OrderService.CreateService(connectionString);
+
+                // 編輯訂單
+                ResponseObject responseObject = await orderService.UpdateOrder(user, input);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
     }
 }
 

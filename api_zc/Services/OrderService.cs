@@ -466,6 +466,167 @@ namespace Accura_MES.Services
                 SqlHelper.RollbackAndDisposeTransaction(transaction);
             }
         }
+
+        /// <summary>
+        /// 編輯訂單
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="orderObject">訂單資料（需包含 id）</param>
+        /// <returns>響應對象</returns>
+        public async Task<ResponseObject> UpdateOrder(long userId, Dictionary<string, object?> orderObject)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+            SqlTransaction? transaction = null;
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+                transaction = connection.BeginTransaction();
+
+                // 檢查 orderObject 是否包含 id
+                if (!orderObject.ContainsKey("id") || orderObject["id"] == null)
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        "更新時 id 不能為空"
+                    );
+                }
+
+                // 獲取 orderId
+                long orderId = GetLongValue(orderObject["id"], "id");
+
+                // 1. 取得這些訂單底下的所有出貨單，並檢查這些出貨單是否有至少一筆是已經沖銷過
+                string checkOffsetSql = @"
+                    SELECT 
+                        shippingOrder.id, 
+                        shippingOrder.orderId, 
+                        [order].number
+                    FROM shippingOrder 
+                    INNER JOIN [order] 
+                        ON shippingOrder.orderId = [order].id 
+                    WHERE shippingOrder.isDelete = 0 
+                    AND shippingOrder.orderId = @orderId
+                    AND shippingOrder.offsetMoney > 0";
+
+                using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))
+                {
+                    checkCommand.Parameters.AddWithValue("@orderId", orderId);
+                    
+                    using var reader = await checkCommand.ExecuteReaderAsync();
+                    if (await reader.ReadAsync())
+                    {
+                        // 如果取出來的資料筆數大於 0，返回錯誤
+                        reader.Close();
+                        await transaction.RollbackAsync();
+                        responseObject.SetErrorCode(SelfErrorCode.ORDER_HAS_OFFSET_SHIPPING_ORDER_CANNOT_EDIT);
+                        return responseObject;
+                    }
+                }
+
+                // 2. 針對該 order 物件做編輯
+                // 轉換 Dictionary<string, object?> 為 Dictionary<string, object>
+                Dictionary<string, object> orderDict = new Dictionary<string, object>();
+                foreach (var kvp in orderObject)
+                {
+                    orderDict[kvp.Key] = kvp.Value ?? (object)DBNull.Value;
+                }
+
+                TableDatas orderTableDatas = new TableDatas();
+                orderTableDatas.Datasheet = "order";
+                orderTableDatas.DataStructure = new List<Dictionary<string, object>> { orderDict };
+
+                await _genericRepository.GenericUpdate(
+                    userId,
+                    orderTableDatas,
+                    connection,
+                    transaction
+                );
+
+                // 提交事務
+                await transaction.CommitAsync();
+
+                Debug.WriteLine($"[OrderService] 成功更新訂單：orderId={orderId}");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = "更新成功";
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[OrderService] 更新訂單失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, transaction);
+            }
+            finally
+            {
+                SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 從 Dictionary 中獲取 long 類型的值
+        /// </summary>
+        private long GetLongValue(object? value, string fieldName)
+        {
+            if (value == null)
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    $"{fieldName} 不能為空"
+                );
+            }
+
+            // 處理 JsonElement 類型（ASP.NET Core JSON 反序列化）
+            if (value is JsonElement jsonElement)
+            {
+                if (jsonElement.ValueKind == JsonValueKind.Number)
+                {
+                    return jsonElement.GetInt64();
+                }
+                else if (jsonElement.ValueKind == JsonValueKind.String)
+                {
+                    if (long.TryParse(jsonElement.GetString(), out long jsonParsedValue))
+                    {
+                        return jsonParsedValue;
+                    }
+                }
+                else
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        $"{fieldName} 必須是數字，當前類型: {jsonElement.ValueKind}"
+                    );
+                }
+            }
+
+            if (value is long longValue)
+            {
+                return longValue;
+            }
+
+            if (value is int intValue)
+            {
+                return intValue;
+            }
+
+            if (value is string stringValue && long.TryParse(stringValue, out long stringParsedValue))
+            {
+                return stringParsedValue;
+            }
+
+            // 嘗試轉換
+            try
+            {
+                return Convert.ToInt64(value);
+            }
+            catch
+            {
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.BAD_REQUEST,
+                    $"{fieldName} 類型不正確，無法轉換為數字，當前類型: {value.GetType().Name}"
+                );
+            }
+        }
     }
 }
 

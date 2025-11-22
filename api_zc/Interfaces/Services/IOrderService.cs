@@ -26,6 +26,14 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="request">刪除請求</param>
         /// <returns>響應對象</returns>
         Task<ResponseObject> DeleteOrders(long userId, DeleteOrdersRequest request);
+
+        /// <summary>
+        /// 編輯訂單
+        /// </summary>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="orderObject">訂單資料（需包含 id）</param>
+        /// <returns>響應對象</returns>
+        Task<ResponseObject> UpdateOrder(long userId, Dictionary<string, object?> orderObject);
     }
 }
 

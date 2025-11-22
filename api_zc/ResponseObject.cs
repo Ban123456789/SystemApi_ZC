@@ -551,6 +551,10 @@ namespace Accura_MES
         /// 該訂單底下的出貨單已經沖銷，故不能刪除
         /// </summary>
         public static readonly SelfErrorCode ORDER_HAS_OFFSET_SHIPPING_ORDER_CANNOT_DELETE = new SelfErrorCode("400-26", "該訂單底下的出貨單已經沖銷，故不能刪除");
+        /// <summary>
+        /// 該訂單底下的出貨單已經沖銷，故不能編輯
+        /// </summary>
+        public static readonly SelfErrorCode ORDER_HAS_OFFSET_SHIPPING_ORDER_CANNOT_EDIT = new SelfErrorCode("400-27", "該訂單底下的出貨單已經沖銷，故不能編輯");
         #endregion
 
         /// <summary>
