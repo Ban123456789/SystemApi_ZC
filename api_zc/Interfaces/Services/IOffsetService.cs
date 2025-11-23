@@ -33,6 +33,13 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="request">反沖銷請求</param>
         /// <returns>響應對象</returns>
         Task<ResponseObject> RollbackOffset(long userId, RollbackOffsetRequest request);
+
+        /// <summary>
+        /// 取得客戶結餘
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含客戶結餘資訊</returns>
+        Task<ResponseObject> GetCustomerBalance(GetCustomerBalanceRequest request);
     }
 }
 

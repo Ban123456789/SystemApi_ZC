@@ -1084,6 +1084,96 @@ namespace Accura_MES.Services
         }
 
         /// <summary>
+        /// 取得客戶結餘
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含客戶結餘資訊</returns>
+        public async Task<ResponseObject> GetCustomerBalance(GetCustomerBalanceRequest request)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                // 構建 SQL 查詢
+                var sqlBuilder = new System.Text.StringBuilder(@"
+                    SELECT 
+                        customer.id as customerId,
+                        customer.number as customerNumber,
+                        customer.name as customerName,
+                        customer.nickName as customerNickName,
+                        SUM(ISNULL(offsetRecord.totalOffsetMoney, 0)) as totalOffsetMoney,
+                        SUM(ISNULL(offsetRecord.shouldBeOffsetMoney, 0)) as shouldBeOffsetMoney,
+                        SUM(ISNULL(offsetRecord.discount, 0)) as discount,
+                        -- 公式：totalOffsetMoney - shouldBeOffsetMoney + discount
+                        SUM(ISNULL(offsetRecord.totalOffsetMoney, 0)) - 
+                        SUM(ISNULL(offsetRecord.shouldBeOffsetMoney, 0)) + 
+                        SUM(ISNULL(offsetRecord.discount, 0)) as balance
+                    FROM offsetRecord
+                    INNER JOIN customer
+                        ON offsetRecord.customerId = customer.id
+                    WHERE offsetRecord.isDelete = 0");
+
+                var parameters = new List<SqlParameter>();
+
+                // 動態添加客戶 ID 條件（使用參數化查詢）
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIdParams = string.Join(",", request.customerIds.Select((id, index) =>
+                    {
+                        var paramName = $"@customerId{index}";
+                        parameters.Add(new SqlParameter(paramName, id));
+                        return paramName;
+                    }));
+                    sqlBuilder.Append($" AND customer.id IN ({customerIdParams})");
+                }
+
+                sqlBuilder.Append(@"
+                    GROUP BY 
+                        customer.id,
+                        customer.number,
+                        customer.name,
+                        customer.nickName
+                    ORDER BY customer.number");
+
+                var results = new List<Dictionary<string, object>>();
+                using (var command = new SqlCommand(sqlBuilder.ToString(), connection))
+                {
+                    command.Parameters.AddRange(parameters.ToArray());
+                    using var reader = await command.ExecuteReaderAsync();
+                    
+                    while (await reader.ReadAsync())
+                    {
+                        var row = new Dictionary<string, object>();
+                        row["customerId"] = reader.GetInt64(reader.GetOrdinal("customerId"));
+                        row["customerNumber"] = reader.IsDBNull(reader.GetOrdinal("customerNumber")) ? null : reader.GetString(reader.GetOrdinal("customerNumber"));
+                        row["customerName"] = reader.IsDBNull(reader.GetOrdinal("customerName")) ? null : reader.GetString(reader.GetOrdinal("customerName"));
+                        row["customerNickName"] = reader.IsDBNull(reader.GetOrdinal("customerNickName")) ? null : reader.GetString(reader.GetOrdinal("customerNickName"));
+                        row["totalOffsetMoney"] = reader.IsDBNull(reader.GetOrdinal("totalOffsetMoney")) ? 0 : reader.GetDecimal(reader.GetOrdinal("totalOffsetMoney"));
+                        row["shouldBeOffsetMoney"] = reader.IsDBNull(reader.GetOrdinal("shouldBeOffsetMoney")) ? 0 : reader.GetDecimal(reader.GetOrdinal("shouldBeOffsetMoney"));
+                        row["discount"] = reader.IsDBNull(reader.GetOrdinal("discount")) ? 0 : reader.GetDecimal(reader.GetOrdinal("discount"));
+                        row["balance"] = reader.IsDBNull(reader.GetOrdinal("balance")) ? 0 : reader.GetDecimal(reader.GetOrdinal("balance"));
+                        
+                        results.Add(row);
+                    }
+                }
+
+                Debug.WriteLine($"[OffsetService] 取得 {results.Count} 筆客戶結餘資料");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = results;
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[OffsetService] 取得客戶結餘失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, null);
+            }
+        }
+
+        /// <summary>
         /// 生成沖帳編號
         /// 格式：民國年 + MMdd + 序列號（0001開始）
         /// 例如：offsetDate = '2025-01-02'，編號為 11401020001（114是民國年，0102是月日，0001是序列號）

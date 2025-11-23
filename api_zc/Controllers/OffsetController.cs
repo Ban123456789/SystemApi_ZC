@@ -192,6 +192,49 @@ namespace Accura_MES.Controllers
                 return this.HandleAccuraException(null, ex);
             }
         }
+
+        /// <summary>
+        /// 取得客戶結餘
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns></returns>
+        [HttpPost("GetCustomerBalance")]
+        public async Task<IActionResult> GetCustomerBalance([FromBody] GetCustomerBalanceRequest request)
+        {
+            try
+            {
+                // 取得 connection
+                string connectionString = _xml.GetConnection(Request.Headers["Database"].ToString());
+
+                #region 檢查
+                // 檢查Header
+                ResponseObject result = UserController.CheckToken(Request);
+                if (!result.Success)
+                {
+                    return StatusCode(int.Parse(result.Code.Split("-")[0]), result);
+                }
+
+                // 檢查 Body
+                if (request == null)
+                {
+                    return this.CustomAccuraResponse(SelfErrorCode.MISSING_PARAMETERS, null, null, "查詢請求不能為空");
+                }
+                #endregion
+
+                IOffsetService offsetService = OffsetService.CreateService(connectionString);
+
+                // 取得客戶結餘
+                ResponseObject responseObject = await offsetService.GetCustomerBalance(request);
+
+                // 直接返回
+                return this.CustomAccuraResponse(responseObject);
+            }
+            catch (Exception ex)
+            {
+                // 使用統一方法處理例外
+                return this.HandleAccuraException(null, ex);
+            }
+        }
     }
 }
 
