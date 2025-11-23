@@ -689,6 +689,34 @@ namespace Accura_MES.Services
                     }
 
                     long id = GetLongValue(idValue, "id");
+                    
+                    // 檢查該筆出貨單是否已沖帳
+                    string checkOffsetSql = @"
+                        SELECT id, offsetMoney 
+                        FROM shippingOrder 
+                        WHERE id = @Id";
+                    
+                    decimal offsetMoney = 0;
+                    using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))
+                    {
+                        checkCommand.Parameters.AddWithValue("@Id", id);
+                        
+                        using var reader = await checkCommand.ExecuteReaderAsync();
+                        if (await reader.ReadAsync())
+                        {
+                            offsetMoney = reader.IsDBNull(reader.GetOrdinal("offsetMoney")) ? 0 : reader.GetDecimal(reader.GetOrdinal("offsetMoney"));
+                        }
+                    }
+                    
+                    // 在 reader 關閉後再檢查並回滾
+                    if (offsetMoney > 0)
+                    {
+                        await transaction.RollbackAsync();
+                        responseObject.SetErrorCode(SelfErrorCode.SHIPPING_ORDER_ALREADY_OFFSET_CANNOT_EDIT);
+                        responseObject.ErrorData = new { id = id };
+                        return responseObject;
+                    }
+                    
                     long orderId = GetOrderIdFromDictionary(shippingOrder);
 
                     affectedOrderIds.Add(orderId);
