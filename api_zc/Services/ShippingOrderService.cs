@@ -781,7 +781,58 @@ namespace Accura_MES.Services
 
                 Debug.WriteLine($"[ShippingOrderService] 刪除操作影響 {affectedOrderIds.Count} 個訂單");
 
-                // 2. 將這些出貨單標記為已刪除（isDelete = true）
+                // 2. 檢查該出貨單是否已沖帳
+                string checkOffsetSql = $@"
+                    SELECT 
+                        shippingOrder.id as id,
+                        shippingOrder.number as number,
+                        [order].shippedDate as shippedDate
+                    FROM shippingOrder
+                    INNER JOIN [order]
+                        ON shippingOrder.orderId = [order].id
+                    WHERE shippingOrder.offsetMoney > 0
+                    AND shippingOrder.id IN ({string.Join(",", ids.Select((_, index) => $"@checkId{index}"))})";
+
+                var offsetShippingOrders = new List<Dictionary<string, object>>();
+                using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))
+                {
+                    for (int i = 0; i < ids.Count; i++)
+                    {
+                        checkCommand.Parameters.AddWithValue($"@checkId{i}", ids[i]);
+                    }
+
+                    using var reader = await checkCommand.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        var shippingOrder = new Dictionary<string, object>();
+                        shippingOrder["id"] = reader.GetInt64(reader.GetOrdinal("id"));
+                        shippingOrder["number"] = reader.IsDBNull(reader.GetOrdinal("number")) ? null : reader.GetString(reader.GetOrdinal("number"));
+                        
+                        // 格式化日期為 yyyy-MM-dd
+                        if (!reader.IsDBNull(reader.GetOrdinal("shippedDate")))
+                        {
+                            DateTime shippedDate = reader.GetDateTime(reader.GetOrdinal("shippedDate"));
+                            shippingOrder["shippedDate"] = shippedDate.ToString("yyyy-MM-dd");
+                        }
+                        else
+                        {
+                            shippingOrder["shippedDate"] = null;
+                        }
+                        
+                        offsetShippingOrders.Add(shippingOrder);
+                    }
+                }
+
+                // 如果取出來的筆數 > 0，將資料放到 errorData 並返回錯誤
+                if (offsetShippingOrders.Any())
+                {
+                    await transaction.RollbackAsync();
+                    responseObject.SetErrorCode(SelfErrorCode.SHIPPING_ORDER_ALREADY_OFFSET_CANNOT_DELETE);
+                    responseObject.ErrorData = offsetShippingOrders;
+                    return responseObject;
+                }
+
+                // 3. 將這些出貨單標記為已刪除（isDelete = true）
                 string deleteSql = $@"
                     UPDATE shippingOrder 
                     SET isDelete = 1, 
@@ -801,7 +852,7 @@ namespace Accura_MES.Services
                     Debug.WriteLine($"[ShippingOrderService] 標記 {rowsAffected} 個出貨單為已刪除");
                 }
 
-                // 3. 重新計算所有受影響的 orderId 的累計米數
+                // 4. 重新計算所有受影響的 orderId 的累計米數
                 foreach (var orderId in affectedOrderIds)
                 {
                     await RecalculateAllMetersForOrder(connection, transaction, orderId);
