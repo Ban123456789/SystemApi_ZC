@@ -137,6 +137,8 @@ namespace Accura_MES.Services
                         shippingOrder.type as type,
                         shippingOrder.price as price,
                         shippingOrder.outputMeters as outputMeters,
+                        shippingOrder.returnMeters as returnMeters,
+                        shippingOrder.remaining as remaining,
                         shippingOrder.offsetMoney as offsetMoney,
                         [order].id as orderId,
                         [order].shippedDate as shippedDate,
@@ -164,7 +166,7 @@ namespace Accura_MES.Services
                         AND ISNULL(shippingOrder.price, 0) > 0
                         AND (
                             (shippingOrder.type = '1' 
-                             AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.outputMeters, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
+                             AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.remaining, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
                             OR
                             (shippingOrder.type = '2' 
                              AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
@@ -250,6 +252,8 @@ namespace Accura_MES.Services
                         shippingOrder["type"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("type")) ? null : shippingOrderReader.GetString(shippingOrderReader.GetOrdinal("type"));
                         shippingOrder["price"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("price")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("price"));
                         shippingOrder["outputMeters"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("outputMeters")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("outputMeters"));
+                        shippingOrder["returnMeters"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("returnMeters")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("returnMeters"));
+                        shippingOrder["remaining"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("remaining")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("remaining"));
                         shippingOrder["offsetMoney"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("offsetMoney")) ? 0 : shippingOrderReader.GetDecimal(shippingOrderReader.GetOrdinal("offsetMoney"));
                         shippingOrder["orderId"] = shippingOrderReader.IsDBNull(shippingOrderReader.GetOrdinal("orderId")) ? (long?)null : shippingOrderReader.GetInt64(shippingOrderReader.GetOrdinal("orderId"));
                         
@@ -447,7 +451,7 @@ namespace Accura_MES.Services
                             AND ISNULL(shippingOrder.price, 0) > 0
                             AND (
                                 (shippingOrder.type = '1' 
-                                    AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.outputMeters, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
+                                    AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.remaining, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
                                 OR
                                 (shippingOrder.type = '2' 
                                     AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
