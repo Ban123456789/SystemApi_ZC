@@ -1272,8 +1272,22 @@ namespace Accura_MES.Services
                     FROM shippingOrder
                     INNER JOIN [order]
                         ON shippingOrder.orderId = [order].id
-                    WHERE shippingOrder.offsetMoney > 0
-                    AND shippingOrder.id IN ({idParams})";
+                    WHERE
+                        shippingOrder.id IN ({idParams})
+                        AND shippingOrder.type = '2'
+                        AND (
+                            (ISNULL(shippingOrder.price, 0) > 0 AND ISNULL(shippingOrder.offsetMoney, 0) > 0)
+                            OR
+                            (ISNULL(shippingOrder.price, 0) <= 0 
+                                AND EXISTS (
+                                    SELECT 1 
+                                    FROM offsetRecord_shippingOrder
+                                    WHERE offsetRecord_shippingOrder.shippingOrderId = shippingOrder.id
+                                        AND offsetRecord_shippingOrder.isDelete = 0
+                                )
+                            )
+                        )
+                    ";
 
                 var offsetShippingOrders = new List<Dictionary<string, object>>();
                 using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))
@@ -1420,8 +1434,21 @@ namespace Accura_MES.Services
                     FROM shippingOrder
                     INNER JOIN [order]
                         ON shippingOrder.orderId = [order].id
-                    WHERE shippingOrder.offsetMoney > 0
-                    AND shippingOrder.id IN ({request.shippingOrder["id"]})";
+                    WHERE 
+                        shippingOrder.id = {request.shippingOrder["id"]}
+                        AND shippingOrder.type = '2'
+                        AND (
+                            (ISNULL(shippingOrder.price, 0) > 0 AND ISNULL(shippingOrder.offsetMoney, 0) > 0)
+                            OR
+                            (ISNULL(shippingOrder.price, 0) <= 0 
+                                AND EXISTS (
+                                    SELECT 1 
+                                    FROM offsetRecord_shippingOrder
+                                    WHERE offsetRecord_shippingOrder.shippingOrderId = shippingOrder.id
+                                        AND offsetRecord_shippingOrder.isDelete = 0
+                                )
+                            )
+                        )";
 
                 var offsetShippingOrders = new List<Dictionary<string, object>>();
                 using (var checkCommand = new SqlCommand(checkOffsetSql, connection, transaction))

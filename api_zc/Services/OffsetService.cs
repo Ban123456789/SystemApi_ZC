@@ -131,6 +131,10 @@ namespace Accura_MES.Services
                 }
 
                 // 2. 查詢未沖銷的出貨單
+                // 未沖帳出貨單條件
+                // 1. type == 1 (出貨單剩餘米數 * 單價 > 已沖帳金額)
+                // 2. type == 2 && 單價 > 0 (單價 > 已沖帳金額)
+                // 3. type == 2 && 單價 <= 0 (不存在 offsetRecord_shippingOrder 紀錄)
                 var shippingOrderSqlBuilder = new System.Text.StringBuilder(@"
                     SELECT
                         shippingOrder.id as id,
@@ -163,13 +167,23 @@ namespace Accura_MES.Services
                         ON shippingOrder.productId = [product].id
                     WHERE
                         shippingOrder.isDelete = 0
-                        AND ISNULL(shippingOrder.price, 0) > 0
                         AND (
                             (shippingOrder.type = '1' 
                              AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.remaining, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
                             OR
                             (shippingOrder.type = '2' 
-                             AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
+                            AND (
+                                (ISNULL(shippingOrder.price, 0) > 0 
+                                    AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
+                                OR
+                                (ISNULL(shippingOrder.price, 0) <= 0 
+                                    AND NOT EXISTS (
+                                        SELECT 1 
+                                            FROM offsetRecord_shippingOrder
+                                        WHERE offsetRecord_shippingOrder.shippingOrderId = shippingOrder.id
+                                            AND offsetRecord_shippingOrder.isDelete = 0
+                                ))
+                            ))
                         )");
 
                 var shippingOrderParameters = new List<SqlParameter>();
@@ -448,13 +462,23 @@ namespace Accura_MES.Services
                             SELECT id 
                             FROM shippingOrder
                             WHERE id IN ({shippingOrderIdParams})
-                            AND ISNULL(shippingOrder.price, 0) > 0
                             AND (
                                 (shippingOrder.type = '1' 
                                     AND ISNULL(shippingOrder.price, 0) * COALESCE(NULLIF(shippingOrder.remaining, 0), 1) > ISNULL(shippingOrder.offsetMoney, 0))
                                 OR
                                 (shippingOrder.type = '2' 
-                                    AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
+                                    AND (
+                                        (ISNULL(shippingOrder.price, 0) > 0 
+                                            AND ISNULL(shippingOrder.price, 0) > ISNULL(shippingOrder.offsetMoney, 0))
+                                        OR
+                                        (ISNULL(shippingOrder.price, 0) <= 0 
+                                            AND NOT EXISTS (
+                                                SELECT 1 
+                                                    FROM offsetRecord_shippingOrder
+                                                WHERE offsetRecord_shippingOrder.shippingOrderId = shippingOrder.id
+                                                    AND offsetRecord_shippingOrder.isDelete = 0
+                                        ))
+                                    ))
                             )";
                         
                         var validShippingOrderIds = new List<long>();
