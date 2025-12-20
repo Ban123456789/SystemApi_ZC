@@ -6,6 +6,7 @@ using Accura_MES.Repositories;
 using Accura_MES.Utilities;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Diagnostics;
 
 namespace Accura_MES.Services
 {
@@ -177,6 +178,187 @@ namespace Accura_MES.Services
             finally
             {
                 SqlHelper.RollbackAndDisposeTransaction(transaction);
+            }
+        }
+
+        /// <summary>
+        /// 備份資料庫
+        /// </summary>
+        /// <param name="backupPath">備份文件存儲路徑（相對路徑）</param>
+        /// <param name="commandTimeout">SQL 命令超時時間（秒）</param>
+        /// <param name="retentionCount">保留備份檔案數量（<=0 表示不清理）</param>
+        /// <returns>備份文件的路徑</returns>
+        public async Task<string> BackupSQL(string backupPath, int commandTimeout, int retentionCount)
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                // 從連接字符串中提取數據庫名稱
+                var builder = new SqlConnectionStringBuilder(_connectionString);
+                string databaseName = builder.InitialCatalog;
+                
+                if (string.IsNullOrEmpty(databaseName))
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.BAD_REQUEST,
+                        "無法從連接字符串中獲取數據庫名稱"
+                    );
+                }
+
+                // 創建備份目錄（支持相對路徑和絕對路徑）
+                string backupDirectory;
+                if (Path.IsPathRooted(backupPath))
+                {
+                    // 絕對路徑
+                    backupDirectory = backupPath;
+                }
+                else
+                {
+                    // 相對路徑，相對於應用程序根目錄
+                    backupDirectory = Path.Combine(Directory.GetCurrentDirectory(), backupPath);
+                }
+
+                if (!Directory.Exists(backupDirectory))
+                {
+                    Directory.CreateDirectory(backupDirectory);
+                }
+
+                // 先做備份檔案數量控管（超過就刪最舊的）
+                CleanupOldBackups(backupDirectory, retentionCount);
+
+                // 生成備份文件名（格式：數據庫名_日期時間.bak）
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string backupFileName = $"{databaseName}_{timestamp}.bak";
+                string backupFilePath = Path.Combine(backupDirectory, backupFileName);
+
+                // 執行備份命令
+                // 轉義路徑中的單引號（SQL Server 需要）
+                string escapedPath = backupFilePath.Replace("'", "''");
+                string backupSql = $@"
+                    BACKUP DATABASE [{databaseName}]
+                    TO DISK = '{escapedPath}'
+                    WITH FORMAT, INIT, NAME = 'Full Backup of {databaseName}', 
+                    SKIP, NOREWIND, NOUNLOAD, STATS = 10";
+
+                Debug.WriteLine($"[SystemManageService] 開始備份數據庫: {databaseName}");
+                Debug.WriteLine($"[SystemManageService] 備份路徑: {backupFilePath}");
+                Debug.WriteLine($"[SystemManageService] SQL 命令: {backupSql}");
+
+                using var command = new SqlCommand(backupSql, connection);
+                command.CommandTimeout = commandTimeout; // 使用配置的超時時間
+
+                try
+                {
+                    await command.ExecuteNonQueryAsync();
+                    Debug.WriteLine($"[SystemManageService] SQL 備份命令執行完成");
+                }
+                catch (SqlException sqlEx)
+                {
+                    Debug.WriteLine($"[SystemManageService] SQL 備份命令執行失敗: {sqlEx.Message}");
+                    Debug.WriteLine($"[SystemManageService] SQL 錯誤編號: {sqlEx.Number}");
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.INTERNAL_SERVER_ERROR,
+                        $"SQL Server 備份失敗: {sqlEx.Message} (錯誤編號: {sqlEx.Number})",
+                        sqlEx
+                    );
+                }
+
+                // 等待一小段時間，確保文件系統已更新
+                await Task.Delay(1000);
+
+                // 檢查備份文件是否存在
+                if (!System.IO.File.Exists(backupFilePath))
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.INTERNAL_SERVER_ERROR,
+                        $"備份文件創建失敗，文件路徑: {backupFilePath}"
+                    );
+                }
+
+                // 檢查文件大小，確保不是空文件
+                var fileInfo = new System.IO.FileInfo(backupFilePath);
+                if (fileInfo.Length == 0)
+                {
+                    throw new CustomErrorCodeException(
+                        SelfErrorCode.INTERNAL_SERVER_ERROR,
+                        $"備份文件為空，文件路徑: {backupFilePath}"
+                    );
+                }
+
+                Debug.WriteLine($"[SystemManageService] 備份文件驗證成功，文件大小: {fileInfo.Length} bytes");
+
+                return backupFilePath;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[SystemManageService] 數據庫備份失敗: {ex.Message}");
+                Debug.WriteLine($"[SystemManageService] 異常堆疊: {ex.StackTrace}");
+                
+                // 如果是自定義異常，直接拋出
+                if (ex is CustomErrorCodeException)
+                {
+                    throw;
+                }
+                
+                // 其他異常包裝為自定義異常，確保錯誤信息能傳遞到前端
+                throw new CustomErrorCodeException(
+                    SelfErrorCode.INTERNAL_SERVER_ERROR,
+                    $"數據庫備份失敗: {ex.Message}",
+                    ex
+                );
+            }
+        }
+
+        /// <summary>
+        /// 控管備份檔案數量：若超過 retentionCount，依建立時間優先刪除最早的
+        /// </summary>
+        private void CleanupOldBackups(string backupDirectory, int retentionCount)
+        {
+            // retentionCount <= 0 表示不啟用清理
+            if (retentionCount <= 0)
+            {
+                return;
+            }
+
+            try
+            {
+                var dirInfo = new DirectoryInfo(backupDirectory);
+                if (!dirInfo.Exists)
+                {
+                    return;
+                }
+
+                // 只針對 .bak 檔案
+                var files = dirInfo.GetFiles("*.bak", SearchOption.TopDirectoryOnly)
+                    // 依建立時間（CreationTimeUtc）由舊到新排序
+                    .OrderBy(f => f.CreationTimeUtc)
+                    .ToList();
+
+                // 若已經是 retentionCount 個(含)以上，刪到剩 retentionCount - 1 個（讓本次新增後不超過 retentionCount）
+                while (files.Count >= retentionCount)
+                {
+                    var toDelete = files[0];
+                    files.RemoveAt(0);
+
+                    try
+                    {
+                        Debug.WriteLine($"[SystemManageService] 超過保留數({retentionCount})，刪除最早備份: {toDelete.FullName}");
+                        toDelete.Delete();
+                    }
+                    catch (Exception deleteEx)
+                    {
+                        // 刪除失敗就中止，避免無限迴圈；備份仍可繼續嘗試
+                        Debug.WriteLine($"[SystemManageService] 刪除舊備份失敗: {deleteEx.Message}，檔案: {toDelete.FullName}");
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // 清理失敗不影響備份主流程
+                Debug.WriteLine($"[SystemManageService] 清理舊備份失敗: {ex.Message}");
             }
         }
     }

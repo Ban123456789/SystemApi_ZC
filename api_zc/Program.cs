@@ -39,7 +39,8 @@ builder.Services.AddCors(options =>
     {
         policy.AllowAnyOrigin() // ���\����ӷ�
               .AllowAnyMethod() // ���\���� HTTP ��k
-              .AllowAnyHeader(); // ���\������Y
+              .AllowAnyHeader() // ���\������Y
+              .WithExposedHeaders("content-disposition");
     });
 });
 
