@@ -65,5 +65,12 @@ namespace Accura_MES.Interfaces.Services
         /// <param name="userId">使用者 ID</param>
         /// <returns></returns>
         Task<ResponseObject> UpdateReceivable(CreateReceivableRequest request, long userId);
+
+        /// <summary>
+        /// 取得客戶應收統計
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含客戶應收統計資訊</returns>
+        Task<ResponseObject> CustomerReceivables(CustomerReceivablesRequest request);
     }
 }

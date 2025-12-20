@@ -1542,5 +1542,217 @@ namespace Accura_MES.Services
             }
         }
 
+        /// <summary>
+        /// 取得客戶應收統計
+        /// </summary>
+        /// <param name="request">查詢請求</param>
+        /// <returns>響應對象，包含客戶應收統計資訊</returns>
+        public async Task<ResponseObject> CustomerReceivables(CustomerReceivablesRequest request)
+        {
+            ResponseObject responseObject = new ResponseObject().GenerateEntity(SelfErrorCode.SUCCESS);
+
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                // 解析日期
+                DateTime? startDate = null;
+                DateTime? endDate = null;
+
+                if (!string.IsNullOrEmpty(request.shippedDateStart))
+                {
+                    if (DateTime.TryParse(request.shippedDateStart, out DateTime parsedStartDate))
+                    {
+                        startDate = parsedStartDate.Date;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(request.shippedDateEnd))
+                {
+                    if (DateTime.TryParse(request.shippedDateEnd, out DateTime parsedEndDate))
+                    {
+                        endDate = parsedEndDate.Date.AddDays(1).AddSeconds(-1);
+                    }
+                }
+
+                // 構建 SQL 查詢
+                var sqlBuilder = new System.Text.StringBuilder(@"
+WITH
+/** 顧客時間區間內總出貨米數 */
+customerShippingOrder AS (
+    SELECT
+        shippingOrder.customerId AS customerId,
+        SUM(shippingOrder.remaining) AS totalOutputMeters,
+        SUM(
+            CASE 
+                WHEN [product].number = '水車' THEN ISNULL(shippingOrder.price, 0)
+                ELSE 0
+            END
+        ) AS waterCarTotalPrice,
+        SUM(
+            CASE 
+                WHEN shippingOrder.type = 1 THEN
+                    CASE 
+                        WHEN [product].number = '水車' THEN 1 * ISNULL(shippingOrder.price, 0)
+                        ELSE ISNULL(shippingOrder.remaining, 0) * ISNULL(shippingOrder.price, 0)
+                    END
+                ELSE 0
+            END
+        ) AS totalShippingPrice,
+        SUM(
+            CASE 
+                WHEN shippingOrder.type = 1 THEN
+                    CASE 
+                        WHEN [product].number = '水車' THEN 1 * ISNULL(shippingOrder.price, 0)
+                        ELSE ISNULL(shippingOrder.remaining, 0) * ISNULL(shippingOrder.price, 0)
+                    END
+                WHEN shippingOrder.type = 2 THEN
+                    ISNULL(shippingOrder.price, 0)
+                ELSE 0
+            END
+        ) AS totalPrice
+    FROM shippingOrder
+    INNER JOIN [order]
+        ON shippingOrder.orderId = [order].id
+    INNER JOIN [product]
+        ON shippingOrder.productId = [product].id
+    WHERE
+        shippingOrder.isDelete = 0");
+
+                var parameters = new List<SqlParameter>();
+
+                // 動態添加日期條件
+                if (startDate.HasValue)
+                {
+                    sqlBuilder.Append(" AND [order].shippedDate >= @startShippedDate");
+                    parameters.Add(new SqlParameter("@startShippedDate", startDate.Value));
+                }
+
+                if (endDate.HasValue)
+                {
+                    sqlBuilder.Append(" AND [order].shippedDate <= @endShippedDate");
+                    parameters.Add(new SqlParameter("@endShippedDate", endDate.Value));
+                }
+
+                // 動態添加客戶 ID 條件到第一個 CTE
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIdParams = string.Join(",", request.customerIds.Select((id, index) => $"@customerId{index}"));
+                    sqlBuilder.Append($" AND shippingOrder.customerId IN ({customerIdParams})");
+                    
+                    for (int i = 0; i < request.customerIds.Count; i++)
+                    {
+                        parameters.Add(new SqlParameter($"@customerId{i}", request.customerIds[i]));
+                    }
+                }
+
+                sqlBuilder.Append(@"
+    GROUP BY
+        shippingOrder.customerId
+),
+/** 顧客上期應收 (不分時間區間，只要有未沖帳的出貨單就加總) */
+customerUnPay AS (
+    SELECT
+        shippingOrder.customerId AS customerId,
+        SUM(
+            CASE 
+                WHEN shippingOrder.type = 1 THEN
+                    CASE 
+                        WHEN [product].number = '水車' THEN 1 * ISNULL(shippingOrder.price, 0)
+                        ELSE ISNULL(shippingOrder.remaining, 0) * ISNULL(shippingOrder.price, 0)
+                    END
+                WHEN shippingOrder.type = 2 THEN
+                    ISNULL(shippingOrder.price, 0)
+                ELSE 0
+            END
+        ) AS totalUnpaid
+    FROM shippingOrder
+    INNER JOIN [product]
+        ON shippingOrder.productId = [product].id
+    WHERE
+        shippingOrder.isDelete = 0
+        AND shippingOrder.offsetMoney = 0");
+
+                // 動態添加客戶 ID 條件到第二個 CTE
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIdParams2 = string.Join(",", request.customerIds.Select((id, index) => $"@customerId2_{index}"));
+                    sqlBuilder.Append($" AND shippingOrder.customerId IN ({customerIdParams2})");
+                    
+                    for (int i = 0; i < request.customerIds.Count; i++)
+                    {
+                        parameters.Add(new SqlParameter($"@customerId2_{i}", request.customerIds[i]));
+                    }
+                }
+
+                sqlBuilder.Append(@"
+    GROUP BY 
+        shippingOrder.customerId
+)
+SELECT
+    customer.id AS customerId,
+    customer.name AS customerName,
+    customer.number AS customerNumber,
+    customer.nickName AS customerNickName,
+    ISNULL(customerShippingOrder.totalOutputMeters, 0) AS totalOutputMeters,
+    ISNULL(customerShippingOrder.waterCarTotalPrice, 0) AS waterCarTotalPrice,
+    ISNULL(customerShippingOrder.totalShippingPrice, 0) AS totalShippingPrice,
+    ISNULL(customerShippingOrder.totalPrice, 0) AS totalPrice,
+    ISNULL(customerUnPay.totalUnpaid, 0) AS totalUnpaid
+FROM customerShippingOrder
+INNER JOIN customer
+    ON customerShippingOrder.customerId = customer.id
+LEFT JOIN customerUnPay
+    ON customerShippingOrder.customerId = customerUnPay.customerId");
+
+                // 可選：在主查詢中也添加客戶 ID 過濾（確保數據一致性）
+                if (request.customerIds != null && request.customerIds.Any())
+                {
+                    var customerIdParams3 = string.Join(",", request.customerIds.Select((id, index) => $"@customerId3_{index}"));
+                    sqlBuilder.Append($" WHERE customer.id IN ({customerIdParams3})");
+                    
+                    for (int i = 0; i < request.customerIds.Count; i++)
+                    {
+                        parameters.Add(new SqlParameter($"@customerId3_{i}", request.customerIds[i]));
+                    }
+                }
+
+                var results = new List<Dictionary<string, object>>();
+                using (var command = new SqlCommand(sqlBuilder.ToString(), connection))
+                {
+                    command.Parameters.AddRange(parameters.ToArray());
+                    using var reader = await command.ExecuteReaderAsync();
+                    
+                    while (await reader.ReadAsync())
+                    {
+                        var row = new Dictionary<string, object>();
+                        row["customerId"] = reader.GetInt64(reader.GetOrdinal("customerId"));
+                        row["customerName"] = reader.IsDBNull(reader.GetOrdinal("customerName")) ? null : reader.GetString(reader.GetOrdinal("customerName"));
+                        row["customerNumber"] = reader.IsDBNull(reader.GetOrdinal("customerNumber")) ? null : reader.GetString(reader.GetOrdinal("customerNumber"));
+                        row["customerNickName"] = reader.IsDBNull(reader.GetOrdinal("customerNickName")) ? null : reader.GetString(reader.GetOrdinal("customerNickName"));
+                        row["totalOutputMeters"] = reader.IsDBNull(reader.GetOrdinal("totalOutputMeters")) ? 0 : reader.GetDecimal(reader.GetOrdinal("totalOutputMeters"));
+                        row["waterCarTotalPrice"] = reader.IsDBNull(reader.GetOrdinal("waterCarTotalPrice")) ? 0 : reader.GetDecimal(reader.GetOrdinal("waterCarTotalPrice"));
+                        row["totalShippingPrice"] = reader.IsDBNull(reader.GetOrdinal("totalShippingPrice")) ? 0 : reader.GetDecimal(reader.GetOrdinal("totalShippingPrice"));
+                        row["totalPrice"] = reader.IsDBNull(reader.GetOrdinal("totalPrice")) ? 0 : reader.GetDecimal(reader.GetOrdinal("totalPrice"));
+                        row["totalUnpaid"] = reader.IsDBNull(reader.GetOrdinal("totalUnpaid")) ? 0 : reader.GetDecimal(reader.GetOrdinal("totalUnpaid"));
+                        
+                        results.Add(row);
+                    }
+                }
+
+                Debug.WriteLine($"[CustomerPriceService] 取得 {results.Count} 筆客戶應收統計資料");
+
+                responseObject.SetErrorCode(SelfErrorCode.SUCCESS);
+                responseObject.Data = results;
+                return responseObject;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[CustomerPriceService] 取得客戶應收統計失敗: {ex.Message}");
+                return await this.HandleExceptionAsync(ex, null);
+            }
+        }
+
     }
 }
