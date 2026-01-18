@@ -59,6 +59,88 @@ namespace Accura_MES.Services
                 await connection.OpenAsync();
                 transaction = connection.BeginTransaction();
 
+                // 檢查是否存在相同 "客戶"、"工地"、"產品"
+                // 條件：shippedDate + customerId + projectId + productId（僅檢查 isDelete=0 且 type=1）
+                // 只要已存在(>=1)就視為重複建立的訂單
+                var requestKeySet = new HashSet<string>();
+                foreach (var order in orderObject)
+                {
+                    // shippedDate
+                    var shippedDateObj = order.GetValueOrDefault("shippedDate");
+                    if (shippedDateObj == null)
+                    {
+                        throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, "shippedDate 不能為空");
+                    }
+
+                    DateTime shippedDate;
+                    if (shippedDateObj is JsonElement shippedDateJson)
+                    {
+                        if (shippedDateJson.ValueKind == JsonValueKind.String)
+                        {
+                            var dateString = shippedDateJson.GetString() ?? string.Empty;
+                            if (!DateTime.TryParse(dateString, out shippedDate))
+                            {
+                                throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, $"shippedDate 格式不正確: {dateString}");
+                            }
+                        }
+                        else
+                        {
+                            throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, $"shippedDate 類型不正確，當前類型: {shippedDateJson.ValueKind}");
+                        }
+                    }
+                    else if (shippedDateObj is DateTime dt)
+                    {
+                        shippedDate = dt;
+                    }
+                    else if (shippedDateObj is string shippedDateStr && DateTime.TryParse(shippedDateStr, out var parsed))
+                    {
+                        shippedDate = parsed;
+                    }
+                    else
+                    {
+                        throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, $"shippedDate 類型不正確，當前類型: {shippedDateObj.GetType().Name}");
+                    }
+
+                    shippedDate = shippedDate.Date;
+
+                    // customerId / projectId / productId
+                    long customerId = GetLongValue(order.GetValueOrDefault("customerId"), "customerId");
+                    long projectId = GetLongValue(order.GetValueOrDefault("projectId"), "projectId");
+                    long productId = GetLongValue(order.GetValueOrDefault("productId"), "productId");
+
+                    // 先檢查 request 本身是否重複
+                    string key = $"{shippedDate:yyyy-MM-dd}|{customerId}|{projectId}|{productId}";
+                    if (!requestKeySet.Add(key))
+                    {
+                        throw new CustomErrorCodeException(SelfErrorCode.DUPLICATE_ORDER_CANNOT_CREATE, "重複建立的訂單");
+                    }
+
+                    // 再檢查 DB 是否已存在
+                    string dupSql = @"
+                        SELECT COUNT(*) AS dup_count
+                        FROM dbo.[order]
+                        WHERE isDelete = 0 AND type = 1
+                          AND shippedDate = @shippedDate
+                          AND customerId = @customerId
+                          AND projectId = @projectId
+                          AND productId = @productId";
+
+                    using var dupCmd = new SqlCommand(dupSql, connection, transaction);
+                    dupCmd.Parameters.AddWithValue("@shippedDate", shippedDate);
+                    dupCmd.Parameters.AddWithValue("@customerId", customerId);
+                    dupCmd.Parameters.AddWithValue("@projectId", projectId);
+                    dupCmd.Parameters.AddWithValue("@productId", productId);
+
+                    var scalar = await dupCmd.ExecuteScalarAsync();
+                    int dupCount = scalar == null || scalar == DBNull.Value ? 0 : Convert.ToInt32(scalar);
+
+                    if (dupCount >= 1)
+                    {
+                        throw new CustomErrorCodeException(SelfErrorCode.DUPLICATE_ORDER_CANNOT_CREATE, "重複建立的訂單");
+                    }
+                }
+
+
                 // 為每個訂單生成編號
                 await GenerateOrderNumbers(connection, transaction, orderObject);
 
@@ -524,7 +606,88 @@ namespace Accura_MES.Services
                     }
                 }
 
-                // 2. 針對該 order 物件做編輯
+                // 2. 檢查是否存在相同 shippedDate + customerId + projectId + productId（僅檢查 isDelete=0 且 type=1），排除自己這筆訂單
+                if (!orderObject.ContainsKey("shippedDate") || orderObject["shippedDate"] == null)
+                {
+                    throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, "shippedDate 不能為空");
+                }
+                if (!orderObject.ContainsKey("customerId") || orderObject["customerId"] == null)
+                {
+                    throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, "customerId 不能為空");
+                }
+                if (!orderObject.ContainsKey("projectId") || orderObject["projectId"] == null)
+                {
+                    throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, "projectId 不能為空");
+                }
+                if (!orderObject.ContainsKey("productId") || orderObject["productId"] == null)
+                {
+                    throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, "productId 不能為空");
+                }
+
+                // shippedDate 解析成 Date
+                DateTime shippedDate;
+                var shippedDateObj = orderObject["shippedDate"];
+                if (shippedDateObj is JsonElement shippedDateJson)
+                {
+                    if (shippedDateJson.ValueKind == JsonValueKind.String)
+                    {
+                        var dateString = shippedDateJson.GetString() ?? string.Empty;
+                        if (!DateTime.TryParse(dateString, out shippedDate))
+                        {
+                            throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, $"shippedDate 格式不正確: {dateString}");
+                        }
+                    }
+                    else
+                    {
+                        throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, $"shippedDate 類型不正確，當前類型: {shippedDateJson.ValueKind}");
+                    }
+                }
+                else if (shippedDateObj is DateTime dt)
+                {
+                    shippedDate = dt;
+                }
+                else if (shippedDateObj is string shippedDateStr && DateTime.TryParse(shippedDateStr, out var parsed))
+                {
+                    shippedDate = parsed;
+                }
+                else
+                {
+                    throw new CustomErrorCodeException(SelfErrorCode.BAD_REQUEST, $"shippedDate 類型不正確，當前類型: {shippedDateObj.GetType().Name}");
+                }
+                shippedDate = shippedDate.Date;
+
+                long customerId = GetLongValue(orderObject["customerId"], "customerId");
+                long projectId = GetLongValue(orderObject["projectId"], "projectId");
+                long productId = GetLongValue(orderObject["productId"], "productId");
+
+                string dupSql = @"
+                    SELECT COUNT(*) AS dup_count
+                    FROM dbo.[order]
+                    WHERE isDelete = 0 AND type = 1
+                      AND id <> @orderId
+                      AND shippedDate = @shippedDate
+                      AND customerId = @customerId
+                      AND projectId = @projectId
+                      AND productId = @productId";
+
+                using (var dupCmd = new SqlCommand(dupSql, connection, transaction))
+                {
+                    dupCmd.Parameters.AddWithValue("@orderId", orderId);
+                    dupCmd.Parameters.AddWithValue("@shippedDate", shippedDate);
+                    dupCmd.Parameters.AddWithValue("@customerId", customerId);
+                    dupCmd.Parameters.AddWithValue("@projectId", projectId);
+                    dupCmd.Parameters.AddWithValue("@productId", productId);
+
+                    var scalar = await dupCmd.ExecuteScalarAsync();
+                    int dupCount = scalar == null || scalar == DBNull.Value ? 0 : Convert.ToInt32(scalar);
+
+                    if (dupCount >= 1)
+                    {
+                        throw new CustomErrorCodeException(SelfErrorCode.DUPLICATE_ORDER_CANNOT_CREATE, "重複建立的訂單");
+                    }
+                }
+
+                // 3. 針對該 order 物件做編輯
                 // 轉換 Dictionary<string, object?> 為 Dictionary<string, object>
                 Dictionary<string, object> orderDict = new Dictionary<string, object>();
                 foreach (var kvp in orderObject)

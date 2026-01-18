@@ -563,6 +563,10 @@ namespace Accura_MES
         /// 該筆出貨單已沖帳，故不能編輯
         /// </summary>
         public static readonly SelfErrorCode SHIPPING_ORDER_ALREADY_OFFSET_CANNOT_EDIT = new SelfErrorCode("400-29", "該筆出貨單已沖帳，故不能編輯");
+        /// <summary>
+        /// 重複建立的訂單
+        /// </summary>
+        public static readonly SelfErrorCode DUPLICATE_ORDER_CANNOT_CREATE = new SelfErrorCode("400-30", "重複建立的訂單");
         #endregion
 
         /// <summary>
